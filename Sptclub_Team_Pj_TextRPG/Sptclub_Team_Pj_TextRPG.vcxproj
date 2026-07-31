@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditBoss.cpp" />
-    <ClCompile Include="BanditGhost.cpp" />
+    <ClCompile Include="HungryEunuch.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BlackTiger.cpp" />
     <ClCompile Include="Changgui.cpp" />
@@ -157,7 +157,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="MountainBeast.cpp" />
+    <ClCompile Include="Banran.cpp" />
     <ClCompile Include="Oni.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Podo.cpp" />
@@ -165,7 +165,7 @@
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="UndergroundNation.cpp" />
-    <ClCompile Include="VirginGhost.cpp" />
+    <ClCompile Include="GhostGuard.cpp" />
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="ArmorItem.cpp" />
     <ClCompile Include="Inventory.cpp" />
@@ -176,13 +176,13 @@
     <ClCompile Include="PotionRecipe.cpp" />
     <ClCompile Include="PotionWorkshop.cpp" />
     <ClCompile Include="WeaponItem.cpp" />
-    <ClCompile Include="Yaksa.cpp" />
+    <ClCompile Include="Sadoseja.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsciiArt.h" />
     <ClInclude Include="Bandit.h" />
     <ClInclude Include="BanditBoss.h" />
-    <ClInclude Include="BanditGhost.h" />
+    <ClInclude Include="HungryEunuch.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BlackTiger.h" />
     <ClInclude Include="Changgui.h" />
@@ -197,7 +197,7 @@
     <ClInclude Include="Jangsanbeom.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
-    <ClInclude Include="MountainBeast.h" />
+    <ClInclude Include="Banran.h" />
     <ClInclude Include="Oni.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Podo.h" />
@@ -205,7 +205,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="UndergroundNation.h" />
-    <ClInclude Include="VirginGhost.h" />
+    <ClInclude Include="GhostGuard.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="ArmorItem.h" />
     <ClInclude Include="Inventory.h" />
@@ -215,7 +215,7 @@
     <ClInclude Include="PotionRecipe.h" />
     <ClInclude Include="PotionWorkshop.h" />
     <ClInclude Include="WeaponItem.h" />
-    <ClInclude Include="Yaksa.h" />
+    <ClInclude Include="Sadoseja.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

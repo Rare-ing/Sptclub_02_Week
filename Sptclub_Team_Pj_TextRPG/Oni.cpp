@@ -1,9 +1,8 @@
 ﻿#include "Oni.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Oni::Oni() : Monster("도깨비", 6, 70, "도깨비 방망이 조각", 50, 15, "요란한 웃음소리와 함께 도깨비가 나타났다!") {}
+Oni::Oni() : Monster("도깨비", 4, 50, "도깨비 방망이 조각", 50, 15, "요란한 웃음소리와 함께 도깨비가 나타났다!") {}
 
 void Oni::Attack(Player* player)
 {

@@ -11,15 +11,15 @@ Monster::Monster(std::string monsterName, int level, int expReward, std::string 
 
 	this->level = level;
 
-	int minHP = level * 20;
-	int maxHP = level * 30;
+	int minHp = level * 20;
+	int maxHp = level * 30;
 
-	hp = minHP + (rand() % (maxHP - minHP + 1));
+	hp = minHp + (rand() % (maxHp - minHp + 1));
 
-	int minMP = level * 10;
-	int maxMP = level * 20;
+	int minMp = level * 10;
+	int maxMp = level * 20;
 
-	mp = minMP + (rand() % (maxMP - minMP + 1));
+	mp = minMp + (rand() % (maxMp - minMp + 1));
 
 	int minPower = level * 5;
 	int maxPower = level * 10;
@@ -43,6 +43,9 @@ Monster::Monster(std::string monsterName, int level, int expReward, std::string 
 	isStunned = false;
 	isDot = false;
 	isAlive = true;
+
+	dotDamage = 0;
+	dotTurn = 0;
 }
 
 void Monster::printMonsterStatus()
@@ -170,22 +173,27 @@ void Monster::ApplyDot()
 		return;
 	}
 
-	hp -= dotDamage;
+	TakeDamage(dotDamage);
 
 	dotTurn--;
 
 	std::cout << name << "은(는) 지속 피해를 입었다! " << dotDamage << " 피해" << std::endl;
-
-	if (hp <= 0)
-	{
-		hp = 0;
-		isAlive = false;
-	}
 
 	if (dotTurn <= 0)
 	{
 		isDot = false;
 
 		std::cout << name << "의 지속피해가 사라졌다!" << std::endl;
+	}
+}
+
+void Monster::TakeDamage(int damage)
+{
+	hp -= damage;
+
+	if (hp <= 0)
+	{
+		hp = 0;
+		isAlive = false;
 	}
 }

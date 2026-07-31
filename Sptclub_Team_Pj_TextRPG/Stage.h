@@ -24,7 +24,7 @@ public:
 
 	int getBossOpenLevel();
 
-	Monster* getRandomMonster();
+	Monster* GetRandomMonster();
 
-	Monster* getBoss();
+	Monster* GetBoss();
 };

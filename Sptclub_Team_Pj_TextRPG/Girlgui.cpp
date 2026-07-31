@@ -1,9 +1,8 @@
 ﻿#include "Girlgui.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Girlgui::Girlgui() : Monster("걸귀", 1, 10, "찢어진 치마자락", 15, 8, "걸귀가 배고파하면 다가오고있다.") {}
+Girlgui::Girlgui() : Monster("걸귀", 1, 50, "찢어진 치마자락", 15, 8, "걸귀가 배고파하면 다가오고있다.") {}
 
 void Girlgui::Attack(Player* player)
 {

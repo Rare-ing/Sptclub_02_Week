@@ -1,17 +1,16 @@
-﻿#include "Yaksa.h"
-#include "Player.h"
+﻿#include "Sadoseja.h"
 #include <iostream>
 #include <cstdlib>
 
-Yaksa::Yaksa() : Monster("야차", 5, 80, "야차의 뿔", 100, 20, "산을 지배하는 악귀 야차가 모습을 드러냈다!")
+Sadoseja::Sadoseja() : Monster("뒤주의 망령", 5, 80, "사도세자의 옥패", 100, 20, "뒤주 속에서 한을 품고 죽어간 사도세자의 망령이 모습을 드러냈다!")
 {
 	setBoss(true);
 	ApplyBossBonus();
 }
 
-void Yaksa::Attack(Player* player)
+void Sadoseja::Attack(Player* player)
 {
-	std::cout << "야차는 빠르게 움직여 거대한 손톱으로 내려쳤다!" << std::endl;
+	std::cout << "뒤주의 망령은 뒤주 틈새에서 검은 손을 뻗었다!" << std::endl;
 
 	int damage = CalculateDamage(player->getDefence());
 	player->TakeDamage(damage);
@@ -19,7 +18,7 @@ void Yaksa::Attack(Player* player)
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
 }
 
-void Yaksa::Skill(Player* player)
+void Sadoseja::Skill(Player* player)
 {
 	const int skillCost = 50;
 
@@ -30,7 +29,7 @@ void Yaksa::Skill(Player* player)
 	}
 	setMp(getMp() - skillCost);
 
-	std::cout << "야차는 악귀의 힘을 끌어올려 강력한 일격을 날렸다!" << std::endl;
+	std::cout << "뒤주의 망령은 깊은 원한을 폭발시켜 사방으로 원혼을 내뿜었다!" << std::endl;
 
 	int damage = CalculateSkillDamage(player->getDefence(), 1.8f);
 

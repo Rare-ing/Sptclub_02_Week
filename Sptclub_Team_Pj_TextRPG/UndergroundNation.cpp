@@ -1,9 +1,8 @@
 ﻿#include "UndergroundNation.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-UndergroundNation::UndergroundNation() : Monster("지하국대적", 10, 0, "지하국대적의 보물", 1000, 50, "지하 세계를 지배하는 대적이 모습을 드러냈다!")
+UndergroundNation::UndergroundNation() : Monster("흉년의 악신", 10, 0, "검게 탄 풍년패", 1000, 50, "수많은 백성이 굶주림 속에서 쓰러진 원한이 모여, 흉년의 악신이 모습을 드러냈다!")
 {
 	setBoss(true);
 	ApplyBossBonus();
@@ -25,7 +24,7 @@ void UndergroundNation::TakeTurn(Player* player)
 
 void UndergroundNation::Attack(Player* player)
 {
-	std::cout << "지하국대적은 거대한 힘으로 땅을 내려쳤다!" << std::endl;
+	std::cout << "흉년의 악신은 검은 기운으로 플레이어를 내려쳤다!" << std::endl;
 
 	int damage = CalculateDamage(player->getDefence());
 	player->TakeDamage(damage);
@@ -44,10 +43,19 @@ void UndergroundNation::Skill(Player* player)
 	}
 	setMp(getMp() - skillCost);
 
-	std::cout << "지하국대적은 지하의 힘을 끌어올려 대지를 뒤흔들었다!" << std::endl;
+	std::cout << "흉년의 악신은 굶주린 백성들의 원한을 모아 재앙의 힘을 발산했다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 2.5f);
+	int damage = CalculateSkillDamage(player->getDefence(), 2.0f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
+
+	int poisonChance = rand() % 100;
+
+	if (poisonChance < 40)
+	{
+		std::cout << "플레이어는 재앙을 맞아 원혼들이 공격한다!" << std::endl;
+
+		player->setPoison(30, 2);
+	}
 }

@@ -1,5 +1,5 @@
 #pragma once
-//#include "Player.h"
+
 #include <string>
 
 class Player;
@@ -93,4 +93,6 @@ public:
 	void setDot(int damage, int turn);
 
 	void ApplyDot();
+
+	void TakeDamage(int damage);
 };

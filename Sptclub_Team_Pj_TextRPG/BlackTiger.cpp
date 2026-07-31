@@ -1,9 +1,8 @@
 ﻿#include "BlackTiger.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-BlackTiger::BlackTiger() : Monster("흑호 요괴", 9, 150, "흑호의 송곳니", 100, 10, "검은 호랑이의 형상을 한 요괴가 포효하며 나타났다!") {}
+BlackTiger::BlackTiger() : Monster("흑호 요괴", 9, 100, "흑호의 송곳니", 100, 10, "검은 호랑이의 형상을 한 요괴가 포효하며 나타났다!") {}
 
 void BlackTiger::Attack(Player* player)
 {

@@ -1,9 +1,8 @@
 ﻿#include "Changgui.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Changgui::Changgui() : Monster("창귀", 6, 80, "호랑이 발톱 장식", 80, 10, "호랑이에게 잡아먹힌 원혼, 창귀가 모습을 드러냈다!") {}
+Changgui::Changgui() : Monster("창귀", 4, 70, "호랑이 발톱 장식", 80, 10, "호랑이에게 잡아먹힌 원혼, 창귀가 모습을 드러냈다!") {}
 
 void Changgui::Attack(Player* player)
 {

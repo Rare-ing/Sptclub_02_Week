@@ -2,10 +2,10 @@
 
 #include "Monster.h"
 
-class VirginGhost : public Monster
+class HungryEunuch : public Monster
 {
 public:
-	VirginGhost();
+	HungryEunuch();
 
 	void Attack(Player* player) override;
 

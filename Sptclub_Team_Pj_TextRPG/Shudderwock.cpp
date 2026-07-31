@@ -1,9 +1,8 @@
 ﻿#include "Shudderwock.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Shudderwock::Shudderwock() : Monster("두억시니", 7, 100, "두억시니의 뿔조각", 100, 15, "머리를 깨뜨리는 악귀 두억시니가 나타났다!") {}
+Shudderwock::Shudderwock() : Monster("두억시니", 8, 80, "두억시니의 뿔조각", 100, 15, "머리를 깨뜨리는 악귀 두억시니가 나타났다!") {}
 
 void Shudderwock::Attack(Player* player)
 {

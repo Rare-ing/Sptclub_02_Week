@@ -1,9 +1,8 @@
 ﻿#include "Jangsanbeom.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Jangsanbeom::Jangsanbeom() : Monster("장산범", 7, 150, "장산범의 가면", 200, 20, "사람의 목소리를 흉내내는 괴수, 장산범이 나타났다!")
+Jangsanbeom::Jangsanbeom() : Monster("장산범", 5, 0, "장산범의 가면", 200, 20, "사람의 목소리를 흉내내는 괴수, 장산범이 나타났다!")
 {
 	setBoss(true);
 	ApplyBossBonus();

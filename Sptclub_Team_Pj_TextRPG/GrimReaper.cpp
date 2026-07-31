@@ -1,9 +1,8 @@
 ﻿#include "GrimReaper.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-GrimReaper::GrimReaper() : Monster("저승사자", 8, 120, "검은 부채", 100, 5, "죽음의 사자가 검은 그림자속에서 나타났다!") {}
+GrimReaper::GrimReaper() : Monster("저승사자", 8, 80, "검은 부채", 100, 5, "죽음의 사자가 검은 그림자속에서 나타났다!") {}
 
 void GrimReaper::Attack(Player* player)
 {
@@ -38,8 +37,7 @@ void GrimReaper::Skill(Player* player)
 	if (poisonChance < 30)
 	{
 		std::cout << "저승의 손들이 플레이어를 괴롭힌다!" << std::endl;
-		/*
+
 		player->setPoison(10, 3);
-		*/
 	}
 }

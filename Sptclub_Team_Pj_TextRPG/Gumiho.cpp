@@ -1,9 +1,8 @@
 ﻿#include "Gumiho.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-Gumiho::Gumiho() : Monster("구미호", 5, 60, "구미호의 털", 60, 3, "아름다운 모습 뒤에 숨은 구미호가 나타났다!") {}
+Gumiho::Gumiho() : Monster("구미호", 3, 50, "구미호의 털", 60, 3, "아름다운 모습 뒤에 숨은 구미호가 나타났다!") {}
 
 void Gumiho::Attack(Player* player)
 {

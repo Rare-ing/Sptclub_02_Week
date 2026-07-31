@@ -1,10 +1,8 @@
 ﻿#include "Bandit.h"
-#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
-
-Bandit::Bandit() : Monster("도적", 2, 15, "녹슨 도적 단검", 20, 10, "도적이 습격했다!") {}
+Bandit::Bandit() : Monster("도적", 2, 50, "녹슨 도적 단검", 20, 10, "도적이 습격했다!") {}
 
 void Bandit::Attack(Player* player)
 {
@@ -41,7 +39,6 @@ void Bandit::Skill(Player* player)
 	{
 		std::cout << "플레이어는 독에 걸렸다!" << std::endl;
 
-		/*
-		player->setPoison(3, 3);*/
+		player->setPoison(3, 3);
 	}
 }

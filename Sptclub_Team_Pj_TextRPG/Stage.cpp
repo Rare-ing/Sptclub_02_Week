@@ -1,31 +1,25 @@
-#pragma once
-
-#include "Stage.h" //d
-#include "Drunk.h" //d
-#include "Bandit.h" //d
-#include "Girlgui.h" //d 
-#include "BanditBoss.h" //d 
-#include "BanditGhost.h" //d
-#include "VirginGhost.h" //d 
-#include "MountainBeast.h" //d
-#include "Yaksa.h" //d
+#include "Stage.h"
+#include "Drunk.h"
+#include "Bandit.h"
+#include "Girlgui.h"
+#include "BanditBoss.h"
 #include "Gumiho.h"
 #include "Oni.h"
 #include "Changgui.h"
 #include "Jangsanbeom.h"
+#include "HungryEunuch.h"
+#include "GhostGuard.h"
+#include "Banran.h"
+#include "Sadoseja.h"
 #include "Shudderwock.h"
 #include "GrimReaper.h"
 #include "BlackTiger.h"
 #include "UndergroundNation.h"
-#include "Imoogi.h"
 
 #include <cstdlib>
 
-Stage::Stage(int stageLevel)
+Stage::Stage(int stageLevel) : stageLevel(stageLevel), bossOpenLevel(0), boss(nullptr)
 {
-	this->stageLevel = stageLevel;
-
-	boss = nullptr;
 
 	if (stageLevel == 1)
 	{
@@ -55,7 +49,7 @@ Stage::Stage(int stageLevel)
 
 		boss = new Jangsanbeom();
 
-		bossOpenLevel = 7;
+		bossOpenLevel = 8;
 	}
 	else if (stageLevel == 4)
 	{
@@ -79,14 +73,18 @@ Stage::~Stage()
 	delete boss;
 }
 
-Monster* Stage::getRandomMonster()
+Monster* Stage::GetRandomMonster()
 {
+	if (monsters.empty())
+	{
+		return nullptr;
+	}
 	int index = rand() % monsters.size();
 
 	return monsters[index];
 }
 
-Monster* Stage::getBoss()
+Monster* Stage::GetBoss()
 {
 	return boss;
 }

@@ -123,22 +123,22 @@
     <ClCompile Include="BanditBoss.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="BanditGhost.cpp">
+    <ClCompile Include="HungryEunuch.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
     <ClCompile Include="UndergroundNation.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="VirginGhost.cpp">
+    <ClCompile Include="GhostGuard.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="MountainBeast.cpp">
+    <ClCompile Include="Banran.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Yaksa.cpp">
+    <ClCompile Include="Sadoseja.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
     <ClCompile Include="MainTest.cpp">
@@ -215,7 +215,7 @@
     <ClInclude Include="BanditBoss.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="BanditGhost.h">
+    <ClInclude Include="HungryEunuch.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="BlackTiger.h">
@@ -242,7 +242,7 @@
     <ClInclude Include="Oni.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="VirginGhost.h">
+    <ClInclude Include="GhostGuard.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="UndergroundNation.h">
@@ -251,10 +251,10 @@
     <ClInclude Include="Stage.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="MountainBeast.h">
+    <ClInclude Include="Banran.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Yaksa.h">
+    <ClInclude Include="Sadoseja.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">

@@ -2,10 +2,10 @@
 
 #include "Monster.h"
 
-class Yaksa : public Monster
+class GhostGuard : public Monster
 {
 public:
-	Yaksa();
+	GhostGuard();
 
 	void Attack(Player* player) override;
 
