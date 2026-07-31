@@ -37,6 +37,11 @@ private:
 	bool isDot;
 	int dotDamage;
 	int dotTurn;
+
+	int bonusAttack;
+	// 전투 중 일시적으로 증가하는 공격력
+    // (버프, 패시브, 아이템 등)
+    // 기본 attack은 변경하지 않는다.
 protected:
 
 	void addAttack(int amount);
@@ -111,5 +116,15 @@ public:
 	void setDefence(int amount);
 	
 	void setDot(int damage, int turn);
-	
+
+	void addBonusAttack(int amount);
+	void resetBonusAttack();
+	int getBonusAttack();
+
+	void removeBonusAttack(int amount);
+
+	// 사망 시 호출되는 함수
+// true : 패시브 등으로 생존
+// false : 그대로 사망
+	virtual bool onDeath();
 };

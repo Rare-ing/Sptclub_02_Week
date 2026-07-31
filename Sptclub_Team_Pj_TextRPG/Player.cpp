@@ -59,7 +59,6 @@ int Player::getLevel()
     return level;
 }
 
-
 int Player::getHpPotion()
 {
     return hpPotion;
@@ -72,7 +71,7 @@ int Player::getMpPotion()
 
 int Player::getAttack()
 {
-    return attack;
+    return attack + bonusAttack;
 }
 
 int Player::getDefence()
@@ -375,4 +374,37 @@ void Player::setDot(int damage, int turn)
     dotDamage = damage;
 
     dotTurn = turn;
+}
+void Player::addBonusAttack(int amount)
+{
+    bonusAttack += amount;
+}
+
+
+void Player::resetBonusAttack()
+{
+    bonusAttack = 0;
+}
+
+int Player::getBonusAttack()
+{
+    return bonusAttack;
+}
+
+void Player::removeBonusAttack(int amount)
+{
+    bonusAttack -= amount;
+
+    // 혹시 음수가 되는 걸 방지
+    if (bonusAttack < 0)
+    {
+        bonusAttack = 0;
+    }
+}
+
+bool Player::onDeath()
+{
+    // 기본적으로는 아무 패시브가 없음
+    return false;
+    // 기본 Player는 사망을 막는 패시브가 없으므로 false 반환
 }
