@@ -165,7 +165,6 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Banran.cpp" />
-    <ClCompile Include="MountainBeast.cpp" />
     <ClCompile Include="Nang.cpp" />
     <ClCompile Include="Oni.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -188,7 +187,6 @@
     <ClCompile Include="PotionWorkshop.cpp" />
     <ClCompile Include="WeaponItem.cpp" />
     <ClCompile Include="Sadoseja.cpp" />
-    <ClCompile Include="Yaksa.cpp" />
     <ClCompile Include="Yos.cpp" />
   </ItemGroup>
   <ItemGroup>

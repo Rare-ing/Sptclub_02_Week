@@ -350,5 +350,11 @@
     <ClInclude Include="Mage.h">
       <Filter>헤더 파일\Player\Mage</Filter>
     </ClInclude>
+    <ClInclude Include="MountainBeast.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Yaksa.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

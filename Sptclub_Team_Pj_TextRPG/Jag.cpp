@@ -44,7 +44,7 @@ void Jag::skill(Monster& monster)
     }
 
     // Monster가 스스로 피해 처리
-    monster.takeDamage(damage);
+    monster.TakeDamage(damage);
 
     std::cout << "암습!" << std::endl;
     std::cout << damage << "의 피해를 입혔습니다." << std::endl;
