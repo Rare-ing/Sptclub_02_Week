@@ -43,6 +43,18 @@
     <Filter Include="헤더 파일\Main">
       <UniqueIdentifier>{19760277-dd1b-4a37-a2c4-200b25417f7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\Warrior">
+      <UniqueIdentifier>{4ffce86e-fb7a-4a74-9cf0-869139743636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Player\Warrior">
+      <UniqueIdentifier>{af75f52f-c344-4c98-a9bc-a506218ca3ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Player\Mage">
+      <UniqueIdentifier>{45acb1e3-b448-44b0-a348-a2035736896b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\Mage">
+      <UniqueIdentifier>{bd9c8428-793f-49fc-90b8-6d90187a2ad0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Battle.cpp">
@@ -60,17 +72,11 @@
     <ClCompile Include="Item.cpp">
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Jangg.cpp">
-      <Filter>소스 파일\Player</Filter>
-    </ClCompile>
     <ClCompile Include="MaterialItem.cpp">
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Podo.cpp">
-      <Filter>소스 파일\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Player</Filter>
@@ -83,9 +89,6 @@
     </ClCompile>
     <ClCompile Include="PotionWorkshop.cpp">
       <Filter>소스 파일\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>소스 파일\Player</Filter>
     </ClCompile>
     <ClCompile Include="WeaponItem.cpp">
       <Filter>소스 파일\Item</Filter>
@@ -159,6 +162,48 @@
     <ClCompile Include="Title.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
+    <ClCompile Include="Gunb.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Jag.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Jangg.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Nang.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Podo.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Amh.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Umyang.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Jusul.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Jwado.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Guks.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sansin.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Yos.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Mage.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArmorItem.h">
@@ -194,16 +239,7 @@
     <ClInclude Include="Item.h">
       <Filter>헤더 파일\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Jangg.h">
-      <Filter>헤더 파일\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>헤더 파일\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Podo.h">
-      <Filter>헤더 파일\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Warrior.h">
       <Filter>헤더 파일\Player</Filter>
     </ClInclude>
     <ClInclude Include="Shudderwock.h">
@@ -271,6 +307,48 @@
     </ClInclude>
     <ClInclude Include="AsciiArt.h">
       <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Podo.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Nang.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Jag.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Gunb.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Jangg.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Amh.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Umyang.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Jusul.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Jwado.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Yos.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Sansin.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Guks.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Mage.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
