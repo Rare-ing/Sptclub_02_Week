@@ -1,0 +1,115 @@
+#pragma once
+#pragma message("Player.h loaded")
+#include <iostream>
+#include <string>
+#include <vector>
+
+
+class Monster;
+
+class Player
+{
+
+private:
+	std::string name;
+	std::string job;
+	std::string race;
+	std::string type;
+	int level;
+	int hp;
+	int maxHp;
+	int attack;
+	int gold;
+	int exp;
+	int maxExp;
+
+	int mp;
+	int maxMp;
+	int defence;
+
+	int hpPotion;
+	int mpPotion;
+	std:: vector<std::string> inventory;
+	std:: vector<int> inventoryPrice;
+	bool isSecondJob;
+	bool isStunned;
+
+	bool isDot;
+	int dotDamage;
+	int dotTurn;
+protected:
+
+	void addAttack(int amount);
+	void addDefence(int amount);
+	void addMaxHp(int amount);
+	void addMaxMp(int amount);
+
+public:
+	Player(std::string playerName);
+
+	void setJob(std:: string playerJob);
+	void setRace(std::string playerRace);
+	void setType(std::string playerType);
+
+	std::string getType();
+
+	void applyStats();
+	void applyRace();
+	void applyType();
+
+	std::string getName();
+	std::string getJob();
+	std::string getRace();
+	int getHp();
+	int getMaxHp();
+	int getAttack();
+
+	int getMp();
+	void setMp(int newMp);
+	int getDefence();
+
+	int getHpPotion();
+	int getMpPotion();
+
+	void useHpPotion();
+	void useMpPotion();
+
+	void increaseAttack();
+	void increaseDefence();
+
+	virtual void showStatus();
+	void setStats(int newHp, int newAttack);
+	virtual void skill(Monster& monster);
+	virtual ~Player();
+
+	void setHp(int newHp);
+
+	void addItem(std::string itemName, int price);
+
+	void showInventory();
+
+	void removeItem(int index);
+
+	int getItemPrice(int index);
+
+	void addGold(int amount);
+
+	int getGold();
+	void addExp(int amount);
+
+	int getExp();
+
+	void levelUp();
+	int getLevel();
+	virtual void TakeDamage(int damage);
+	void setStunned(bool state);
+
+    bool getStunned();            
+
+	void multiplyDefense(float value);
+
+	void setDefence(int amount);
+	
+	void setDot(int damage, int turn);
+	
+};

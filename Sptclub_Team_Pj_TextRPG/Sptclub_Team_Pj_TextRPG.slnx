@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Sptclub_Team_Pj_TextRPG/Sptclub_Team_Pj_TextRPG.vcxproj" />
+</Solution>
