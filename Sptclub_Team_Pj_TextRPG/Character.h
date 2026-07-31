@@ -25,9 +25,9 @@ public:
 
     void AddExp(int amount);
 
-    std::string GetName() const;
-    std::string GetJob() const;
-    std::string GetRace() const;
+    std::string getName() const;
+    std::string getJob() const;
+    std::string getRace() const;
 
     int GetLevel() const;
     int GetHp() const;

@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Title.h"
 #include "Player.h"
+#include "Inventory.h"
 
 #include <iostream>
 
@@ -13,9 +14,11 @@ int main()
     StatusMenu(startplayer);
 
 
-    Player player(startplayer.GetName());
-    player.setJob(startplayer.GetJob());
-    player.setRace(startplayer.GetRace());
+    Player player(startplayer.getName());
+    player.setJob(startplayer.getJob());
+    player.setRace(startplayer.getRace());
+
+    Inventory inventory;
     //player.showStatus();
 
     return 0;

@@ -211,12 +211,12 @@ void Character::AddExp(int amount)
     }
 }
 
-std::string Character::GetName() const
+std::string Character::getName() const
 {
     return name;
 }
 
-std::string Character::GetJob() const
+std::string Character::getJob() const
 {
     return job;
 }
@@ -241,7 +241,7 @@ int Character::GetExp() const
     return exp;
 }
 
-std::string Character::GetRace() const
+std::string Character::getRace() const
 {
     return race;
 }
