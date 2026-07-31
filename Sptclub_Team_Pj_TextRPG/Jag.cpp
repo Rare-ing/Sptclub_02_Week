@@ -1,19 +1,19 @@
-#include "Jag.h"
+ï»¿#include "Jag.h"
 #include "Monster.h"
 
 Jag::Jag(std::string playerName)
     : Warrior(playerName)
 {
-    // ÀÚ°´ ±âº» Ä¡¸íÅ¸ È®·ü
+    // ìê° ê¸°ë³¸ ì¹˜ëª…íƒ€ í™•ë¥ 
     criticalChance = 60;
 
-    // ÀÚ°´ ½ºÅÈ Àû¿ë
+    // ìê° ìŠ¤íƒ¯ ì ìš©
     applyJobStats();
 }
 
 void Jag::applyJobStats()
 {
-    // ÀÚ°´ 1Â÷ ÀüÁ÷ ½ºÅÈ Àû¿ë
+    // ìê° 1ì°¨ ì „ì§ ìŠ¤íƒ¯ ì ìš©
 
     // TODO
     // addAttack();
@@ -23,29 +23,29 @@ void Jag::applyJobStats()
 
 bool Jag::isCritical()
 {
-    // 0 ~ 99 »çÀÌ ³­¼ö »ı¼º
+    // 0 ~ 99 ì‚¬ì´ ë‚œìˆ˜ ìƒì„±
     int roll = rand() % 100;
 
-    // Ä¡¸íÅ¸ È®·üº¸´Ù ÀÛÀ¸¸é Ä¡¸íÅ¸ ¹ß»ı
+    // ì¹˜ëª…íƒ€ í™•ë¥ ë³´ë‹¤ ì‘ìœ¼ë©´ ì¹˜ëª…íƒ€ ë°œìƒ
     return roll < criticalChance;
 }
 
 void Jag::skill(Monster& monster)
 {
-    // ±âº» ÇÇÇØ = ÇöÀç °ø°İ·Â
+    // ê¸°ë³¸ í”¼í•´ = í˜„ì¬ ê³µê²©ë ¥
     int damage = getAttack();
 
-    // ¾Ï½À Ä¡¸íÅ¸ ÆÇÁ¤ (60%)
+    // ì•”ìŠµ ì¹˜ëª…íƒ€ íŒì • (60%)
     if (isCritical())
     {
         damage *= 2;
 
-        std::cout << "Ä¡¸íÅ¸!" << std::endl;
+        std::cout << "ì¹˜ëª…íƒ€!" << std::endl;
     }
 
-    // Monster°¡ ½º½º·Î ÇÇÇØ Ã³¸®
+    // Monsterê°€ ìŠ¤ìŠ¤ë¡œ í”¼í•´ ì²˜ë¦¬
     monster.TakeDamage(damage);
 
-    std::cout << "¾Ï½À!" << std::endl;
-    std::cout << damage << "ÀÇ ÇÇÇØ¸¦ ÀÔÇû½À´Ï´Ù." << std::endl;
+    std::cout << "ì•”ìŠµ!" << std::endl;
+    std::cout << damage << "ì˜ í”¼í•´ë¥¼ ì…í˜”ìŠµë‹ˆë‹¤." << std::endl;
 }
