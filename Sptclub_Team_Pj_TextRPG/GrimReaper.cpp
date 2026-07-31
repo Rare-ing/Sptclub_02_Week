@@ -1,4 +1,5 @@
 ﻿#include "GrimReaper.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -38,6 +39,6 @@ void GrimReaper::Skill(Player* player)
 	{
 		std::cout << "저승의 손들이 플레이어를 괴롭힌다!" << std::endl;
 
-		player->setPoison(10, 3);
+		//player->setPoison(10, 3);
 	}
 }

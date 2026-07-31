@@ -1,4 +1,5 @@
 ﻿#include "Drunk.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 

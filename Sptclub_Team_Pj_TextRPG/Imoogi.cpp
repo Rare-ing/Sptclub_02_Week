@@ -1,4 +1,5 @@
 ﻿#include "Imoogi.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -71,7 +72,7 @@ void Imoogi::PoisonSkill(Player* player)
 	{
 		std::cout << "플레이어는 독에 걸렸다!" << std::endl;
 
-		player->setPoison(15, 3);
+		//player->setPoison(15, 3);
 	}
 }
 

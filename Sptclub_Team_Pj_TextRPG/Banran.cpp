@@ -1,4 +1,5 @@
 ﻿#include "Banran.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -38,6 +39,6 @@ void Banran::Skill(Player* player)
 	{
 		std::cout << "플레이어는 끔찍한 저주에 걸렸다!" << std::endl;
 
-		player->setPoison(15, 3);
+		//player->setPoison(15, 3);
 	}
 }

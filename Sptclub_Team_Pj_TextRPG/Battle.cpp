@@ -1,5 +1,6 @@
 ﻿#include "Battle.h"
-
+#include "Player.h"
+#include "Inventory.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -15,7 +16,7 @@ void Battle::StartBattle()
 	{
 		std::cout << "\n=====" << turn << "턴 =====\n";
 
-		player->ApplyDot();
+		//player->ApplyDot();
 		monster->ApplyDot();
 
 		if (CheckBattleEnd())
@@ -43,20 +44,21 @@ void Battle::StartBattle()
 	if (isWin)
 	{
 		//경험치 지급
-		//아이템 드랍
+		//아이템 드랍 주말에 이희중
 	}
 
 }
 
 void Battle::PlayerTurn()
 {
-	if (player->getIsStunned())
+	/*
+	if (player->getStunned())
 	{
 		std::cout << "플레이어는 스턴에 걸려 움직일 수 없다!" << std::endl;
 
-		player->ClearStun();
+		//player->ClearStun();
 		return;
-	}
+	}*/
 
 	int choice;
 
@@ -81,7 +83,7 @@ void Battle::PlayerTurn()
 	switch (choice)
 	{
 	case 1:
-		player->Attack(monster);
+		//player->Attack(monster);
 		break;
 
 	case 2:

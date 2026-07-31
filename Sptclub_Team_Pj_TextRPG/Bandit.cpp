@@ -1,4 +1,6 @@
 ﻿#include "Bandit.h"
+#include "Player.h"
+
 #include <iostream>
 #include <cstdlib>
 
@@ -39,6 +41,6 @@ void Bandit::Skill(Player* player)
 	{
 		std::cout << "플레이어는 독에 걸렸다!" << std::endl;
 
-		player->setPoison(3, 3);
+		//player->setPoison(3, 3);
 	}
 }

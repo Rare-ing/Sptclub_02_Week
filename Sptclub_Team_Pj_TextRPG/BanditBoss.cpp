@@ -1,4 +1,5 @@
 ﻿#include "BanditBoss.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -13,7 +14,7 @@ void BanditBoss::Attack(Player* player)
 	std::cout << "도적 두목은 거친 칼솜씨로 베어냈다!" << std::endl;
 
 	int damage = CalculateDamage(player->getDefence());
-	damage = player->onDamaged(damage);
+	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
 }
@@ -33,7 +34,7 @@ void BanditBoss::Skill(Player* player)
 
 	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
 
-	damage = player->onDamaged(damage);
+	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
 }

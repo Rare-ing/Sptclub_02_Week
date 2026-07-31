@@ -1,4 +1,5 @@
 ﻿#include "UndergroundNation.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -56,6 +57,6 @@ void UndergroundNation::Skill(Player* player)
 	{
 		std::cout << "플레이어는 재앙을 맞아 원혼들이 공격한다!" << std::endl;
 
-		player->setPoison(30, 2);
+		//player->setPoison(30, 2);
 	}
 }

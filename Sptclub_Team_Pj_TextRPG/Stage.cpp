@@ -33,21 +33,21 @@ Stage::Stage(int stageLevel) : stageLevel(stageLevel), bossOpenLevel(0), boss(nu
 	}
 	else if (stageLevel == 2)
 	{
-		monsters.push_back(new BanditGhost());
-		monsters.push_back(new VirginGhost());
-		monsters.push_back(new MountainBeast());
-
-		boss = new Yaksa();
-
-		bossOpenLevel = 5;
-	}
-	else if (stageLevel == 3)
-	{
 		monsters.push_back(new Gumiho());
 		monsters.push_back(new Oni());
 		monsters.push_back(new Changgui());
 
 		boss = new Jangsanbeom();
+
+		bossOpenLevel = 5;
+	}
+	else if (stageLevel == 3)
+	{
+		monsters.push_back(new HungryEunuch());
+		monsters.push_back(new GhostGuard());
+		monsters.push_back(new Banran());
+
+		boss = new Sadoseja();
 
 		bossOpenLevel = 8;
 	}

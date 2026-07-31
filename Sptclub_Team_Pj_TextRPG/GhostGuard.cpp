@@ -1,4 +1,5 @@
 ﻿#include "GhostGuard.h"
+#include "Player.h"
 #include <iostream>
 #include <cstdlib>
 
