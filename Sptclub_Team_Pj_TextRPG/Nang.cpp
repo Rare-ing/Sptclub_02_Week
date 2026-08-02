@@ -20,7 +20,7 @@ void Nang::skill(Monster& monster)
     int damage = getAttack();
 
     // 방어력 무시
-    monster.setHp(monster.getHp() - damage);
+    monster.TakeDamage(damage);
 }
 
 bool Nang::onDeath()

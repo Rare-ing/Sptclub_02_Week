@@ -79,7 +79,7 @@ void Jangg::skill(Monster& monster)
 {
     int damage = calculateHogukDamage();
 
-    monster.setHp(monster.getHp() - damage);
+    monster.TakeDamage(damage);
 
     std::cout << "장군의 호국검!" << std::endl;
     std::cout << damage << " 피해를 입혔습니다." << std::endl;
