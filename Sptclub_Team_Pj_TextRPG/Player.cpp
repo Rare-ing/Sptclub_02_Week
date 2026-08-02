@@ -247,11 +247,6 @@ void Player::levelUp()
     }
 }
 
-void Player::skill(Monster& monster)
-{
-    std::cout << "아직 기술이 없습니다." << std::endl;
-}
-
 void Player::applyStats()
 {
     applyRace();

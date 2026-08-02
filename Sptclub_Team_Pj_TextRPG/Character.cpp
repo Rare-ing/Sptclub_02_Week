@@ -105,7 +105,7 @@ void Character::CreateCharacter()
         break;
     }
 
-    std::string type;
+    std::string typet;
 
     while (true)
     {
@@ -128,10 +128,12 @@ void Character::CreateCharacter()
         {
         case 1:
             type = "무인";
+            typet = "무인";
             break;
 
         case 2:
             type = "도사";
+            typet = "도사";
             break;
 
         default:
@@ -244,4 +246,9 @@ int Character::GetExp() const
 std::string Character::getRace() const
 {
     return race;
+}
+
+std::string Character::getType() const
+{
+	return type;
 }

@@ -12,6 +12,7 @@ private:
 	int level;
 
 	int hp;
+	int maxHpCheck;
 	int mp;
 
 	int power;
@@ -95,4 +96,6 @@ public:
 	void ApplyDot();
 
 	void TakeDamage(int damage);
+
+	void resetMonster();
 };

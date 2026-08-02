@@ -15,7 +15,7 @@ Monster::Monster(std::string monsterName, int level, int expReward, std::string 
 	int maxHp = level * 30;
 
 	hp = minHp + (rand() % (maxHp - minHp + 1));
-
+	maxHpCheck = hp;
 	int minMp = level * 10;
 	int maxMp = level * 20;
 
@@ -196,4 +196,14 @@ void Monster::TakeDamage(int damage)
 		hp = 0;
 		isAlive = false;
 	}
+}
+
+void Monster::resetMonster()
+{
+	isAlive = true;
+	isStunned = false;
+	isDot = false;
+	dotDamage = 0;
+	dotTurn = 0;
+	hp = maxHpCheck;
 }

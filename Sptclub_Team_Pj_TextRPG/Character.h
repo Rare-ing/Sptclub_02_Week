@@ -10,7 +10,7 @@ private:
     std::string name;
     std::string job;
     std::string race;
-
+	std::string type;
     int level;
     int hp;
     int attack;
@@ -28,6 +28,7 @@ public:
     std::string getName() const;
     std::string getJob() const;
     std::string getRace() const;
+	std::string getType() const;
 
     int GetLevel() const;
     int GetHp() const;

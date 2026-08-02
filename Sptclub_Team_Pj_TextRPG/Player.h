@@ -85,7 +85,7 @@ public:
 
 	virtual void showStatus();
 	void setStats(int newHp, int newAttack);
-	virtual void skill(Monster& monster);
+	virtual void skill(Monster& monster) = 0;
 	virtual ~Player();
 
 	void setHp(int newHp);
