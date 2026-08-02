@@ -15,27 +15,27 @@ PotionRecipe::PotionRecipe(
 {
 }
 
-const std::string& PotionRecipe::GetName() const
+const std::string& PotionRecipe::getName() const
 {
     return Name;
 }
 
-const std::vector<std::string>& PotionRecipe::GetIngredients() const
+const std::vector<std::string>& PotionRecipe::getIngredients() const
 {
     return Ingredients;
 }
 
-PotionType PotionRecipe::GetPotionEffect() const
+PotionType PotionRecipe::getPotionEffect() const
 {
     return PotionEffect;
 }
 
-int PotionRecipe::GetValue() const
+int PotionRecipe::getValue() const
 {
     return Value;
 }
 
-int PotionRecipe::GetWeight() const
+int PotionRecipe::getWeight() const
 {
     return Weight;
 }

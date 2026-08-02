@@ -25,13 +25,13 @@ public:
         int Value,
         int Weight);
 
-    const std::string& GetName() const;
+    const std::string& getName() const;
 
-    const std::vector<std::string>& GetIngredients() const;
+    const std::vector<std::string>& getIngredients() const;
 
-    PotionType GetPotionEffect() const;
+    PotionType getPotionEffect() const;
 
-    int GetValue() const;
+    int getValue() const;
 
-    int GetWeight() const;
+    int getWeight() const;
 };
