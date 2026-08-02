@@ -129,6 +129,70 @@ void PotionWorkshop::AddDefaultRecipes()
 
 }
 
+void PotionWorkshop::RunMenu() const
+{
+    while (true)
+    {
+        std::cout << "\n";
+        std::cout << "========================================\n";
+        std::cout << "         [ 약선방 (藥仙房) ]\n";
+        std::cout << "  \"조선의 명산에서 얻은 영약 비방을 다룹니다.\"\n";
+        std::cout << "========================================\n";
+        std::cout << "1. 전체 비방 목록 조회\n";
+        std::cout << "2. 영약 이름으로 비방 찾기\n";
+        std::cout << "3. 약재 이름으로 비방 찾기\n";
+        std::cout << "4. 영약 조제 (제작)\n";
+        std::cout << "0. 약선방 나가기\n";
+        std::cout << "========================================\n";
+        std::cout << "선택 : ";
+
+        std::string MenuInput;
+        std::getline(std::cin, MenuInput);
+
+        if (MenuInput == "1")
+        {
+            ShowAllRecipes();
+        }
+        else if (MenuInput == "2")
+        {
+            std::string PotionName;
+
+            std::cout << "찾으시는 영약의 이름을 알려주십시오 : ";
+            std::getline(std::cin, PotionName);
+
+            SearchByName(PotionName);
+        }
+        else if (MenuInput == "3")
+        {
+            std::string Ingredient;
+
+            std::cout << "찾으시는 약재의 이름을 알려주십시오 : ";
+            std::getline(std::cin, Ingredient);
+
+            SearchByIngredient(Ingredient);
+        }
+        else if (MenuInput == "4")
+        {
+            std::string PotionName;
+
+            std::cout << "조제할 영약의 이름을 알려주십시오 : ";
+            std::getline(std::cin, PotionName);
+
+            CraftPotion(PotionName);
+        }
+        else if (MenuInput == "0")
+        {
+            std::cout << "약선방을 떠납니다.\n";
+            break;
+        }
+        else
+        {
+            std::cout
+                << "약선방에서 받을 수 없는 청입니다. "
+                << "0부터 4까지 중 선택해 주십시오.\n";
+        }
+    }
+}
 
 //레시피는 비방,
 //포션은 영약
@@ -150,8 +214,8 @@ void PotionWorkshop::ShowAllRecipes() const
             << '\n';
 
 
-        // ex) 재료 : 약초 + 약초 
-        std::cout << "재료 : ";
+        // ex) 약재 : 약초 + 약초 
+        std::cout << "약재 : ";
 
         const std::vector<std::string>& Ingredients =
             Recipe.getIngredients();
@@ -219,7 +283,7 @@ void PotionWorkshop::SearchByName(const std::string& Name) const
                 << Recipe.getName()
                 << '\n';
 
-            std::cout << "재료 : ";
+            std::cout << "약재 : ";
 
             const std::vector<std::string>& Ingredients =
                 Recipe.getIngredients();
@@ -287,13 +351,13 @@ void PotionWorkshop::SearchByIngredient(
 
     if (!IsFound)
     {
-        std::cout << "해당 재료가 포함된 영약을 찾을 수 없습니다.\n";
+        std::cout << "해당 약재가 포함된 영약을 찾을 수 없습니다.\n";
     }
 }
 
 PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
 {
-    std::cout << "영약 제작을 시작합니다.\n";
+    std::cout << "영약 조제를 시작합니다.\n";
 
     for (const PotionRecipe& Recipe : Recipes)
     {
@@ -301,7 +365,7 @@ PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
         {
             std::cout << "\n"
                 << Recipe.getName()
-                << " 제작 완료!\n";
+                << " 조제가 완료되었습니다!\n";
 
             return PotionItem(
                 Recipe.getName(),

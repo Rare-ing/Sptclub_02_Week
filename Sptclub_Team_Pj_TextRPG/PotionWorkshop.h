@@ -1,32 +1,41 @@
 ﻿#pragma once
 
-#include <vector>
 #include <string>
-#include "PotionRecipe.h"
+#include <vector>
+
 #include "PotionItem.h"
+#include "PotionRecipe.h"
 
 class PotionWorkshop
 {
 private:
-    // 포션 레시피들을 저장하는 벡터
+    // 영약 비방 저장
     std::vector<PotionRecipe> Recipes;
 
 public:
-    // 레시피 추가
+    // 비방 하나 추가
     void AddRecipe(const PotionRecipe& NewRecipe);
 
-    // 영약 비방 12개 등록
+    // 기본 영약 비방 12개 등록
     void AddDefaultRecipes();
 
-    // 모든 레시피 출력
+    // 영약 제작소(약선방) 메뉴 실행
+    // 0번을 선택할 때까지 메뉴를 반복한다.
+    void RunMenu() const;
+
+    // 모든 비방 출력
     void ShowAllRecipes() const;
 
-    // 포션 이름으로 검색
+    // 영약 이름으로 검색
     void SearchByName(const std::string& Name) const;
 
-    // 재료 이름으로 검색
-    void SearchByIngredient(const std::string& Ingredient) const;
+    // 재료(약재) 이름으로 검색
+    void SearchByIngredient(
+        const std::string& Ingredient
+    ) const;
 
-    //레시피 정보 기반으로 포션 제작
-    PotionItem CraftPotion(const std::string& Name) const;
+    // 비방 정보를 기반으로 영약 제작(조제)
+    PotionItem CraftPotion(
+        const std::string& Name
+    ) const;
 };
