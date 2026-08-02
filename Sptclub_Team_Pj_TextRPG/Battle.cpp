@@ -44,7 +44,10 @@ void Battle::StartBattle()
 	if (isWin)
 	{
 		//경험치 지급
+		player->setExp(player->getExp() + monster->getExpReward());
+		player->levelUp();
 		//아이템 드랍 주말에 이희중
+		//inventory->addItem(monster->getDropItemName(), monster->getDropItemPrice());
 	}
 
 }

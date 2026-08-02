@@ -103,7 +103,7 @@ public:
 	int getGold();
 	void addExp(int amount);
 
-	int getExp();
+	
 
 	void levelUp();
 	int getLevel();
@@ -124,6 +124,11 @@ public:
 
 	void removeBonusAttack(int amount);
 
+	int getExp();
+	int getMaxExp();
+
+	void setExp(int newExp);
+	void setMaxExp(int newMaxExp);
 	// 사망 시 호출되는 함수
 // true : 패시브 등으로 생존
 // false : 그대로 사망

@@ -224,12 +224,12 @@ int Player::getExp()
 
 void Player::levelUp()
 {
-    if (exp >= 100)
+    if (exp >= getMaxExp())
     {
         level++;
 
-        exp -= 100;
-
+        exp = 0;
+        maxExp += 100;
         maxHp += 20;
         hp = maxHp;
 
@@ -342,6 +342,11 @@ int Player::getMaxHp()
     return maxHp;
 }
 
+int Player::getMaxExp()
+{
+	return maxExp;
+}
+
 void Player::TakeDamage(int damage)
 {
     hp -= damage;
@@ -406,4 +411,9 @@ bool Player::onDeath()
     // 기본적으로는 아무 패시브가 없음
     return false;
     // 기본 Player는 사망을 막는 패시브가 없으므로 false 반환
+}
+
+void Player::setExp(int newExp)
+{
+	exp = newExp;
 }

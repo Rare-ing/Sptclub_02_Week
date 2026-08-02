@@ -28,7 +28,7 @@ void mainloop(Player* player, Inventory& inventory)
     {
         // 현재 스테이지 생성
         Stage stage(stageLevel);
-
+		bossDefeated = false;
         // 해당 스테이지에서 계속 활동
         while (!bossDefeated)
         {
