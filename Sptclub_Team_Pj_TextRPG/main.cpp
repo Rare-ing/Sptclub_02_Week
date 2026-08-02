@@ -6,7 +6,29 @@
 
 #include <iostream>
 
-int main()
+void mainloop()
+{
+    int switchNum;
+    while (true)
+    {
+		cout << "===== 메뉴 =====\n";
+		cout << "1. 게임 시작 2. 종료" << endl;
+		cin >> switchNum;
+		switch (switchNum)
+		{
+		case 1:
+			// 게임 시작 로직
+			break;
+        case 2:
+            return;
+		default:
+			cout << "잘못된 입력입니다." << endl;
+			break;
+		}
+    }
+}
+
+void main()
 {
     ShowTitle();
     Character startplayer;
@@ -21,5 +43,5 @@ int main()
     Inventory inventory;
     //player.showStatus();
 
-    return 0;
+    return;
 }
