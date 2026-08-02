@@ -15,6 +15,7 @@
 #include "Umyang.h"
 #include "Jusul.h"
 #include "Jwado.h"
+#include "PotionWorkshop.h"
 #include <iostream>
 
 void mainloop(Player* player, Inventory& inventory)
@@ -23,7 +24,7 @@ void mainloop(Player* player, Inventory& inventory)
     int switchNum;
 	int stageLevel = 1;
 	bool bossDefeated = false;
-
+    PotionWorkshop workshop;
     while (true)
     {
         // 현재 스테이지 생성
@@ -37,8 +38,9 @@ void mainloop(Player* player, Inventory& inventory)
             cout << "1. 전투" << endl;
             cout << "2. 스테이터스 확인" << endl;
             cout << "3. 인벤토리 확인" << endl;
-            cout << "4. 보스 도전" << endl;
-            cout << "5. 종료" << endl;
+            cout << "4. 영약방 가기" << endl;
+            cout << "5. 보스 도전" << endl;
+            cout << "6. 종료" << endl;
 
             cin >> switchNum;
 
@@ -74,8 +76,12 @@ void mainloop(Player* player, Inventory& inventory)
                 system("cls");
                 inventory.showInventory();
                 break;
-
+            
             case 4:
+                system("cls");
+                workshop.RunMenu();
+                break;
+            case 5:
             {
                 system("cls");
 
@@ -107,7 +113,7 @@ void mainloop(Player* player, Inventory& inventory)
                 break;
             }
 
-            case 5:
+            case 6:
                 return;
 
             default:

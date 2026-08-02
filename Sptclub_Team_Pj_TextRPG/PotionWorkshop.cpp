@@ -133,6 +133,7 @@ void PotionWorkshop::RunMenu() const
 {
     while (true)
     {
+        std::cin.ignore();
         std::cout << "\n";
         std::cout << "========================================\n";
         std::cout << "         [ 약선방 (藥仙房) ]\n";
