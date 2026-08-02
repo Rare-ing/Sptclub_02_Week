@@ -169,7 +169,7 @@ Item* Inventory::findItem(const string& itemName)
 //포션 제작용
 bool Inventory::canCraft(const PotionRecipe& recipe)
 {
-    for (const string& ingName : recipe.GetIngredients())
+    for (const string& ingName : recipe.getIngredients())
     {
         if (getItemCount(ingName) == 0)
         {
@@ -182,7 +182,7 @@ bool Inventory::canCraft(const PotionRecipe& recipe)
 
 void Inventory::consumeIngredients(const PotionRecipe& recipe)
 {
-    for (const string& ingName : recipe.GetIngredients())
+    for (const string& ingName : recipe.getIngredients())
     {
         removeItem(ingName);
     }

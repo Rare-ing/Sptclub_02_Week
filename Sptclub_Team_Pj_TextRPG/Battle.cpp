@@ -46,8 +46,8 @@ void Battle::StartBattle()
 		//경험치 지급
 		player->setExp(player->getExp() + monster->getExpReward());
 		player->levelUp();
-		//아이템 드랍 주말에 이희중
-		//inventory->addItem(monster->getDropItemName(), monster->getDropItemPrice());
+		//아이템 드랍
+		GiveReward();
 	}
 
 }
@@ -149,4 +149,10 @@ bool Battle::CheckBattleEnd()
 	}
 
 	return false;
+}
+
+void Battle::GiveReward()
+{
+	Item* droppedItem = new Item(monster->getDropItemName(),ItemType::Material, monster->getDropItemPrice(), monster->getDropItemWeight());
+	inventory->addItem(droppedItem);
 }
