@@ -12,7 +12,7 @@ PotionItem::PotionItem(
 {
 }
 
-PotionType PotionItem::GetPotionEffect() const
+PotionType PotionItem::getPotionEffect() const
 {
     return PotionEffect;
 }

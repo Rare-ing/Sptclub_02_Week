@@ -6,7 +6,10 @@
 enum class PotionType
 {
     Heal,
-    Attack
+    Mana,
+    Attack,
+    Defence
+
 };
 
 class PotionItem : public Item
@@ -22,6 +25,6 @@ public:
         int Weight
     );
 
-    PotionType GetPotionEffect() const;
+    PotionType getPotionEffect() const;
 };
 

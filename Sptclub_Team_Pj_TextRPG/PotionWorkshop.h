@@ -15,6 +15,9 @@ public:
     // 레시피 추가
     void AddRecipe(const PotionRecipe& NewRecipe);
 
+    // 영약 비방 12개 등록
+    void AddDefaultRecipes();
+
     // 모든 레시피 출력
     void ShowAllRecipes() const;
 
