@@ -89,6 +89,10 @@ int Player::getMp()
     return mp;
 }
 
+int Player::getMaxMp()
+{
+    return maxMp;
+}
 
 void Player::showStatus()
 {

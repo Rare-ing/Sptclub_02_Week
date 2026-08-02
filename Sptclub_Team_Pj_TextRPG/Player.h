@@ -70,6 +70,7 @@ public:
 	int getAttack();
 
 	int getMp();
+	int getMaxMp();
 	void setMp(int newMp);
 	int getDefence();
 
