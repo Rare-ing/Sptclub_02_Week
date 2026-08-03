@@ -1,6 +1,9 @@
 ﻿#pragma once
 
+// 재료 아이템
 #include "Item.h"
+
+class Inventory;
 
 class MaterialItem : public Item
 {
@@ -10,5 +13,9 @@ public:
         int Weight
     );
 
-    int addItem(int Count);
+    // 약초를 생성해 인벤토리에 Count개 추가
+    static void AddItem(
+        Inventory& TargetInventory,
+        int Count
+    );
 };
