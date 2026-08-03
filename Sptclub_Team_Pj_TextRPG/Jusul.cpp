@@ -18,6 +18,16 @@ void Jusul::applyJobStats()
 
 void Jusul::skill(Monster& monster)
 {
+    int mpCost = getSkillMpCost(1);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     // 뇌격 = 공격력의 150% 피해
     int damage = static_cast<int>(getAttack() * 1.5f);
 

@@ -19,6 +19,16 @@ void Umyang::applyJobStats()
 
     void Umyang::skill(Monster & monster)
     {
+        int mpCost = getSkillMpCost(1);
+
+        if (getMp() < mpCost)
+        {
+            std::cout << "기력이 부족합니다!" << std::endl;
+            return;
+        }
+
+        setMp(getMp() - mpCost);
+
         // 신벌은 현재 공격력만큼 피해를 준다.
         int damage = getAttack();
 

@@ -21,6 +21,16 @@ void Jwado::applyJobStats()
 
 void Jwado::skill(Monster& monster)
 {
+    int mpCost = getSkillMpCost(1);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     // 1 ~ 6 사이의 랜덤한 숫자를 만든다.
     int dice = rand() % 6 + 1;
 
