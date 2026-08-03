@@ -149,7 +149,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
         std::cout << "선택 : ";
 
         std::string MenuInput;
-        std::getline(std::cin, MenuInput);
+        std::getline(std::cin >> std::ws, MenuInput);
 
         if (MenuInput == "1")
         {
