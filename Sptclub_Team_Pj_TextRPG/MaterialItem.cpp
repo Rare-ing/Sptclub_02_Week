@@ -6,3 +6,13 @@ MaterialItem::MaterialItem(
     : Item(Name, ItemType::Material, 0, Weight)
 {
 }
+
+int MaterialItem::addItem(int Count)
+{
+    if (Count < 1)
+    {
+        return 1;
+    }
+
+    return Count;
+}
