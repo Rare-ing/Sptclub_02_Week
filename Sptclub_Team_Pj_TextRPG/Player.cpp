@@ -472,3 +472,12 @@ void Player::setExp(int newExp)
 {
 	exp = newExp;
 }
+
+bool Player::getIsSecondJob()
+{
+	return isSecondJob;
+}
+
+void Player::copyPlayerData(const Player& other)
+{
+}

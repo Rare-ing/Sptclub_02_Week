@@ -15,8 +15,12 @@
 #include "Umyang.h"
 #include "Jusul.h"
 #include "Jwado.h"
+#include "Guks.h"
+#include "Sansin.h"
+#include "Yos.h"
 #include "PotionWorkshop.h"
 #include "WeaponManager.h"
+
 #include <iostream>
 
 void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, WeaponManager& weaponManager)
@@ -70,7 +74,7 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
 
 }
 
-void mainloop(Player* player, Inventory& inventory)
+void mainloop(Player*& player, Inventory& inventory)
 {
     system("cls");
     int switchNum;
@@ -113,7 +117,7 @@ void mainloop(Player* player, Inventory& inventory)
                     break;
                 }
 
-                Battle battle(player, monster, &inventory, stageLevel != 4);
+                Battle battle(player, monster, &inventory);
                 battle.StartBattle();
                 if (!monster->getAlive())
                 {
@@ -153,7 +157,7 @@ void mainloop(Player* player, Inventory& inventory)
 
                 Monster* boss = stage.GetBoss();
 
-                Battle bossBattle(player, boss, &inventory, stageLevel != 4);
+                Battle bossBattle(player, boss, &inventory);
                 bossBattle.StartBattle();
 
                 // 보스를 죽였는지 확인

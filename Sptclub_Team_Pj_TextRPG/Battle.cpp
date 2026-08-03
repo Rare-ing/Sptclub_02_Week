@@ -55,6 +55,7 @@ void promotePlayer(Player*& player)
 	// 대응되는 2차 직업이 없다면 종료
 	if (newPlayer == nullptr)
 	{
+		cout << "2차 전직이 불가능한 직업입니다." << endl;
 		return;
 	}
 
@@ -105,6 +106,7 @@ Battle::Battle(Player*& player, Monster* monster, Inventory* inventory)
 }
 void Battle::StartBattle()
 {
+	std::cout << monster->getSpawnMessage() << std::endl;
 	std::cout << "[ 전투 시작 ]" << std::endl;
 	bool isWin = false;
 
@@ -139,7 +141,6 @@ void Battle::StartBattle()
 	}
 	if (isWin)
 	{
-	
 		player->setExp(player->getExp() + monster->getExpReward());
 		player->levelUp();	//경험치 지급
 

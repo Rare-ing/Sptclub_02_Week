@@ -143,4 +143,6 @@ public:
 
 	virtual int getSkillMpCost(int skillChoice) const = 0;
 
+	void copyPlayerDate(const Player& other);//임시적으로 추가함수
+
 };
