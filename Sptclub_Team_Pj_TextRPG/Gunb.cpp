@@ -100,8 +100,8 @@ void Gunb::skill(Monster& monster)
     // 스킬 피해 = 공격력 + 잃은 체력
     int damage = getAttack() + lostHp;
 
-    // 몬스터 체력 감소
-    monster.setHp(monster.getHp() - damage);
+    // 몬스터에게 피해 적용
+    monster.TakeDamage(damage);
 
     std::cout << "불굴의 일격!" << std::endl;
     std::cout << damage << "의 피해를 입혔습니다." << std::endl;
