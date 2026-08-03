@@ -341,7 +341,7 @@ int main()
 
     player->setJob(startplayer.getJob());
     player->setRace(startplayer.getRace());
-
+	player->setType(startplayer.getType());
     //8랩 시뮬용player->addExp(700);
 
     //8랩 시뮬용player->levelUp();

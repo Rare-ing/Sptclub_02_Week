@@ -514,6 +514,8 @@ void Player::copyPlayerData(const Player& other)
     mpPotion = other.mpPotion;
 
     isSecondJob = true;
+
+	equippedWeapon = other.equippedWeapon;
 }
 
 void Player::addBonusDefence(int amount)

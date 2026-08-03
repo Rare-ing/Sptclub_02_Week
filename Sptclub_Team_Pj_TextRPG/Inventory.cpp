@@ -14,7 +14,7 @@ void Inventory::invenFunc(Player& player)
     vector<Item*> items;
     while (true)
     {
-        std::cout << "\n1. 행낭 확인, 2. 이름으로 물건 검색 3. 행낭 확인 종료 \n";
+        std::cout << "\n1. 행낭 확인, 2. 이름으로 물건 검색 3. 단약 사용 4. 행낭 확인 종료 \n";
         cout << "번호선택 : " << endl;
 
         cin >> switchNum;
@@ -67,6 +67,12 @@ void Inventory::invenFunc(Player& player)
             }
             break;
         case 3:
+			cout << "사용할 아이템의 이름을 입력하세요: ";
+			cin >> keyword;
+			cin.ignore();
+			useItem(keyword, player);
+			break;
+        case 4:
             return;
         default:
             cout << "잘못된 입력 " << endl;
@@ -121,6 +127,7 @@ void Inventory::removeItem(const string& itemName)
 
         if (item->second.second == 0)
         {
+            delete item->second.first;
             Items.erase(item);
         }
     }
@@ -173,12 +180,25 @@ void Inventory::useItem(const string& itemName, Player& player)
     }
     else if (item->getType() == ItemType::Weapon)
     {
+		/*무기 없어지면 안되니까 제거하지 않음
         WeaponItem* weapon = static_cast<WeaponItem*>(item);
 
         weapon->Equip(player);
 
-        removeItem(itemName);
+        removeItem(itemName);*/
     }
+	else if (item->getType() == ItemType::Material)
+	{
+
+        cout << "이 아이템은 사용할 수 없습니다." << endl;
+		// ArmorItem* armor = static_cast<ArmorItem*>(item);
+		// armor->Equip(player);
+		// removeItem(itemName);
+	}
+	else
+	{
+		cout << "이 아이템은 사용할 수 없습니다." << endl;
+	}
 }
 
 Item* Inventory::findItem(const string& itemName)
