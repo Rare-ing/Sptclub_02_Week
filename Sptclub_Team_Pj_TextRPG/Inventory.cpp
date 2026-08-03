@@ -1,10 +1,13 @@
 ﻿#include "Inventory.h"
-
+#include "PotionItem.h"
+#include "Player.h"
 #include <iostream>
+#include "WeaponItem.h"
+
 
 using namespace std;
 
-void Inventory::invenFunc()
+void Inventory::invenFunc(Player& player)
 {
     int switchNum = 0;
     string keyword;
@@ -149,11 +152,33 @@ int Inventory::getItemCount(const string& itemName) const
 
 }
 
-void Inventory::useItem(const string& itemName)
+// void useItem(const string& itemName); 
+// 포션 효과를 Player에게 적용하기 위해 Player 참조를 함께 받도록 수정
+void Inventory::useItem(const string& itemName, Player& player)
 {
-    //아이템 사용은 추후에 추가해야함
+    Item* item = findItem(itemName);
 
-    removeItem(itemName);
+    if (item == nullptr)
+    {
+        return;
+    }
+
+    if (item->getType() == ItemType::Potion)
+    {
+        PotionItem* potion = static_cast<PotionItem*>(item);
+
+        potion->ApplyEffect(player);
+
+        removeItem(itemName);
+    }
+    else if (item->getType() == ItemType::Weapon)
+    {
+        WeaponItem* weapon = static_cast<WeaponItem*>(item);
+
+        weapon->Equip(player);
+
+        removeItem(itemName);
+    }
 }
 
 Item* Inventory::findItem(const string& itemName)

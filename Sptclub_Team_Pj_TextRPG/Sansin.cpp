@@ -64,6 +64,16 @@ void Sansin::skill(Monster& monster)
         std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
     }
 
+    int mpCost = getSkillMpCost(skillChoice);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     switch (skillChoice)
     {
     case 1:

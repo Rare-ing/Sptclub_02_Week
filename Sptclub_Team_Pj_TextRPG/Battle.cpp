@@ -151,6 +151,8 @@ void Battle::StartBattle()
 
 		GiveReward();		//아이템 드랍
 	}
+	player->resetBonusAttack();
+	player->resetBonusDefence();
 }
 
 void Battle::PlayerTurn()
@@ -179,9 +181,14 @@ void Battle::PlayerTurn()
 		{
 		case 1:
 			//player->Attack(monster);
-			monster->TakeDamage(player->getAttack() + player->getBonusAttack());
-			cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격했다!" << std::endl;
-			cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
+			monster->TakeDamage(player->getAttack());
+
+			cout << player->getName() << "이(가) "
+				<< monster->getName() << "을(를) 공격했다!" << endl;
+
+			cout << monster->getName() << "에게 "
+				<< player->getAttack()
+				<< "의 피해를 입혔다!" << endl;
 			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
 			cout << "남은 HP : " << player->getHp() << std::endl;
 			cout << "남은 MP : " << player->getMp() << std::endl;
@@ -224,7 +231,7 @@ void Battle::MonsterTurn()
 
 void Battle::OpenInventory()
 {
-	inventory->invenFunc();
+	inventory->invenFunc(*player);
 }
 
 bool Battle::CheckBattleEnd()

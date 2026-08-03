@@ -1,9 +1,12 @@
 ﻿#include "Player.h"
 #include "Monster.h"
-
+#include "Player.h"
+#include "Monster.h"
+#include "WeaponItem.h"
 
 Player::Player(std::string playerName)
 {
+
     name = playerName;
     hp = 200;
     maxHp = 200;
@@ -20,12 +23,16 @@ Player::Player(std::string playerName)
     hpPotion = 5;
     mpPotion = 5;
 
-    //이상상태 초기화
-    dotTurn = false;
+    bonusAttack = 0;
+    bonusDefence = 0;
+
+    // 이상상태 초기화
+    dotTurn = 0;
     dotDamage = 0;
     isDot = false;
     isStunned = false;
-    //2차전직 false
+
+    // 2차 전직 false
     isSecondJob = false;
 }
 
@@ -230,11 +237,6 @@ void Player::levelUp()
 
         level++;
 
-        if (level == 8)
-        {
-            promoteSecondJob();
-        }
-
         maxHp += 20;
         hp = maxHp;
 
@@ -404,14 +406,22 @@ int Player::getMaxExp()
 
 void Player::TakeDamage(int damage)
 {
-    hp -= damage;
+    int totalDefence = defence + bonusDefence;
+    int actualDamage = damage - totalDefence;
+
+    if (actualDamage < 0)
+    {
+        actualDamage = 0;
+    }
+
+    hp -= actualDamage;
 
     if (hp < 0)
     {
         hp = 0;
     }
-}
 
+}
 void Player::setStunned(bool state)
 {
     isStunned = state;
@@ -482,7 +492,62 @@ void Player::copyPlayerData(const Player& other)
 {
 }
 
-void Player::addBonusAttack(int amount)
+void Player::addBonusDefence(int amount)
 {
-    bonusAttack += amount;
+    bonusDefence += amount;
+}
+
+void Player::resetBonusDefence()
+{
+    bonusDefence = 0;
+}
+
+int Player::getBonusDefence()
+{
+    return bonusDefence;
+}
+
+void Player::equipWeapon(WeaponItem* weapon)
+{
+    if (weapon == nullptr)
+    {
+        return;
+    }
+
+    // 기존 무기 공격력 제거
+    if (equippedWeapon != nullptr)
+    {
+        attack -= equippedWeapon->getValue();
+    }
+
+    // 새로운 무기 장착
+    equippedWeapon = weapon;
+    attack += equippedWeapon->getValue();
+
+    std::cout << weapon->getName()
+        << "을(를) 장착했습니다." << std::endl;
+
+    std::cout << "공격력 +"
+        << weapon->getValue()
+        << std::endl;
+}
+
+void Player::unequipWeapon()
+{
+    if (equippedWeapon == nullptr)
+    {
+        return;
+    }
+
+    attack -= equippedWeapon->getValue();
+
+    std::cout << equippedWeapon->getName()
+        << "을(를) 해제했습니다." << std::endl;
+
+    equippedWeapon = nullptr;
+}
+
+WeaponItem* Player::getEquippedWeapon()
+{
+    return equippedWeapon;
 }

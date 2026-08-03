@@ -10,14 +10,14 @@
 
 
 using namespace std;
-
+class Player;
 class Inventory
 {
 private:
     map<string, pair<Item*, int>> Items;
 
 public:
-    void invenFunc();
+    void invenFunc(Player& player);
 
     void addItem(Item* newItem);
 
@@ -29,7 +29,8 @@ public:
 
     int getItemCount(const string& itemName) const;
 
-    void useItem(const string& itemName);
+    void useItem(const string& itemName, Player& player);// void useItem(const string& itemName);
+// 포션 효과를 Player에게 적용하기 위해 Player 참조를 함께 받도록 수정
 
     Item* findItem(const string& itemName);
 

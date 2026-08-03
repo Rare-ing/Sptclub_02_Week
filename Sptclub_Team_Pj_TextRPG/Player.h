@@ -7,6 +7,8 @@
 
 class Monster;
 
+class WeaponItem;
+
 class Player
 {
 
@@ -40,8 +42,10 @@ private:
 
 	int bonusAttack;
 	// 전투 중 일시적으로 증가하는 공격력
-    // (버프, 패시브, 아이템 등)
-    // 기본 attack은 변경하지 않는다.
+	// (버프, 패시브, 아이템 등)
+	// 기본 attack은 변경하지 않는다.
+
+	WeaponItem* equippedWeapon = nullptr;
 protected:
 
 	void addAttack(int amount);
@@ -127,6 +131,11 @@ public:
 
 	void removeBonusAttack(int amount);
 
+	void equipWeapon(WeaponItem* weapon);
+	void unequipWeapon();
+
+	WeaponItem* getEquippedWeapon();
+
 	int getExp();
 	int getMaxExp();
 
@@ -144,5 +153,11 @@ public:
 	virtual int getSkillMpCost(int skillChoice) const = 0;
 
 	void copyPlayerDate(const Player& other);//임시적으로 추가함수
+
+	int bonusDefence;
+
+	void addBonusDefence(int amount);
+	void resetBonusDefence();
+	int getBonusDefence();
 
 };

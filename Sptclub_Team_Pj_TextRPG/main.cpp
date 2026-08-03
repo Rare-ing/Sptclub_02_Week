@@ -297,7 +297,7 @@ int main()
     Inventory inventory;
 
     Player* player = nullptr;
-	
+
     // 무인 계열
     if (startplayer.getType() == "무인")
     {
@@ -341,13 +341,14 @@ int main()
 
     player->setJob(startplayer.getJob());
     player->setRace(startplayer.getRace());
-    player->addExp(700);
 
-    player->levelUp();
+    //8랩 시뮬용player->addExp(700);
 
-    std::cout << "\n===== 전직 테스트 =====" << std::endl;
-    std::cout << "현재 레벨 : " << player->getLevel() << std::endl;
-    std::cout << "현재 직업 : " << player->getJob() << std::endl;
+    //8랩 시뮬용player->levelUp();
+
+   //8랩 시뮬용 std::cout << "\n===== 전직 테스트 =====" << std::endl;
+    //8랩 시뮬용std::cout << "현재 레벨 : " << player->getLevel() << std::endl;
+    //8랩 시뮬용std::cout << "현재 직업 : " << player->getJob() << std::endl;  
 
     player->applyRace();
     player->applyType();
@@ -355,7 +356,6 @@ int main()
     // 게임 시작
     mainloop(player, inventory);
 
-    // Player 소멸자가 virtual이므로 안전
     delete player;
 
     return 0;

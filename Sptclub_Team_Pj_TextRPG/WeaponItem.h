@@ -1,7 +1,9 @@
 ﻿#pragma once
 
-//무기 (아이템)
+// 무기 (아이템)
 #include "Item.h"
+
+class Player;
 
 class WeaponItem : public Item
 {
@@ -11,4 +13,6 @@ public:
         int AttackPower,
         int Weight
     );
+
+    void Equip(Player& player);
 };
