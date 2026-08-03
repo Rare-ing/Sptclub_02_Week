@@ -160,10 +160,10 @@ int Monster::CalculateSkillDamage(int targetDefence, float multiplier)
 
 void Monster::ApplyBossBonus()
 {
-	hp *= 1.5;
-	mp *= 1.2;
-	power *= 1.5;
-	defence *= 1.2;
+	hp = static_cast<int>(hp * 1.5);
+	mp = static_cast<int>(mp * 1.2);
+	power = static_cast<int>(power * 1.5);
+	defence = static_cast<int>(defence * 1.2);
 }
 
 void Monster::ApplyDot()

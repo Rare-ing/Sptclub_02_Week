@@ -99,8 +99,8 @@ void promotePlayer(Player*& player)
 	std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;//준우-2차전직 추가
 }
 
-Battle::Battle(Player*& player, Monster* monster, Inventory* inventory)
-	: player(player), monster(monster), inventory(inventory)
+Battle::Battle(Player*& player, Monster* monster, Inventory* inventory, bool CanUsePotion)
+	: player(player), monster(monster), inventory(inventory), CanUsePotion(CanUsePotion)
 {
 	turn = 1;
 }
@@ -163,58 +163,50 @@ void Battle::PlayerTurn()
 		//player->ClearStun();
 		return;
 	}*/
-
-	int choice;
-
-	std::cout << "\n[ 플레이어 턴 ] " << std::endl;
-	std::cout << "1. 공격" << std::endl;
-	std::cout << "2. 스킬" << std::endl;
-	std::cout << "3. 행낭" << std::endl;
-	std::cout << "선택 : ";
-
 	while (true)
 	{
-		std::cin >> choice;
 
-		if (choice >= 1 && choice <= 3)
+		int choice;
+
+		std::cout << "\n[ 플레이어 턴 ] " << std::endl;
+		std::cout << "1. 공격" << std::endl;
+		std::cout << "2. 스킬" << std::endl;
+		std::cout << "3. 행낭" << std::endl;
+		std::cout << "선택 : ";
+
+		std::cin >> choice;
+		switch (choice)
 		{
+		case 1:
+			//player->Attack(monster);
+			monster->TakeDamage(player->getAttack());
+			cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격했다!" << std::endl;
+			cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
+			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
+			cout << "남은 MP : " << player->getMp() << std::endl;
+			cout << "남은 HP : " << player->getHp() << std::endl;
+			monster->TakeDamage(0);//몬스터가 죽었는지 확인
+			return;
+
+		case 2:
+			player->skill(*monster);
+			cout << player->getName() << "이(가) " << monster->getName() << "에게 스킬을 사용했다!" << std::endl;
+			cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
+			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
+			cout << "남은 MP : " << player->getMp() << std::endl;
+			cout << "남은 HP : " << player->getHp() << std::endl;
+			monster->TakeDamage(0);//몬스터가 죽었는지 확인
+			return;
+
+		case 3:
+			OpenInventory();
+			break;
+
+
+		default:
+			std::cout << "잘못된 입력입니다." << std::endl;
 			break;
 		}
-
-		std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
-	}
-
-	switch (choice)
-	{
-	case 1:
-		//player->Attack(monster);
-		monster->TakeDamage(player->getAttack());
-		cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격했다!" << std::endl;
-		cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
-		cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
-		cout << "남은 MP : " << player->getMp() << std::endl;
-		cout << "남은 HP : " << player->getHp() << std::endl;
-		monster->TakeDamage(0);//몬스터가 죽었는지 확인
-		break;
-
-	case 2:
-		player->skill(*monster);
-		cout << player->getName() << "이(가) " << monster->getName() << "에게 스킬을 사용했다!" << std::endl;
-		cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
-		cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
-		cout << "남은 MP : " << player->getMp() << std::endl;
-		cout << "남은 HP : " << player->getHp() << std::endl;
-		monster->TakeDamage(0);//몬스터가 죽었는지 확인
-		break;
-
-	case 3:
-		OpenInventory();
-		break;
-
-
-	default:
-		std::cout << "잘못된 입력입니다." << std::endl;
-		break;
 	}
 }
 
