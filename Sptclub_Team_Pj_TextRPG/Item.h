@@ -27,10 +27,10 @@ public:
         int Weight
     );
 
-    const std::string& GetName() const;
-    ItemType GetType() const;
-    int GetValue() const;
-    int GetWeight() const;
+    const std::string& getName() const;
+    ItemType getType() const;
+    int getValue() const;
+    int getWeight() const;
 };
 
 

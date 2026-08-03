@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-//포션 (아이템)
 #include "Item.h"
+
+class Player;
 
 enum class PotionType
 {
@@ -9,7 +10,6 @@ enum class PotionType
     Mana,
     Attack,
     Defence
-
 };
 
 class PotionItem : public Item
@@ -26,5 +26,7 @@ public:
     );
 
     PotionType getPotionEffect() const;
-};
 
+    // 영약 효과 플레이어 적용
+    void ApplyEffect(Player& Target) const;
+};

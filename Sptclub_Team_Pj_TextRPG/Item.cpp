@@ -13,22 +13,22 @@ Item::Item(
 {
 }
 
-const std::string& Item::GetName() const
+const std::string& Item::getName() const
 {
     return Name;
 }
 
-ItemType Item::GetType() const
+ItemType Item::getType() const
 {
     return Type;
 }
 
-int Item::GetValue() const
+int Item::getValue() const
 {
     return Value;
 }
 
-int Item::GetWeight() const
+int Item::getWeight() const
 {
     return Weight;
 }
