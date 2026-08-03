@@ -59,7 +59,6 @@ int Player::getLevel()
     return level;
 }
 
-
 int Player::getHpPotion()
 {
     return hpPotion;
@@ -72,7 +71,7 @@ int Player::getMpPotion()
 
 int Player::getAttack()
 {
-    return attack;
+    return attack + bonusAttack;
 }
 
 int Player::getDefence()
@@ -90,6 +89,10 @@ int Player::getMp()
     return mp;
 }
 
+int Player::getMaxMp()
+{
+    return maxMp;
+}
 
 void Player::showStatus()
 {
@@ -221,11 +224,16 @@ int Player::getExp()
 
 void Player::levelUp()
 {
-    if (exp >= 100)
+    while (exp >= getMaxExp())
     {
+        exp -= getMaxExp();
+
         level++;
 
-        exp -= 100;
+        if (level == 8)
+        {
+            promoteSecondJob();
+        }
 
         maxHp += 20;
         hp = maxHp;
@@ -244,9 +252,54 @@ void Player::levelUp()
     }
 }
 
-void Player::skill(Monster& monster)
+void Player::promoteSecondJob()
 {
-    std::cout << "아직 기술이 없습니다." << std::endl;
+    if (isSecondJob)
+    {
+        return;
+    }
+
+    if (level < 8)
+    {
+        return;
+    }
+
+    if (job == "포도대장")
+    {
+        job = "장군";
+    }
+    else if (job == "낭인")
+    {
+        job = "군벌";
+    }
+    else if (job == "자객")
+    {
+        job = "암행어사";
+    }
+    else if (job == "음양무녀")
+    {
+        job = "국선";
+    }
+    else if (job == "주술사")
+    {
+        job = "산신";
+    }
+    else if (job == "좌도방사")
+    {
+        job = "요선";
+    }
+    else
+    {
+        return;
+    }
+
+    isSecondJob = true;
+
+    std::cout << std::endl;
+    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
+    std::cout << "       2차 전직 완료!" << std::endl;
+    std::cout << "       새로운 직업 : " << job << std::endl;
+    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
 }
 
 void Player::applyStats()
@@ -344,6 +397,11 @@ int Player::getMaxHp()
     return maxHp;
 }
 
+int Player::getMaxExp()
+{
+	return maxExp;
+}
+
 void Player::TakeDamage(int damage)
 {
     hp -= damage;
@@ -375,4 +433,51 @@ void Player::setDot(int damage, int turn)
     dotDamage = damage;
 
     dotTurn = turn;
+}
+void Player::addBonusAttack(int amount)
+{
+    bonusAttack += amount;
+}
+
+
+void Player::resetBonusAttack()
+{
+    bonusAttack = 0;
+}
+
+int Player::getBonusAttack()
+{
+    return bonusAttack;
+}
+
+void Player::removeBonusAttack(int amount)
+{
+    bonusAttack -= amount;
+
+    // 혹시 음수가 되는 걸 방지
+    if (bonusAttack < 0)
+    {
+        bonusAttack = 0;
+    }
+}
+
+bool Player::onDeath()
+{
+    // 기본적으로는 아무 패시브가 없음
+    return false;
+    // 기본 Player는 사망을 막는 패시브가 없으므로 false 반환
+}
+
+void Player::setExp(int newExp)
+{
+	exp = newExp;
+}
+
+bool Player::getIsSecondJob()
+{
+	return isSecondJob;
+}
+
+void Player::copyPlayerData(const Player& other)
+{
 }

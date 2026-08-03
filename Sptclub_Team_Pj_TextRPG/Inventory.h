@@ -37,5 +37,9 @@ public:
     bool canCraft(const PotionRecipe& recipe);
 
     void consumeIngredients(const PotionRecipe& recipe);
+
+    vector<Item*> searchItem(const string& keyword);
+
+	~Inventory();
 };
 

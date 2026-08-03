@@ -139,9 +139,10 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Amh.cpp" />
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditBoss.cpp" />
-    <ClCompile Include="BanditGhost.cpp" />
+    <ClCompile Include="HungryEunuch.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BlackTiger.cpp" />
     <ClCompile Include="Changgui.cpp" />
@@ -150,22 +151,34 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Girlgui.cpp" />
     <ClCompile Include="GrimReaper.cpp" />
+    <ClCompile Include="Guks.cpp" />
     <ClCompile Include="Gumiho.cpp" />
+    <ClCompile Include="Gunb.cpp" />
     <ClCompile Include="Imoogi.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="Jag.cpp" />
     <ClCompile Include="Jangg.cpp" />
     <ClCompile Include="Jangsanbeom.cpp" />
+    <ClCompile Include="Jusul.cpp" />
+    <ClCompile Include="Jwado.cpp" />
+    <ClCompile Include="LogManager.cpp" />
+    <ClCompile Include="Mage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="MountainBeast.cpp" />
+    <ClCompile Include="Banran.cpp" />
+    <ClCompile Include="Nang.cpp" />
     <ClCompile Include="Oni.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Podo.cpp" />
+    <ClCompile Include="Sansin.cpp" />
     <ClCompile Include="Shudderwock.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="Umyang.cpp" />
     <ClCompile Include="UndergroundNation.cpp" />
-    <ClCompile Include="VirginGhost.cpp" />
+    <ClCompile Include="GhostGuard.cpp" />
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="ArmorItem.cpp" />
     <ClCompile Include="Inventory.cpp" />
@@ -176,13 +189,16 @@
     <ClCompile Include="PotionRecipe.cpp" />
     <ClCompile Include="PotionWorkshop.cpp" />
     <ClCompile Include="WeaponItem.cpp" />
-    <ClCompile Include="Yaksa.cpp" />
+    <ClCompile Include="Sadoseja.cpp" />
+    <ClCompile Include="WeaponManager.cpp" />
+    <ClCompile Include="Yos.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Amh.h" />
     <ClInclude Include="AsciiArt.h" />
     <ClInclude Include="Bandit.h" />
     <ClInclude Include="BanditBoss.h" />
-    <ClInclude Include="BanditGhost.h" />
+    <ClInclude Include="HungryEunuch.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BlackTiger.h" />
     <ClInclude Include="Changgui.h" />
@@ -191,21 +207,34 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Girlgui.h" />
     <ClInclude Include="GrimReaper.h" />
+    <ClInclude Include="Guks.h" />
     <ClInclude Include="Gumiho.h" />
+    <ClInclude Include="Gunb.h" />
     <ClInclude Include="Imoogi.h" />
+    <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="Jag.h" />
     <ClInclude Include="Jangg.h" />
     <ClInclude Include="Jangsanbeom.h" />
+    <ClInclude Include="Jusul.h" />
+    <ClInclude Include="Jwado.h" />
+    <ClInclude Include="LogManager.h" />
+    <ClInclude Include="Mage.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Banran.h" />
     <ClInclude Include="MountainBeast.h" />
+    <ClInclude Include="Nang.h" />
     <ClInclude Include="Oni.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Podo.h" />
+    <ClInclude Include="Sansin.h" />
     <ClInclude Include="Shudderwock.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="Umyang.h" />
     <ClInclude Include="UndergroundNation.h" />
-    <ClInclude Include="VirginGhost.h" />
+    <ClInclude Include="GhostGuard.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="ArmorItem.h" />
     <ClInclude Include="Inventory.h" />
@@ -215,7 +244,10 @@
     <ClInclude Include="PotionRecipe.h" />
     <ClInclude Include="PotionWorkshop.h" />
     <ClInclude Include="WeaponItem.h" />
+    <ClInclude Include="Sadoseja.h" />
+    <ClInclude Include="WeaponManager.h" />
     <ClInclude Include="Yaksa.h" />
+    <ClInclude Include="Yos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

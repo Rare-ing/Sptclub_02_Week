@@ -7,11 +7,11 @@ using namespace std;
 void Inventory::invenFunc()
 {
     int switchNum = 0;
-    string itemName;
-    Item* item;
+    string keyword;
+    vector<Item*> items;
     while (true)
     {
-        std::cout << "\n1. 인벤토리 확인, 2. 이름으로 아이템 검색 3. 인벤토리 확인 종료 \n";
+        std::cout << "\n1. 행낭 확인, 2. 이름으로 물건 검색 3. 행낭 확인 종료 \n";
         cout << "번호선택 : " << endl;
 
         cin >> switchNum;
@@ -25,41 +25,43 @@ void Inventory::invenFunc()
             break;
         case 2:
             cout << "아이템 검색" << endl;
-            cin >> itemName;
+            cin >> keyword;
             cin.ignore();
 
-            item = findItem(itemName);
+            items = searchItem(keyword);
 
-            if (item != nullptr)
+            if (!items.empty())
             {
                 cout << "\n===== 검색 결과 =====\n";
-                cout << "이름 : " << item->GetName() << endl;
-                cout << "종류 : ";
-
-                switch (item->GetType())
+                for (const auto& item : items)
                 {
-                case ItemType::Potion:
-                    cout << "포션";
-                    break;
-                case ItemType::Weapon:
-                    cout << "무기";
-                    break;
-                case ItemType::Armor:
-                    cout << "방어구";
-                    break;
-                case ItemType::Material:
-                    cout << "재료";
-                    break;
-                case ItemType::Quest:
-                    cout << "퀘스트";
-                    break;
-                }
+                    cout << "이름 : " << item->getName() << endl;
+                    cout << "종류 : ";
 
-                cout << endl;
-                cout << "가치 : " << item->GetValue() << endl;
-                cout << "보유 수량 : " << getItemCount(itemName) << endl;
+                    switch (item->getType())
+                    {
+                    case ItemType::Potion:
+                        cout << "포션";
+                        break;
+                    case ItemType::Weapon:
+                        cout << "무기";
+                        break;
+                    case ItemType::Armor:
+                        cout << "방어구";
+                        break;
+                    case ItemType::Material:
+                        cout << "재료";
+                        break;
+                    case ItemType::Quest:
+                        cout << "퀘스트";
+                        break;
+                    }
+
+                    cout << endl;
+                    cout << "가치 : " << item->getValue() << endl;
+                    cout << "보유 수량 : " << getItemCount(item->getName()) << endl;
+                }
             }
-            
             break;
         case 3:
             return;
@@ -74,17 +76,18 @@ void Inventory::invenFunc()
 void Inventory::addItem(Item* newItem)
 {
     
-    std::cout << newItem->GetName()
+    std::cout << newItem->getName()
         << "을(를) 획득했습니다.\n";
     
-    auto item = Items.find(newItem->GetName());
+    auto item = Items.find(newItem->getName());
     if (item == Items.end())
     {
-        Items[newItem->GetName()] = { newItem,1 };
+        Items[newItem->getName()] = { newItem,1 };
     }
     else
     {
         item->second.second++;
+        delete newItem;
     }
 }
 
@@ -101,7 +104,7 @@ void Inventory::showInventory() const
 
     for (const auto& item : Items)
     {
-        cout << index++ << " . " << item.second.first->GetName() << " x " << item.second.second << endl;
+        cout << index++ << " . " << item.second.first->getName() << " x " << item.second.second << endl;
     }
 }
 
@@ -166,12 +169,36 @@ Item* Inventory::findItem(const string& itemName)
     return item->second.first;
 }
 
+vector<Item*> Inventory::searchItem(const string& keyword)
+{
+    vector<Item*> result;
+
+    for (auto& item : Items)
+    {
+        if (item.first.find(keyword) != string::npos)
+        {
+            result.push_back(item.second.first);
+        }
+    }
+
+    return result;
+}
+
 //포션 제작용
 bool Inventory::canCraft(const PotionRecipe& recipe)
 {
-    for (const string& ingName : recipe.GetIngredients())
+    map<string, int> requiredItems;
+
+    // 필요한 재료 수 계산
+    for (const string& ingName : recipe.getIngredients())
     {
-        if (getItemCount(ingName) == 0)
+        requiredItems[ingName]++;
+    }
+
+    // 실제 보유 수량과 비교
+    for (const auto& item : requiredItems)
+    {
+        if (getItemCount(item.first) < item.second)
         {
             return false;
         }
@@ -182,8 +209,18 @@ bool Inventory::canCraft(const PotionRecipe& recipe)
 
 void Inventory::consumeIngredients(const PotionRecipe& recipe)
 {
-    for (const string& ingName : recipe.GetIngredients())
+    for (const string& ingName : recipe.getIngredients())
     {
         removeItem(ingName);
     }
+}
+
+Inventory::~Inventory()
+{
+    for (auto& item : Items)
+    {
+        delete item.second.first;
+    }
+
+    Items.clear();
 }
