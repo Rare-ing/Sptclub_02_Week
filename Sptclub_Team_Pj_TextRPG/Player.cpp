@@ -490,6 +490,30 @@ bool Player::getIsSecondJob()
 
 void Player::copyPlayerData(const Player& other)
 {
+    name = other.name;
+    race = other.race;
+    type = other.type;
+
+    level = other.level;
+
+    hp = other.hp;
+    maxHp = other.maxHp;
+
+    mp = other.mp;
+    maxMp = other.maxMp;
+
+    attack = other.attack;
+    defence = other.defence;
+
+    gold = other.gold;
+
+    exp = other.exp;
+    maxExp = other.maxExp;
+
+    hpPotion = other.hpPotion;
+    mpPotion = other.mpPotion;
+
+    isSecondJob = true;
 }
 
 void Player::addBonusDefence(int amount)

@@ -184,9 +184,9 @@ void mainloop(Player*& player, Inventory& inventory)
             case 5:
             {
                 system("cls");
-
+                cout << player->getLevel() << endl;
                 // 보스 입장 레벨 확인
-                if (player->getLevel() < stage.getBossOpenLevel())
+                if (player->getLevel() <= stage.getBossOpenLevel())
                 {
                     cout << "아직 보스에게 도전할 수 없습니다." << endl;
                     cout << "필요 레벨 : "
