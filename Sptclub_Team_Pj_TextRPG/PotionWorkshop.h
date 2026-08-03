@@ -6,6 +6,8 @@
 #include "PotionItem.h"
 #include "PotionRecipe.h"
 
+class Inventory;
+
 class PotionWorkshop
 {
 private:
@@ -21,7 +23,7 @@ public:
 
     // 영약 제작소(약선방) 메뉴 실행
     // 0번을 선택할 때까지 메뉴를 반복한다.
-    void RunMenu() const;
+    void RunMenu(Inventory& inventory) const;
 
     // 모든 비방 출력
     void ShowAllRecipes() const;
@@ -38,4 +40,9 @@ public:
     PotionItem CraftPotion(
         const std::string& Name
     ) const;
+
+	void craftPotionWithInventory(
+		const std::string& Name,
+		Inventory& inventory
+	) const;
 };

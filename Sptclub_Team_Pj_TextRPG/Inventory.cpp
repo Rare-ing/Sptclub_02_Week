@@ -85,6 +85,7 @@ void Inventory::addItem(Item* newItem)
     else
     {
         item->second.second++;
+        delete newItem;
     }
 }
 
@@ -169,9 +170,18 @@ Item* Inventory::findItem(const string& itemName)
 //포션 제작용
 bool Inventory::canCraft(const PotionRecipe& recipe)
 {
+    map<string, int> requiredItems;
+
+    // 필요한 재료 수 계산
     for (const string& ingName : recipe.getIngredients())
     {
-        if (getItemCount(ingName) == 0)
+        requiredItems[ingName]++;
+    }
+
+    // 실제 보유 수량과 비교
+    for (const auto& item : requiredItems)
+    {
+        if (getItemCount(item.first) < item.second)
         {
             return false;
         }
@@ -186,4 +196,14 @@ void Inventory::consumeIngredients(const PotionRecipe& recipe)
     {
         removeItem(ingName);
     }
+}
+
+Inventory::~Inventory()
+{
+    for (auto& item : Items)
+    {
+        delete item.second.first;
+    }
+
+    Items.clear();
 }

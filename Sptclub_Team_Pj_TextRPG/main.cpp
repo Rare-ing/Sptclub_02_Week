@@ -78,6 +78,7 @@ void mainloop(Player* player, Inventory& inventory)
 	bool bossDefeated = false;
     PotionWorkshop workshop;
 	WeaponManager weaponManager;
+	workshop.AddDefaultRecipes();
     while (true)
     {
 		stageStartFunc(stageLevel, player, inventory, weaponManager);
@@ -133,7 +134,7 @@ void mainloop(Player* player, Inventory& inventory)
             
             case 4:
                 system("cls");
-                workshop.RunMenu();
+                workshop.RunMenu(inventory);
                 break;
             case 5:
             {

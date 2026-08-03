@@ -1,4 +1,5 @@
 ﻿#include "PotionWorkshop.h"
+#include "Inventory.h"
 #include <iostream>
 
 void PotionWorkshop::AddRecipe(const PotionRecipe& NewRecipe)
@@ -129,7 +130,7 @@ void PotionWorkshop::AddDefaultRecipes()
 
 }
 
-void PotionWorkshop::RunMenu() const
+void PotionWorkshop::RunMenu(Inventory& inventory) const
 {
     while (true)
     {
@@ -179,7 +180,7 @@ void PotionWorkshop::RunMenu() const
             std::cout << "조제할 영약의 이름을 알려주십시오 : ";
             std::getline(std::cin, PotionName);
 
-            CraftPotion(PotionName);
+            craftPotionWithInventory(PotionName, inventory);
         }
         else if (MenuInput == "0")
         {
@@ -379,4 +380,44 @@ PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
 
     std::cout << "존재하지 않는 영약 비방입니다.\n";
     return PotionItem("", PotionType::Heal, 0, 0);
+}
+
+void PotionWorkshop::craftPotionWithInventory(
+    const std::string& Name,
+    Inventory& inventory) const
+{
+    for (const PotionRecipe& recipe : Recipes)
+    {
+        // 입력한 이름의 레시피 찾기
+        if (recipe.getName() == Name)
+        {
+            // 재료 확인
+            if (!inventory.canCraft(recipe))
+            {
+                std::cout << "재료가 부족합니다.\n";
+                return;
+            }
+
+            // 포션 제작
+            PotionItem* newPotion = new PotionItem(
+                recipe.getName(),
+                recipe.getPotionEffect(),
+                recipe.getValue(),
+                recipe.getWeight()
+            );
+
+            // 재료 소비
+            inventory.consumeIngredients(recipe);
+
+            // 포션 추가
+            inventory.addItem(newPotion);
+
+            std::cout << recipe.getName()
+                << " 조제가 완료되었습니다!\n";
+
+            return;
+        }
+    }
+
+    std::cout << "존재하지 않는 영약 비방입니다.\n";
 }
