@@ -481,3 +481,8 @@ bool Player::getIsSecondJob()
 void Player::copyPlayerData(const Player& other)
 {
 }
+
+void Player::addBonusAttack(int amount)
+{
+    bonusAttack += amount;
+}

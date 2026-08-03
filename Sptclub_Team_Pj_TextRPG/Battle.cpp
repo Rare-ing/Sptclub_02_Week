@@ -179,7 +179,7 @@ void Battle::PlayerTurn()
 		{
 		case 1:
 			//player->Attack(monster);
-			monster->TakeDamage(player->getAttack());
+			monster->TakeDamage(player->getAttack() + player->getBonusAttack());
 			cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격했다!" << std::endl;
 			cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
 			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;

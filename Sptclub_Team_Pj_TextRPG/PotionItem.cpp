@@ -73,7 +73,7 @@ void PotionItem::ApplyEffect(Player& player) const
 
     case PotionType::Attack:
     {
-        //player.addAttack(getValue());
+        player.addBonusAttack(getValue());
 
         std::cout
             << getName()
@@ -89,7 +89,7 @@ void PotionItem::ApplyEffect(Player& player) const
 
     case PotionType::Defence:
     {
-        //player.addDefence(getValue());
+        player.addBonusDefence(getValue());
 
         std::cout
             << getName()
