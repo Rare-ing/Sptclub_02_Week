@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Player">
+      <UniqueIdentifier>{60a8e374-05ac-4f51-a358-83fbfd0efed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Monster">
+      <UniqueIdentifier>{eb2ceec6-6a66-4185-92ee-06da05a3c9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Inven">
+      <UniqueIdentifier>{7ef3c299-8768-487c-aa6b-e1e2210135b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item">
+      <UniqueIdentifier>{9fe45291-c7de-43ab-a943-c83fa788ae23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Player">
+      <UniqueIdentifier>{7efbc26a-2e6c-420c-a9dd-4f736a564af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Monster">
+      <UniqueIdentifier>{55d93f2a-550f-46d0-89e4-91bb58ddcda1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Inven">
+      <UniqueIdentifier>{076f7070-4f71-4e76-b9ff-8f045e5ab184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Item">
+      <UniqueIdentifier>{377f0804-de5d-42ba-a6b9-e135a54851c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Main">
+      <UniqueIdentifier>{c7213075-5f34-44c8-9799-a04ff9cef265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Main">
+      <UniqueIdentifier>{19760277-dd1b-4a37-a2c4-200b25417f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\Warrior">
+      <UniqueIdentifier>{4ffce86e-fb7a-4a74-9cf0-869139743636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Player\Warrior">
+      <UniqueIdentifier>{af75f52f-c344-4c98-a9bc-a506218ca3ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Player\Mage">
+      <UniqueIdentifier>{45acb1e3-b448-44b0-a348-a2035736896b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\Mage">
+      <UniqueIdentifier>{bd9c8428-793f-49fc-90b8-6d90187a2ad0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Battle.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Drunk.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>소스 파일\Inven</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmorItem.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialItem.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PotionItem.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="PotionRecipe.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="PotionWorkshop.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponItem.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackTiger.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Changgui.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Girlgui.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="GrimReaper.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumiho.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Imoogi.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Jangsanbeom.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Oni.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Shudderwock.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bandit.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BanditBoss.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="HungryEunuch.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="UndergroundNation.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostGuard.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Banran.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Sadoseja.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTest.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Gunb.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Jag.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Jangg.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Nang.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Podo.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Amh.cpp">
+      <Filter>소스 파일\Player\Warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="Umyang.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Jusul.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Jwado.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Guks.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sansin.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Yos.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="Mage.cpp">
+      <Filter>소스 파일\Player\Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponManager.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArmorItem.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialItem.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="PotionItem.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponItem.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Drunk.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>헤더 파일\Inven</Filter>
+    </ClInclude>
+    <ClInclude Include="PotionRecipe.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="PotionWorkshop.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Shudderwock.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Bandit.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BanditBoss.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="HungryEunuch.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackTiger.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Changgui.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Girlgui.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="GrimReaper.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumiho.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Imoogi.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Jangsanbeom.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Oni.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostGuard.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="UndergroundNation.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Banran.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Sadoseja.h">
+      <Filter>헤더 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="AsciiArt.h">
+      <Filter>헤더 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Podo.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Nang.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Jag.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Gunb.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Jangg.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Amh.h">
+      <Filter>헤더 파일\Player\Warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="Umyang.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Jusul.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Jwado.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Yos.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Sansin.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Guks.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="Mage.h">
+      <Filter>헤더 파일\Player\Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="MountainBeast.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Yaksa.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponManager.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
