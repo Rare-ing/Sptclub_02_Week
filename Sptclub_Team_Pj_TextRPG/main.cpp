@@ -6,6 +6,7 @@
 #include "Stage.h"
 #include "Battle.h"
 #include "Monster.h"
+#include "Imoogi.h"
 #include "Podo.h"
 #include "Nang.h"
 #include "Jag.h"
@@ -73,7 +74,15 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
         cout << "전하께서 새로운 무기를 하사하셨다" << endl;
     }
     return;
+}
 
+bool CheckImoogiUnlock(Player* player, Inventory& inventory)
+{
+    if (!inventory.hasItem("봉인된 여의주"))
+    {
+        return false;
+    }
+    return true;
 }
 
 void mainloop(Player*& player, Inventory& inventory)
@@ -82,6 +91,8 @@ void mainloop(Player*& player, Inventory& inventory)
     int switchNum;
 	int stageLevel = 1;
 	bool bossDefeated = false;
+    bool unlockImoogi = false;
+    bool trueEnding = false;
     PotionWorkshop workshop;
 	WeaponManager weaponManager;
 	workshop.AddDefaultRecipes();
@@ -94,6 +105,8 @@ void mainloop(Player*& player, Inventory& inventory)
         // 해당 스테이지에서 계속 활동
         while (!bossDefeated)
         {
+            unlockImoogi = CheckImoogiUnlock(player, inventory);
+
             cout << "\n===== 메뉴 =====\n";
             cout << "현재 스테이지 : " << stageLevel << endl;
             cout << "1. 전투" << endl;
@@ -101,7 +114,16 @@ void mainloop(Player*& player, Inventory& inventory)
             cout << "3. 인벤토리 확인" << endl;
             cout << "4. 영약방 가기" << endl;
             cout << "5. 보스 도전" << endl;
+
+            if (unlockImoogi)
+            {
+                cout << "6. 봉인된 여의주를 해방한다" << endl;
+                cout << "7. 종료" << endl;
+            }
+            else
+            {
             cout << "6. 종료" << endl;
+            }
 
             cin >> switchNum;
 
@@ -175,7 +197,64 @@ void mainloop(Player*& player, Inventory& inventory)
             }
 
             case 6:
+            {
+                if (!unlockImoogi)
+                {
+                    cout << "게임을 종료합니다." << endl;
+                    return;
+                }
+
+
+                system("cls");
+
+                cout << "봉인된 여의주가 반응한다..." << endl;
+                cout << "천년을 기다린 이무기가 모습을 드러낸다!" << endl;
+
+
+                Imoogi* imoogi = new Imoogi();
+
+                Battle imoogiBattle(player, imoogi, &inventory);
+
+                imoogiBattle.StartBattle();
+
+
+                if (!imoogi->getAlive())
+                {
+                    cout << "\n전설의 이무기를 쓰러뜨렸다!" << endl;
+                    cout << "진정한 여의주를 손에 넣었다..." << endl;
+
+
+                    Item* trueOrb = new Item( "진정한 여의주", ItemType::Quest, 9999, 0);
+
+
+                    inventory.addItem(trueOrb);
+
+                    trueEnding = true;
+
+                    cout << "축하합니다! 진엔딩을 달성했습니다." << endl;
+
+                    return;
+                }
+                else
+                {
+                    cout << "이무기는 당신을 삼켰다..." << endl;
+                    cout << "게임 오버" << endl;
+
+                    delete imoogi;
+                    return;
+                }
+
+
+                delete imoogi;
+
+                break;
+            }
+
+            case 7:
+            {
+                cout << "게임을 종료합니다." << endl;
                 return;
+            }
 
             default:
                 cout << "잘못된 입력입니다." << endl;
@@ -253,6 +332,14 @@ int main()
     player->applyRace();
     player->applyType();
 
+    Item* testOrb = new Item(
+        "봉인된 여의주",
+        ItemType::Quest,
+        9999,
+        0
+    );
+
+    inventory.addItem(testOrb);
     // 게임 시작
     mainloop(player, inventory);
 
