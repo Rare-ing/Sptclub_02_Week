@@ -113,7 +113,7 @@ void mainloop(Player* player, Inventory& inventory)
                     break;
                 }
 
-                Battle battle(player, monster, &inventory);
+                Battle battle(player, monster, &inventory, stageLevel != 4);
                 battle.StartBattle();
                 if (!monster->getAlive())
                 {
@@ -153,7 +153,7 @@ void mainloop(Player* player, Inventory& inventory)
 
                 Monster* boss = stage.GetBoss();
 
-                Battle bossBattle(player, boss, &inventory);
+                Battle bossBattle(player, boss, &inventory, stageLevel != 4);
                 bossBattle.StartBattle();
 
                 // 보스를 죽였는지 확인
