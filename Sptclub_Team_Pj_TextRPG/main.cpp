@@ -133,6 +133,7 @@ void mainloop(Player*& player, Inventory& inventory)
             {
                 system("cls");
 
+                int random \ rand()
                 Monster* monster = stage.GetRandomMonster();
 
                 if (monster == nullptr)
@@ -268,6 +269,8 @@ void mainloop(Player*& player, Inventory& inventory)
 
 int main()
 {
+    srand(static_cast<unsigned>(time(nullptr)));
+
     ShowTitle();
 
     Character startplayer;
@@ -332,14 +335,6 @@ int main()
     player->applyRace();
     player->applyType();
 
-    Item* testOrb = new Item(
-        "봉인된 여의주",
-        ItemType::Quest,
-        9999,
-        0
-    );
-
-    inventory.addItem(testOrb);
     // 게임 시작
     mainloop(player, inventory);
 
