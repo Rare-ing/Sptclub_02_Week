@@ -44,6 +44,7 @@ void Battle::StartBattle()
 	}
 	if (isWin)
 	{
+		//player->addGold(monster->getGoldReward());
 		//경험치 지급
 		player->setExp(player->getExp() + monster->getExpReward());
 		player->levelUp();

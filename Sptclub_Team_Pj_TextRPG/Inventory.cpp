@@ -7,11 +7,11 @@ using namespace std;
 void Inventory::invenFunc()
 {
     int switchNum = 0;
-    string itemName;
-    Item* item;
+    string keyword;
+    vector<Item*> items;
     while (true)
     {
-        std::cout << "\n1. 인벤토리 확인, 2. 이름으로 아이템 검색 3. 인벤토리 확인 종료 \n";
+        std::cout << "\n1. 행낭 확인, 2. 이름으로 물건 검색 3. 행낭 확인 종료 \n";
         cout << "번호선택 : " << endl;
 
         cin >> switchNum;
@@ -25,41 +25,43 @@ void Inventory::invenFunc()
             break;
         case 2:
             cout << "아이템 검색" << endl;
-            cin >> itemName;
+            cin >> keyword;
             cin.ignore();
 
-            item = findItem(itemName);
+            items = searchItem(keyword);
 
-            if (item != nullptr)
+            if (!items.empty())
             {
                 cout << "\n===== 검색 결과 =====\n";
-                cout << "이름 : " << item->GetName() << endl;
-                cout << "종류 : ";
-
-                switch (item->GetType())
+                for (const auto& item : items)
                 {
-                case ItemType::Potion:
-                    cout << "포션";
-                    break;
-                case ItemType::Weapon:
-                    cout << "무기";
-                    break;
-                case ItemType::Armor:
-                    cout << "방어구";
-                    break;
-                case ItemType::Material:
-                    cout << "재료";
-                    break;
-                case ItemType::Quest:
-                    cout << "퀘스트";
-                    break;
-                }
+                    cout << "이름 : " << item->GetName() << endl;
+                    cout << "종류 : ";
 
-                cout << endl;
-                cout << "가치 : " << item->GetValue() << endl;
-                cout << "보유 수량 : " << getItemCount(itemName) << endl;
+                    switch (item->GetType())
+                    {
+                    case ItemType::Potion:
+                        cout << "포션";
+                        break;
+                    case ItemType::Weapon:
+                        cout << "무기";
+                        break;
+                    case ItemType::Armor:
+                        cout << "방어구";
+                        break;
+                    case ItemType::Material:
+                        cout << "재료";
+                        break;
+                    case ItemType::Quest:
+                        cout << "퀘스트";
+                        break;
+                    }
+
+                    cout << endl;
+                    cout << "가치 : " << item->GetValue() << endl;
+                    cout << "보유 수량 : " << getItemCount(item->GetName()) << endl;
+                }
             }
-            
             break;
         case 3:
             return;
@@ -165,6 +167,21 @@ Item* Inventory::findItem(const string& itemName)
     }
 
     return item->second.first;
+}
+
+vector<Item*> Inventory::searchItem(const string& keyword)
+{
+    vector<Item*> result;
+
+    for (auto& item : Items)
+    {
+        if (item.first.find(keyword) != string::npos)
+        {
+            result.push_back(item.second.first);
+        }
+    }
+
+    return result;
 }
 
 //포션 제작용

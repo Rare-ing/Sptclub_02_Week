@@ -38,6 +38,8 @@ public:
 
     void consumeIngredients(const PotionRecipe& recipe);
 
+    vector<Item*> searchItem(const string& keyword);
+
 	~Inventory();
 };
 
