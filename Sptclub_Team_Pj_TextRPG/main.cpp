@@ -39,7 +39,7 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
         cout << "어명이라 어기면 내가 큰일날거같아서 고개를 끄덕이고 궁궐로 향하는 산길을 올라간다" << endl;
         cout << "잠깐만... 전하께서 무기를 주신다 감사히 받자" << endl;
         inventory.addItem(weapon);
-        cout << "플레이어는 전하에게서 " << weapon->GetName() << "을 하사받았다" << endl;
+        cout << "플레이어는 전하에게서 " << weapon->getName() << "을 하사받았다" << endl;
         cout << "적 : 도깨비, 구미호, 창귀" << endl;
         break;
     case 3:

@@ -8,35 +8,35 @@
 
 void PrintWeaponInfo(const WeaponItem& Weapon)
 {
-    std::cout << "무기 이름 : " << Weapon.GetName() << std::endl;
-    std::cout << "공격력 : " << Weapon.GetValue() << std::endl;
-    std::cout << "무게 : " << Weapon.GetWeight() << std::endl;
+    std::cout << "무기 이름 : " << Weapon.getName() << std::endl;
+    std::cout << "공격력 : " << Weapon.getValue() << std::endl;
+    std::cout << "무게 : " << Weapon.getWeight() << std::endl;
     std::cout << std::endl;
 }
 
 
 void PrintArmorInfo(const ArmorItem& Armor)
 {
-    std::cout << "방어구 이름 : " << Armor.GetName() << std::endl;
-    std::cout << "방어력 : " << Armor.GetValue() << std::endl;
-    std::cout << "무게 : " << Armor.GetWeight() << std::endl;
+    std::cout << "방어구 이름 : " << Armor.getName() << std::endl;
+    std::cout << "방어력 : " << Armor.getValue() << std::endl;
+    std::cout << "무게 : " << Armor.getWeight() << std::endl;
     std::cout << std::endl;
 }
 
 
 void PrintMaterialInfo(const MaterialItem& Material)
 {
-    std::cout << "재료 이름 : " << Material.GetName() << std::endl;
-    std::cout << "무게 : " << Material.GetWeight() << std::endl;
+    std::cout << "재료 이름 : " << Material.getName() << std::endl;
+    std::cout << "무게 : " << Material.getWeight() << std::endl;
     std::cout << std::endl;
 }
 
 
 void PrintPotionInfo(const PotionItem& Potion)
 {
-    std::cout << "포션 이름 : " << Potion.GetName() << std::endl;
-    std::cout << "회복량 : " << Potion.GetValue() << std::endl;
-    std::cout << "무게 : " << Potion.GetWeight() << std::endl;
+    std::cout << "포션 이름 : " << Potion.getName() << std::endl;
+    std::cout << "회복량 : " << Potion.getValue() << std::endl;
+    std::cout << "무게 : " << Potion.getWeight() << std::endl;
     std::cout << std::endl;
 }
 

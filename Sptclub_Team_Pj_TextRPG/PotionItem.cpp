@@ -1,4 +1,4 @@
-#include "PotionItem.h"
+Ôªø#include "PotionItem.h"
 #include "Player.h"
 
 #include <algorithm>
@@ -20,85 +20,85 @@ PotionType PotionItem::getPotionEffect() const
     return PotionEffect;
 }
 
-// øµæ‡ ªÁøÎ
-void PotionItem::ApplyEffect(Player& Target) const
+// ÏòÅÏïΩ ÏÇ¨Ïö©
+void PotionItem::ApplyEffect(Player& player) const
 {
     switch (PotionEffect)
     {
     case PotionType::Heal:
     {
-        int BeforeHp = Target.getHp();
+        int BeforeHp = player.getHp();
 
         int NewHp = std::min(
             BeforeHp + getValue(),
-            Target.getMaxHp()
+            player.getMaxHp()
         );
 
-        Target.setHp(NewHp);
+        player.setHp(NewHp);
 
         std::cout
             << getName()
-            << "¿ª(∏¶) ªÁøÎ«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÏùÑ(Î•º) ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§.\n";
 
         std::cout
-            << "√º∑¬¿Ã "
+            << "Ï≤¥Î†•Ïù¥ "
             << NewHp - BeforeHp
-            << "∏∏≈≠ »∏∫πµ«æ˙Ω¿¥œ¥Ÿ.\n";
+            << "ÎßåÌÅº ÌöåÎ≥µÎêòÏóàÏäµÎãàÎã§.\n";
 
         break;
     }
 
     case PotionType::Mana:
     {
-        int BeforeMp = Target.getMp();
+        int BeforeMp = player.getMp();
 
         int NewMp = std::min(
             BeforeMp + getValue(),
-            Target.getMaxMp()
+            player.getMaxMp()
         );
 
-        Target.setMp(NewMp);
+        player.setMp(NewMp);
 
         std::cout
             << getName()
-            << "¿ª(∏¶) ªÁøÎ«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÏùÑ(Î•º) ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§.\n";
 
         std::cout
-            << "±‚∑¬¿Ã "
+            << "Í∏∞Î†•Ïù¥ "
             << NewMp - BeforeMp
-            << "∏∏≈≠ »∏∫πµ«æ˙Ω¿¥œ¥Ÿ.\n";
+            << "ÎßåÌÅº ÌöåÎ≥µÎêòÏóàÏäµÎãàÎã§.\n";
 
         break;
     }
 
     case PotionType::Attack:
     {
-        Target.addAttack(getValue());
+        //player.addAttack(getValue());
 
         std::cout
             << getName()
-            << "¿ª(∏¶) ªÁøÎ«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÏùÑ(Î•º) ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§.\n";
 
         std::cout
-            << "∞¯∞›∑¬¿Ã "
+            << "Í≥µÍ≤©Î†•Ïù¥ "
             << getValue()
-            << "∏∏≈≠ ¡ı∞°«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÎßåÌÅº Ï¶ùÍ∞ÄÌñàÏäµÎãàÎã§.\n";
 
         break;
     }
 
     case PotionType::Defence:
     {
-        Target.addDefence(getValue());
+        //player.addDefence(getValue());
 
         std::cout
             << getName()
-            << "¿ª(∏¶) ªÁøÎ«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÏùÑ(Î•º) ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§.\n";
 
         std::cout
-            << "πÊæÓ∑¬¿Ã "
+            << "Î∞©Ïñ¥Î†•Ïù¥ "
             << getValue()
-            << "∏∏≈≠ ¡ı∞°«ﬂΩ¿¥œ¥Ÿ.\n";
+            << "ÎßåÌÅº Ï¶ùÍ∞ÄÌñàÏäµÎãàÎã§.\n";
 
         break;
     }

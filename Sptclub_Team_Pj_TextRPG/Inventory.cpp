@@ -35,10 +35,10 @@ void Inventory::invenFunc()
                 cout << "\n===== 검색 결과 =====\n";
                 for (const auto& item : items)
                 {
-                    cout << "이름 : " << item->GetName() << endl;
+                    cout << "이름 : " << item->getName() << endl;
                     cout << "종류 : ";
 
-                    switch (item->GetType())
+                    switch (item->getType())
                     {
                     case ItemType::Potion:
                         cout << "포션";
@@ -58,8 +58,8 @@ void Inventory::invenFunc()
                     }
 
                     cout << endl;
-                    cout << "가치 : " << item->GetValue() << endl;
-                    cout << "보유 수량 : " << getItemCount(item->GetName()) << endl;
+                    cout << "가치 : " << item->getValue() << endl;
+                    cout << "보유 수량 : " << getItemCount(item->getName()) << endl;
                 }
             }
             break;
@@ -76,13 +76,13 @@ void Inventory::invenFunc()
 void Inventory::addItem(Item* newItem)
 {
     
-    std::cout << newItem->GetName()
+    std::cout << newItem->getName()
         << "을(를) 획득했습니다.\n";
     
-    auto item = Items.find(newItem->GetName());
+    auto item = Items.find(newItem->getName());
     if (item == Items.end())
     {
-        Items[newItem->GetName()] = { newItem,1 };
+        Items[newItem->getName()] = { newItem,1 };
     }
     else
     {
@@ -104,7 +104,7 @@ void Inventory::showInventory() const
 
     for (const auto& item : Items)
     {
-        cout << index++ << " . " << item.second.first->GetName() << " x " << item.second.second << endl;
+        cout << index++ << " . " << item.second.first->getName() << " x " << item.second.second << endl;
     }
 }
 
