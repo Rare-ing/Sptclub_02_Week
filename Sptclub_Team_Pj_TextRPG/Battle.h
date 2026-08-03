@@ -26,8 +26,10 @@ private:
 
 	void GiveReward();
 
+	bool CanUsePotion;
+
 public:
-	Battle(Player* player, Monster* monster, Inventory* inventory);
+	Battle(Player* player, Monster* monster, Inventory* inventory, bool CanUsePotion = true);
 
 	void StartBattle();
 };

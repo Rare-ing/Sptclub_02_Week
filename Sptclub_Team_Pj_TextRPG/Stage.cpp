@@ -53,6 +53,8 @@ Stage::Stage(int stageLevel) : stageLevel(stageLevel), bossOpenLevel(0), boss(nu
 	}
 	else if (stageLevel == 4)
 	{
+	
+
 		monsters.push_back(new Shudderwock());
 		monsters.push_back(new GrimReaper());
 		monsters.push_back(new BlackTiger());
