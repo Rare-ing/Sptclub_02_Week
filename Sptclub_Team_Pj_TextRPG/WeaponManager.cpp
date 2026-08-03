@@ -1,4 +1,4 @@
-#include "WeaponManager.h"
+﻿#include "WeaponManager.h"
 
 WeaponItem WeaponManager::CreateWeaponForJob(const std::string& job)
 {
