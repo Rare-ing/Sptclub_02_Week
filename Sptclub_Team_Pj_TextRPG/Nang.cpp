@@ -15,6 +15,16 @@ void Nang::applyJobStats()
 
 void Nang::skill(Monster& monster)
 {
+    int mpCost = getSkillMpCost(1);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     std::cout << "낭인의 파쇄!" << std::endl;
 
     int damage = getAttack();

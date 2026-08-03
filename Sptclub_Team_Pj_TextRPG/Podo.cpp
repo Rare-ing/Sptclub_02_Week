@@ -14,6 +14,16 @@ void Podo::applyJobStats()
 
 void Podo::skill(Monster& monster)
 {
+    int mpCost = getSkillMpCost(1);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     std::cout << "포도대장의 방패치기!" << std::endl;
 
     int damage = static_cast<int>(getAttack() * 1.3);

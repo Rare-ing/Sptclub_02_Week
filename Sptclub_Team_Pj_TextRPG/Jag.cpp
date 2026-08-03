@@ -32,6 +32,16 @@ bool Jag::isCritical()
 
 void Jag::skill(Monster& monster)
 {
+    int mpCost = getSkillMpCost(1);
+
+    if (getMp() < mpCost)
+    {
+        std::cout << "기력이 부족합니다!" << std::endl;
+        return;
+    }
+
+    setMp(getMp() - mpCost);
+
     // 기본 피해 = 현재 공격력
     int damage = getAttack();
 
