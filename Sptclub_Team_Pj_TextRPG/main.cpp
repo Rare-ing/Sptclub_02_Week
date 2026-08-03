@@ -21,6 +21,8 @@
 #include "PotionWorkshop.h"
 #include "WeaponManager.h"
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, WeaponManager& weaponManager)

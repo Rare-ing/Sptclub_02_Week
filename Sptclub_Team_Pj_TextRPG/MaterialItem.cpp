@@ -23,16 +23,10 @@ void MaterialItem::AddItem(
         return;
     }
 
-    // 기본 지급 재료인 약초 생성
-    MaterialItem* Herb = new MaterialItem(
-        "약초",
-        1
-    );
-
     // 전달받은 수량만큼 기존 Inventory::addItem() 호출
     for (int i = 0; i < Count; i++)
     {
-        TargetInventory.addItem(Herb);
+        TargetInventory.addItem(new MaterialItem("약초", 1));
     }
 }
 
