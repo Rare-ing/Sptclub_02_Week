@@ -16,7 +16,59 @@
 #include "Jusul.h"
 #include "Jwado.h"
 #include "PotionWorkshop.h"
+#include "WeaponManager.h"
 #include <iostream>
+
+void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, WeaponManager& weaponManager)
+{
+
+    WeaponItem* weapon = new WeaponItem(weaponManager.CreateWeaponForJob(player->getJob()));
+    switch (stageLevel)
+    {
+    case 1:
+        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌려보니" << endl;
+        cout << "도적들이 쳐들어와 주막에서 행패를 부린다" << endl;
+        cout << "저 자식들 심심했는데 잘걸렸다 그러면 건방진 놈들 혼좀 내러 가보실까!" << endl;
+        cout << "적 : 도적, 취객, 걸귀" << endl;
+        break;
+    case 2:
+        cout << "술집에서의 소란을 정리하니 어떤 남자가 나를 부른다" << endl;
+        cout << "누구지? 잠깐.. 저...저..저..전하???????????????????" << endl;
+        cout << "전하께서 내가 싸우시는 모습이 인상깊으셨다고 한다 " << endl;
+        cout << "그래서 비밀 지령을 맡겨주신다는데 전하를 암살하려는 것들이 기승을 부리기에 그걸 조사해 달라고하신다" << endl;
+        cout << "어명이라 어기면 내가 큰일날거같아서 고개를 끄덕이고 궁궐로 향하는 산길을 올라간다" << endl;
+        cout << "잠깐만... 전하께서 무기를 주신다 감사히 받자" << endl;
+        inventory.addItem(weapon);
+        cout << "플레이어는 전하에게서 " << weapon->GetName() << "을 하사받았다" << endl;
+        cout << "적 : 도깨비, 구미호, 창귀" << endl;
+        break;
+    case 3:
+        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌렸다" << endl;
+        cout << "도적들이 쳐들어와 주막에서 행패를 부린다" << endl;
+        cout << "저 자식들 심심했는데 잘걸렸다 그러면 건방진 놈들 혼좀 내러 가보실까!" << endl;
+        cout << "적 : 도적, 취객, 걸귀" << endl;
+        break;
+    case 4:
+        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌렸다" << endl;
+        cout << "도적들이 쳐들어와 주막에서 행패를 부린다" << endl;
+        cout << "저 자식들 심심했는데 잘걸렸다 그러면 건방진 놈들 혼좀 내러 가보실까!" << endl;
+        cout << "적 : 도적, 취객, 걸귀" << endl;
+        break;
+    case 5:
+        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌렸다" << endl;
+        cout << "도적들이 쳐들어와 주막에서 행패를 부린다" << endl;
+        cout << "저 자식들 심심했는데 잘걸렸다 그러면 건방진 놈들 혼좀 내러 가보실까!" << endl;
+        cout << "적 : 도적, 취객, 걸귀" << endl;
+        break;
+    }
+
+    if (player->getLevel() > 8)
+    {
+        cout << "전하께서 새로운 무기를 하사하셨다" << endl;
+    }
+    return;
+
+}
 
 void mainloop(Player* player, Inventory& inventory)
 {
@@ -25,8 +77,10 @@ void mainloop(Player* player, Inventory& inventory)
 	int stageLevel = 1;
 	bool bossDefeated = false;
     PotionWorkshop workshop;
+	WeaponManager weaponManager;
     while (true)
     {
+		stageStartFunc(stageLevel, player, inventory, weaponManager);
         // 현재 스테이지 생성
         Stage stage(stageLevel);
 		bossDefeated = false;
@@ -123,6 +177,8 @@ void mainloop(Player* player, Inventory& inventory)
         }
     }
 }
+
+
 
 int main()
 {
