@@ -18,4 +18,9 @@ public:
         Inventory& TargetInventory,
         int Count
     );
+
+    // 보스 전리품 4종을 조합해 봉인된 여의주 제작
+    static bool CraftSealedDragonBall(
+        Inventory& TargetInventory
+    );
 };
