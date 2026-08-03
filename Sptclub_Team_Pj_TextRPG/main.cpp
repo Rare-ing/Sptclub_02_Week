@@ -179,6 +179,13 @@ int main()
 
     player->setJob(startplayer.getJob());
     player->setRace(startplayer.getRace());
+    player->addExp(700);
+
+    player->levelUp();
+
+    std::cout << "\n===== 전직 테스트 =====" << std::endl;
+    std::cout << "현재 레벨 : " << player->getLevel() << std::endl;
+    std::cout << "현재 직업 : " << player->getJob() << std::endl;
 
     player->applyRace();
     player->applyType();

@@ -224,12 +224,17 @@ int Player::getExp()
 
 void Player::levelUp()
 {
-    if (exp >= getMaxExp())
+    while (exp >= getMaxExp())
     {
+        exp -= getMaxExp();
+
         level++;
 
-        exp = 0;
-        maxExp += 100;
+        if (level == 8)
+        {
+            promoteSecondJob();
+        }
+
         maxHp += 20;
         hp = maxHp;
 
@@ -245,6 +250,56 @@ void Player::levelUp()
         std::cout << "공격력 +5" << std::endl;
         std::cout << "기력 +20" << std::endl;
     }
+}
+
+void Player::promoteSecondJob()
+{
+    if (isSecondJob)
+    {
+        return;
+    }
+
+    if (level < 8)
+    {
+        return;
+    }
+
+    if (job == "포도대장")
+    {
+        job = "장군";
+    }
+    else if (job == "낭인")
+    {
+        job = "군벌";
+    }
+    else if (job == "자객")
+    {
+        job = "암행어사";
+    }
+    else if (job == "음양무녀")
+    {
+        job = "국선";
+    }
+    else if (job == "주술사")
+    {
+        job = "산신";
+    }
+    else if (job == "좌도방사")
+    {
+        job = "요선";
+    }
+    else
+    {
+        return;
+    }
+
+    isSecondJob = true;
+
+    std::cout << std::endl;
+    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
+    std::cout << "       2차 전직 완료!" << std::endl;
+    std::cout << "       새로운 직업 : " << job << std::endl;
+    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
 }
 
 void Player::applyStats()

@@ -107,6 +107,9 @@ public:
 
 	void levelUp();
 	int getLevel();
+	void promoteSecondJob();
+
+
 	virtual void TakeDamage(int damage);
 	void setStunned(bool state);
 
