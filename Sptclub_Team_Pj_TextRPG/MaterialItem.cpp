@@ -60,10 +60,7 @@ bool MaterialItem::CraftSealedDragonBall(
     TargetInventory.removeItem(BurnedHarvestPlaque);
 
     // 완성된 봉인된 여의주 생성
-    MaterialItem* SealedDragonBall = new MaterialItem(
-        "봉인된 여의주",
-        1
-    );
+    Item* SealedDragonBall = new Item("봉인된 여의주", ItemType::Quest, 0, 1);
 
     // 완성품을 인벤토리에 추가
     TargetInventory.addItem(SealedDragonBall);

@@ -1,5 +1,6 @@
 ﻿#include "PotionWorkshop.h"
 #include "Inventory.h"
+#include "MaterialItem.h"
 #include <iostream>
 
 void PotionWorkshop::AddRecipe(const PotionRecipe& NewRecipe)
@@ -144,6 +145,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
         std::cout << "2. 영약 이름으로 비방 찾기\n";
         std::cout << "3. 약재 이름으로 비방 찾기\n";
         std::cout << "4. 영약 조제 (제작)\n";
+        std::cout << "5. 특수 제작 (봉인된 여의주)\n";
         std::cout << "0. 약선방 나가기\n";
         std::cout << "========================================\n";
         std::cout << "선택 : ";
@@ -182,6 +184,11 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
 
             craftPotionWithInventory(PotionName, inventory);
         }
+        else if (MenuInput == "5")
+        {
+            std::cout << "\n이상한 기운이 약선방 안을 감싸고 눈부신 빛이 약선방을 가득 채운다!!\n";
+            MaterialItem::CraftSealedDragonBall(inventory);
+        }
         else if (MenuInput == "0")
         {
             std::cout << "약선방을 떠납니다.\n";
@@ -191,7 +198,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
         {
             std::cout
                 << "약선방에서 받을 수 없는 청입니다. "
-                << "0부터 4까지 중 선택해 주십시오.\n";
+                << "0부터 5까지 중 선택해 주십시오.\n";
         }
     }
 }

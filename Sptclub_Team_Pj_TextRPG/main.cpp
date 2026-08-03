@@ -240,6 +240,7 @@ void mainloop(Player*& player, Inventory& inventory)
                     cout << "\n전설의 이무기를 쓰러뜨렸다!" << endl;
                     cout << "진정한 여의주를 손에 넣었다..." << endl;
 
+                    inventory.removeItem("봉인된 여의주");
 
                     Item* trueOrb = new Item( "진정한 여의주", ItemType::Quest, 9999, 0);
 
