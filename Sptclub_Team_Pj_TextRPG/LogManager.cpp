@@ -1,4 +1,4 @@
-#include "LogManager.h"
+#inc#include "LogManager.h"
 
 // =========================================================================
 // [내부 유틸리티]
@@ -39,11 +39,10 @@ void LogManager::LogFlee(const std::string& entityName, bool isSuccess) {
     AddLog(LogType::Combat, msg);
 }
 
-// [수정됨] 모든 아이템(물약 포함) 통합 처리
 void LogManager::LogItemUse(const std::string& entityName, const std::string& itemName, const std::string& effect) {
     std::string msg = entityName + "이(가) [" + itemName + "]을(를) 사용했습니다.";
     if (!effect.empty()) {
-        msg += " (" + effect + ")"; // 효과가 입력되면 괄호로 설명 추가
+        msg += " (" + effect + ")";
     }
     AddLog(LogType::Inventory, msg);
 }
@@ -174,6 +173,7 @@ void LogManager::LogCraftPotion(const std::string& potionName, int count) {
 // 6. 로그 출력 및 시스템 관리 기능
 // =========================================================================
 void LogManager::PrintLogs() const {
+    // 디버그용으로 남겨둡니다. 실제 게임 화면 렌더링은 UIManager가 담당하게 됩니다.
     std::cout << "\n================= [ 게임 로그 ] =================\n";
 
     if (logs.empty()) {

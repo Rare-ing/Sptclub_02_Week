@@ -1,4 +1,4 @@
-#pragma once 
+#pr#pragma once
 #include <iostream>
 #include <vector>
 #include <string>
@@ -28,9 +28,27 @@ struct LogEntry {
 class LogManager {
 private:
     std::vector<LogEntry> logs;
+
+    // [추가] 1. 싱글톤 패턴을 위한 생성자 은닉
+    LogManager() = default;
+    ~LogManager() = default;
+
     void AddLog(LogType type, const std::string& message);
 
 public:
+    // [추가] 2. 싱글톤 인스턴스 반환 함수
+    static LogManager& GetInstance() {
+        static LogManager instance;
+        return instance;
+    }
+
+    // [추가] 복사 생성자 및 대입 연산자 삭제 (의도치 않은 복사 방지)
+    LogManager(const LogManager&) = delete;
+    LogManager& operator=(const LogManager&) = delete;
+
+    // [추가] 3. UIManager 연동을 위한 Getter 추가
+    const std::vector<LogEntry>& GetLogs() const { return logs; }
+
     // =========================================================================
     // 1. 기본 전투/재화/시스템
     // =========================================================================
@@ -40,8 +58,6 @@ public:
     void LogDefend(const std::string& defender);
     void LogFlee(const std::string& entityName, bool isSuccess);
 
-    // [통합] 모든 아이템 사용 (물약, 폭탄, 스크롤 등 뭐든 가능)
-    // effect에 "체력 50 회복" 등을 적으면 괄호로 설명이 붙고, 안 적으면 그냥 사용했다고만 뜹니다.
     void LogItemUse(const std::string& entityName, const std::string& itemName, const std::string& effect = "");
 
     void LogDeath(const std::string& entityName);
@@ -84,4 +100,4 @@ public:
     // =========================================================================
     void PrintLogs() const;
     void ClearLogs();
-}; #pragma once
+};
