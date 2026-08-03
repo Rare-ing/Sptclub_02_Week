@@ -21,6 +21,7 @@
 #include "Yos.h"
 #include "PotionWorkshop.h"
 #include "WeaponManager.h"
+#include "MaterialItem.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -109,7 +110,7 @@ void mainloop(Player*& player, Inventory& inventory)
 
             cout << "\n===== 메뉴 =====\n";
             cout << "현재 스테이지 : " << stageLevel << endl;
-            cout << "1. 전투" << endl;
+            cout << "1. 길을 걸어가다" << endl;
             cout << "2. 스테이터스 확인" << endl;
             cout << "3. 인벤토리 확인" << endl;
             cout << "4. 영약방 가기" << endl;
@@ -133,20 +134,35 @@ void mainloop(Player*& player, Inventory& inventory)
             {
                 system("cls");
 
-                int random \ rand()
-                Monster* monster = stage.GetRandomMonster();
-
-                if (monster == nullptr)
+                int random = rand() % 11;
+				cout << "랜덤 이벤트 발생! (0 : 허탕 1~4 : 약초 발견 5~10 : 몬스터 등장) : " << random << endl;
+				if (random == 0)
+				{
+					cout << "아무일도 일어나지 않았다." << endl;
+					break;
+				}
+                else if (random <= 4)
                 {
-                    cout << "몬스터가 없습니다." << endl;
-                    break;
+                    cout << "약초를 " << random << "개 발견했다!" << endl;
+
+                    MaterialItem::AddItem(inventory, random);
                 }
-
-                Battle battle(player, monster, &inventory);
-                battle.StartBattle();
-                if (!monster->getAlive())
+                else
                 {
-					monster->resetMonster();
+                    Monster* monster = stage.GetRandomMonster();
+
+                    if (monster == nullptr)
+                    {
+                        cout << "몬스터가 없습니다." << endl;
+                        break;
+                    }
+
+                    Battle battle(player, monster, &inventory);
+                    battle.StartBattle();
+                    if (!monster->getAlive())
+                    {
+                        monster->resetMonster();
+                    }
                 }
                 break;
             }
