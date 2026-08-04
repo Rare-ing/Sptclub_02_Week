@@ -22,6 +22,7 @@
 #include "PotionWorkshop.h"
 #include "WeaponManager.h"
 #include "MaterialItem.h"
+#include "Game.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -34,21 +35,30 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
     switch (stageLevel)
     {
     case 1:
-        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌려보니" << endl;
-        cout << "도적들이 쳐들어와 주막에서 행패를 부린다" << endl;
-        cout << "저 자식들 심심했는데 잘걸렸다 그러면 건방진 놈들 혼좀 내러 가보실까!" << endl;
-        cout << "적 : 도적, 취객, 걸귀" << endl;
+        GotoXY(4, 4);
+        cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌려보니";
+
+        GotoXY(4, 5);
+        cout << "도적들이 쳐들어와 주막에서 행패를 부리고 있었다.";
+
+        GotoXY(4, 6);
+        cout << "식사 중에 소란은 달갑지 않은데 말이지..";
+
+        GotoXY(4, 7);
+        cout << "적 : 뭐? 어디서 분위기를 잡고있어! 야 저 자식 꿇려!";
         break;
     case 2:
-        cout << "술집에서의 소란을 정리하니 어떤 남자가 나를 부른다" << endl;
-        cout << "누구지? 잠깐.. 저...저..저..전하???????????????????" << endl;
-        cout << "전하께서 내가 싸우시는 모습이 인상깊으셨다고 한다 " << endl;
-        cout << "그래서 비밀 지령을 맡겨주신다는데 전하를 암살하려는 것들이 기승을 부리기에 그걸 조사해 달라고하신다" << endl;
-        cout << "어명이라 어기면 내가 큰일날거같아서 고개를 끄덕이고 궁궐로 향하는 산길을 올라간다" << endl;
-        cout << "잠깐만... 전하께서 무기를 주신다 감사히 받자" << endl;
-        inventory.addItem(weapon);
-        cout << "플레이어는 전하에게서 " << weapon->getName() << "을 하사받았다" << endl;
-        cout << "적 : 도깨비, 구미호, 창귀" << endl;
+        GotoXY(4, 4);
+        cout << "소란이 가라앉고, 주인공이 상황을 정리하던 순간,";
+
+        GotoXY(4, 5);
+        cout << "평범한 행색의 사내가 천천히 다가왔다. 그러나 그 눈빛만큼은 범상치 않았다.";
+
+        GotoXY(4, 6);
+        cout << "??:제법이구나.";
+
+        GotoXY(4, 7);
+        cout << "누구시오 ? ";
         break;
     case 3:
         cout << "주막에서 술을 마시고 있는 중 소란이 나서 고개를 돌렸다" << endl;
@@ -88,33 +98,58 @@ bool CheckImoogiUnlock(Player* player, Inventory& inventory)
 
 void mainloop(Player*& player, Inventory& inventory)
 {
-    system("cls");
+    DrawGameFrame();
     int switchNum;
-	int stageLevel = 1;
-	bool bossDefeated = false;
+    int stageLevel = 1;
+    bool bossDefeated = false;
     bool unlockImoogi = false;
     bool trueEnding = false;
     PotionWorkshop workshop;
-	WeaponManager weaponManager;
-	workshop.AddDefaultRecipes();
+    WeaponManager weaponManager;
+    workshop.AddDefaultRecipes();
+
     while (true)
     {
-		stageStartFunc(stageLevel, player, inventory, weaponManager);
-        // 현재 스테이지 생성
+        stageStartFunc(stageLevel, player, inventory, weaponManager);
+
+        GotoXY(0, 4);
+
+        DrawPlayerHUD(player);
+
         Stage stage(stageLevel);
-		bossDefeated = false;
-        // 해당 스테이지에서 계속 활동
+        bossDefeated = false;
+
         while (!bossDefeated)
         {
             unlockImoogi = CheckImoogiUnlock(player, inventory);
 
-            cout << "\n===== 메뉴 =====\n";
-            cout << "현재 스테이지 : " << stageLevel << endl;
-            cout << "1. 길을 걸어가다" << endl;
-            cout << "2. 스테이터스 확인" << endl;
-            cout << "3. 인벤토리 확인" << endl;
-            cout << "4. 영약방 가기" << endl;
-            cout << "5. 보스 도전" << endl;
+            DrawPlayerHUD(player);
+
+            ClearGameMenu();
+
+            for (int y = 4; y < 22; y++)
+            {
+                GotoXY(0, y);
+                cout << string(120, ' ');
+            }
+
+            GotoXY(4, 23);
+            cout << "현재 스테이지 : " << stageLevel;
+
+            GotoXY(4, 24);
+            cout << "1. 길을 걸어가다";
+
+            GotoXY(25, 24);
+            cout << "2. 스테이터스 확인";
+
+            GotoXY(50, 24);
+            cout << "3. 인벤토리 확인";
+
+            GotoXY(75, 24);
+            cout << "4. 영약방 가기";
+
+            GotoXY(95, 24);
+            cout << "5. 보스 도전";
 
             if (unlockImoogi)
             {
@@ -132,7 +167,6 @@ void mainloop(Player*& player, Inventory& inventory)
             {
             case 1:
             {
-                system("cls");
 
                 int random = rand() % 11;
 				cout << "랜덤 이벤트 발생! (0 : 허탕 1~4 : 약초 발견 5~10 : 몬스터 등장) : " << random << endl;
@@ -168,22 +202,18 @@ void mainloop(Player*& player, Inventory& inventory)
             }
 
             case 2:
-                system("cls");
                 player->showStatus();
                 break;
 
             case 3:
-                system("cls");
                 inventory.showInventory();
                 break;
             
             case 4:
-                system("cls");
                 workshop.RunMenu(inventory);
                 break;
             case 5:
             {
-                system("cls");
                 cout << player->getLevel() << endl;
                 // 보스 입장 레벨 확인
                 if (player->getLevel() <= stage.getBossOpenLevel())
@@ -222,7 +252,6 @@ void mainloop(Player*& player, Inventory& inventory)
                 }
 
 
-                system("cls");
 
                 cout << "봉인된 여의주가 반응한다..." << endl;
                 cout << "천년을 기다린 이무기가 모습을 드러낸다!" << endl;
