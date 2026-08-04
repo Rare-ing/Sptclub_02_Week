@@ -24,7 +24,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "내의원 경옥고",
+        "내의원 경옥 탕약",
         { "약초", "치마자락" },
         PotionType::Heal,
         35,
@@ -45,7 +45,7 @@ void PotionWorkshop::AddDefaultRecipes()
     // ==================================================
 
     AddRecipe(PotionRecipe(
-        "내의원 유생 탕약",
+        "내의원 유생 산약",
         { "약초", "낡은 내관의 관모" },
         PotionType::Mana,
         20,
@@ -53,7 +53,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "태백산 공진단",
+        "태백산 공진 산약",
         { "약초", "핏빛 상소문" },
         PotionType::Mana,
         40,
@@ -61,7 +61,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "백호 신선 단약",
+        "백호 신선 산약",
         { "약초", "검은 부채" },
         PotionType::Mana,
         70,
@@ -74,7 +74,7 @@ void PotionWorkshop::AddDefaultRecipes()
     // ==================================================
 
     AddRecipe(PotionRecipe(
-        "칠성 용맹환",
+        "칠성 용맹 환약",
         { "약초", "녹슨 도적 단검" },
         PotionType::Attack,
         5,
@@ -82,7 +82,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "팔도 우황환",
+        "팔도 우황 환약",
         { "약초", "호랑이 발톱 장식" },
         PotionType::Attack,
         15,
@@ -90,7 +90,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "신선 광폭 탕약",
+        "신선 광폭 환약",
         { "약초", "흑호의 송곳니" },
         PotionType::Attack,
         30,
@@ -103,7 +103,7 @@ void PotionWorkshop::AddDefaultRecipes()
     // ==================================================
 
     AddRecipe(PotionRecipe(
-        "약초 감두탕",
+        "약초 감두 수호고",
         { "약초", "동동주" },
         PotionType::Defence,
         5,
@@ -111,7 +111,7 @@ void PotionWorkshop::AddDefaultRecipes()
     ));
 
     AddRecipe(PotionRecipe(
-        "지리산 웅담 환약",
+        "지리산 웅담 수호고",
         { "약초", "도깨비 방망이 조각" },
         PotionType::Defence,
         12,
@@ -200,11 +200,11 @@ void PotionWorkshop::ShowAllRecipes() const
 {
     if (Recipes.empty())
     {
-        std::cout << "등록된 영약 비방이 없습니다.\n";
+        std::cout << "약선방에 전해 내려오는 영약 비방이 없습니다.\n";
         return;
     }
 
-    std::cout << "\n===== 전체 영약 비방 =====\n";
+    std::cout << "\n============ 전체 영약 비방 ============\n";
 
 
     for (const PotionRecipe& Recipe : Recipes)
@@ -272,64 +272,149 @@ void PotionWorkshop::ShowAllRecipes() const
     std::cout << '\n';
 }
 
-
-void PotionWorkshop::SearchByName(const std::string& Name) const
+void PotionWorkshop::ShowRecipeDetails(
+    const PotionRecipe& Recipe
+) const
 {
-    for (const PotionRecipe& Recipe : Recipes)
+    std::cout
+        << "\n============ 영약 비방 ============\n";
+
+    std::cout
+        << "영약 이름 : "
+        << Recipe.getName()
+        << '\n';
+
+    std::cout << "약재 : ";
+
+    const std::vector<std::string>& Ingredients =
+        Recipe.getIngredients();
+
+    for (size_t i = 0; i < Ingredients.size(); i++)
     {
-        if (Recipe.getName() == Name)
+        std::cout << Ingredients[i];
+
+        if (i + 1 < Ingredients.size())
         {
-            std::cout << "\n영약 이름 : "
-                << Recipe.getName()
-                << '\n';
-
-            std::cout << "약재 : ";
-
-            const std::vector<std::string>& Ingredients =
-                Recipe.getIngredients();
-
-            for (size_t i = 0; i < Ingredients.size(); i++)
-            {
-                std::cout << Ingredients[i];
-
-                if (i < Ingredients.size() - 1)
-                {
-                    std::cout << " + ";
-                }
-            }
-
-            std::cout << '\n';
-            std::cout << "효과 : ";
-
-            switch (Recipe.getPotionEffect())
-            {
-            case PotionType::Heal:
-                std::cout << "체력 +" << Recipe.getValue() << '\n';
-                break;
-
-            case PotionType::Mana:
-                std::cout << "기력 +" << Recipe.getValue() << '\n';
-                break;
-
-            case PotionType::Attack:
-                std::cout << "공격력 +" << Recipe.getValue() << '\n';
-                break;
-
-            case PotionType::Defence:
-                std::cout << "방어력 +" << Recipe.getValue() << '\n';
-                break;
-            }
-
-            std::cout << "무게 : "
-                << Recipe.getWeight()
-                << '\n';
-
-            return;
+            std::cout << " + ";
         }
     }
 
-    std::cout << "해당 이름의 영약을 찾을 수 없습니다.\n";
+    std::cout << '\n';
+    std::cout << "효과 : ";
+
+    switch (Recipe.getPotionEffect())
+    {
+    case PotionType::Heal:
+        std::cout
+            << "체력 +"
+            << Recipe.getValue();
+        break;
+
+    case PotionType::Mana:
+        std::cout
+            << "기력 +"
+            << Recipe.getValue();
+        break;
+
+    case PotionType::Attack:
+        std::cout
+            << "공격력 +"
+            << Recipe.getValue();
+        break;
+
+    case PotionType::Defence:
+        std::cout
+            << "방어력 +"
+            << Recipe.getValue();
+        break;
+    }
+
+    std::cout
+        << "\n무게 : "
+        << Recipe.getWeight()
+        << '\n';
 }
+
+
+void PotionWorkshop::SearchByName(const std::string& Name) const
+{
+    std::vector<const PotionRecipe*> SearchResults;
+
+    // 빈 검색어는 모든 영약과 일치하므로 입력을 재요청
+    if (Name.empty())
+    {
+        std::cout << "찾으실 영약의 이름을 입력해 주십시오.\n";
+        return;
+    }
+
+    // 영약 이름에 검색어가 포함된 비방을 저장
+    for (const PotionRecipe& Recipe : Recipes)
+    {
+        if (Recipe.getName().find(Name) != std::string::npos)
+        {
+            SearchResults.push_back(&Recipe);
+        }
+    }
+
+    if (SearchResults.empty())
+    {
+        std::cout << "약선방에 전해지지 않은 영약 비방입니다.\n";
+        return;
+    }
+
+    std::cout << "\n============ 검색 결과 ============\n";
+
+    for (size_t i = 0; i < SearchResults.size(); i++)
+    {
+        std::cout
+            << i + 1
+            << ". "
+            << SearchResults[i]->getName()
+            << '\n';
+    }
+
+    std::cout << "\n찾아볼 비방의 번호를 선택해 주십시오 : ";
+
+    std::string NumberInput;
+    std::getline(std::cin, NumberInput);
+
+    int Number = 0;
+    size_t ProcessedLength = 0;
+
+    try
+    {
+        Number = std::stoi(
+            NumberInput,
+            &ProcessedLength
+        );
+    }
+    catch (...)
+    {
+        std::cout << "비방 목록의 번호를 입력해 주십시오.\n";
+        return;
+    }
+
+    // 입력한 문자열 전체가 숫자로 변환되었는지 확인 (혹시 모르니까..)
+    if (ProcessedLength != NumberInput.size())
+    {
+        std::cout << "비방 목록의 번호를 입력해 주십시오.\n";
+        return;
+    }
+    if (Number < 1
+        || Number > static_cast<int>(SearchResults.size()))
+    {
+        std::cout << "약선방에 전해지지 않은 비방입니다.\n";
+        return;
+    }
+
+    ShowRecipeDetails(
+        *SearchResults[Number - 1]
+    );
+}
+
+
+
+
 
 void PotionWorkshop::SearchByIngredient(
     const std::string& Ingredient) const
@@ -351,7 +436,7 @@ void PotionWorkshop::SearchByIngredient(
 
     if (!IsFound)
     {
-        std::cout << "해당 약재가 포함된 영약을 찾을 수 없습니다.\n";
+        std::cout << "해당 약재가 쓰이는 영약 비방은 약선방에 전해지지 않았습니다.\n";
     }
 }
 
@@ -376,6 +461,6 @@ PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
         }
     }
 
-    std::cout << "존재하지 않는 영약 비방입니다.\n";
+    std::cout << "약선방에 전해지지 않은 영약 비방입니다.\n";
     return PotionItem("", PotionType::Heal, 0, 0);
 }

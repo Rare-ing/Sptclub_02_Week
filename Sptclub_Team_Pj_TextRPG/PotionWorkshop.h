@@ -12,6 +12,11 @@ private:
     // 영약 비방 저장
     std::vector<PotionRecipe> Recipes;
 
+    // 선택한 영약 비방의 상세 정보 출력
+    void ShowRecipeDetails(
+        const PotionRecipe& Recipe
+    ) const;
+
 public:
     // 비방 하나 추가
     void AddRecipe(const PotionRecipe& NewRecipe);
@@ -26,7 +31,7 @@ public:
     // 모든 비방 출력
     void ShowAllRecipes() const;
 
-    // 영약 이름으로 검색
+    // 영약 이름으로 검색 (이름 일부로 검색 가능)
     void SearchByName(const std::string& Name) const;
 
     // 재료(약재) 이름으로 검색
