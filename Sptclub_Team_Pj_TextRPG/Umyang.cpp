@@ -53,7 +53,6 @@ void Umyang::skill(Monster& monster)
     PrintStory(0, "신벌!");
     PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
     PrintStory(2, "체력을 50 회복했습니다.");
-    PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
     WaitForEnter();
 }

@@ -38,7 +38,6 @@ void Jusul::skill(Monster& monster)
 
     PrintStory(0, "뇌격부!");
     PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
-    PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
     WaitForEnter();
 }

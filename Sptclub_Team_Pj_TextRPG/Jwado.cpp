@@ -63,7 +63,6 @@ void Jwado::skill(Monster& monster)
 
         PrintStory(1, "자객의 암습!");
         PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
-        PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }
@@ -76,7 +75,6 @@ void Jwado::skill(Monster& monster)
 
         PrintStory(0, "낭인의 파쇄!");
         PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
-        PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }
@@ -104,7 +102,6 @@ void Jwado::skill(Monster& monster)
         PrintStory(0, "음양무녀의 신벌!");
         PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
         PrintStory(2, "체력을 50 회복했습니다.");
-        PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }
@@ -120,7 +117,6 @@ void Jwado::skill(Monster& monster)
 
         PrintStory(0, "포도대장의 방패치기!");
         PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
-        PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }
@@ -135,7 +131,6 @@ void Jwado::skill(Monster& monster)
 
         PrintStory(0, "주술사의 뇌격!");
         PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
-        PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }

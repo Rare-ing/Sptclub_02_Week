@@ -85,7 +85,6 @@ void Amh::skill(Monster& monster)
 
             PrintStory(1, "난도질 " + std::to_string(currentHit) + "타!");
             PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
-            PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
             WaitForEnter();
         }
@@ -102,7 +101,6 @@ void Amh::skill(Monster& monster)
             monster.TakeDamage(damage);
 
             PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
-            PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
             WaitForEnter();
         }

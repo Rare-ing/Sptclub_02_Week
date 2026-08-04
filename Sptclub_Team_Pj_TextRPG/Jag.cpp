@@ -65,7 +65,6 @@ void Jag::skill(Monster& monster)
 
     PrintStory(1, "암습!");
     PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
-    PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
     WaitForEnter();
 }
