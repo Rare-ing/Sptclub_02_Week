@@ -19,8 +19,7 @@ void Inventory::invenFunc(Player& player)
         cout << "번호선택 : " << endl;
 
         cin >> switchNum;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+        cin.ignore((numeric_limits<streamsize>::max)(), '\n');
         switch (switchNum)
         {
         case 1:
@@ -31,56 +30,66 @@ void Inventory::invenFunc(Player& player)
         {
             cout << "아이템 검색" << endl;
             getline(cin, keyword);
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+			cout << "keyword : " << keyword << endl;
             vector<Item*> result = searchItem(keyword);
             if(result.empty())
             {
                 cout << "해당 아이템을 찾을 수 없습니다." << endl;
                 break;
             }
+            cout << "\n===== 검색 결과 =====\n";
 
-            if (!items.empty())
+            for (int i = 0; i < result.size(); i++)
             {
-                cout << "\n===== 검색 결과 =====\n";
-
-                /*
-                for (const auto& item : items)
-                {
-                    cout << "이름 : " << item->getName() << endl;
-                    cout << "종류 : ";
-
-                    switch (item->getType())
-                    {
-                    case ItemType::Potion:
-                        cout << "포션";
-                        break;
-                    case ItemType::Weapon:
-                        cout << "무기";
-                        break;
-                    case ItemType::Armor:
-                        cout << "방어구";
-                        break;
-                    case ItemType::Material:
-                        cout << "재료";
-                        break;
-                    case ItemType::Quest:
-                        cout << "퀘스트";
-                        break;
-                    }
-
-                    cout << endl;
-                    cout << "가치 : " << item->getValue() << endl;
-                    cout << "보유 수량 : " << getItemCount(item->getName()) << endl;
-                    */
-                }
+                cout << i + 1 << ". "
+                    << result[i]->getName()
+                    << endl;
             }
-            break;
+
+            int choice = 0;
+
+            cout << "상세 정보를 확인할 아이템 번호를 입력하세요 (0을 입력하면 종료): ";
+            cin >> choice;
+
+            if (choice < 1 || choice > result.size())
+            {
+                cout << "검색을 종료합니다." << endl;
+                break;
+            }
+
+            Item* selectedItem = result[choice - 1];
+            cout << "이름 : " << selectedItem->getName() << endl;
+            cout << "종류 : ";
+
+            switch (selectedItem->getType())
+            {
+            case ItemType::Potion:
+                cout << "포션";
+                break;
+            case ItemType::Weapon:
+                cout << "무기";
+                break;
+            case ItemType::Armor:
+                cout << "방어구";
+                break;
+            case ItemType::Material:
+                cout << "재료";
+                break;
+            case ItemType::Quest:
+                cout << "퀘스트";
+                break;
+            }
+
+            cout << endl;
+            cout << "가치 : " << selectedItem->getValue() << endl;
+            cout << "보유 수량 : " << getItemCount(selectedItem->getName()) << endl;
+            
         }
+        
+        break;
         case 3:
 			cout << "사용할 아이템의 이름을 입력하세요: ";
             getline(cin, keyword);
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			useItem(keyword, player);
 			break;
         case 4:
