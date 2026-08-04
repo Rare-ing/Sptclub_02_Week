@@ -2,7 +2,7 @@
 #include "GameUI.h"
 #include "Title.h"
 #include "MaterialItem.h"
-
+#include "Inventory.h"
 #include <iostream>
 
 void PotionWorkshop::AddRecipe(const PotionRecipe& NewRecipe)
@@ -139,6 +139,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory)
 
     while (true)
     {
+        /*
         std::cout << "\n";
         std::cout << "==================================================\n";
         std::cout << "         [ 약선방 (藥仙房) ]\n";
@@ -151,6 +152,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory)
         std::cout << "0. 약선방 나가기\n";
         std::cout << "==================================================\n";
         std::cout << "선택 : ";
+        */
         ClearStoryArea();
 
         DrawRecipeList(CurrentPage);
@@ -589,17 +591,30 @@ void PotionWorkshop::CraftPotion(int index, Inventory& inventory)
         Recipes[index];
 
 
-    // 메시지 출력 위치
+    if (!inventory.canCraft(SelectedRecipe))
+    {
+        GotoXY(4, 35);
+        cout << "약재가 부족합니다!";
+        return;
+    }
+
+    // 2. 재료 소비
+    inventory.consumeIngredients(SelectedRecipe);
+
+    // 3. 포션 생성
+    PotionItem* potion = new PotionItem(
+        SelectedRecipe.getName(),
+        SelectedRecipe.getPotionEffect(),
+        SelectedRecipe.getValue(),
+        SelectedRecipe.getWeight()
+    );
+
+    // 4. 인벤토리에 추가
+    inventory.addItem(potion);
+
+    // 5. 제작 완료 출력
     GotoXY(4, 35);
-
-    // 기존 글자 삭제
-    std::cout << std::string(80, ' ');
-
-
-    GotoXY(4, 35);
-
-    std::cout
-        << SelectedRecipe.getName()
+    cout << SelectedRecipe.getName()
         << " 조제가 완료되었습니다!";
 }
 
