@@ -129,7 +129,7 @@ void PotionWorkshop::AddDefaultRecipes()
 
 }
 
-void PotionWorkshop::RunMenu() const
+void PotionWorkshop::RunMenu(const Inventory& inventory) const
 {
     while (true)
     {
@@ -178,7 +178,7 @@ void PotionWorkshop::RunMenu() const
             std::cout << "조제할 영약의 이름을 알려주십시오 : ";
             std::getline(std::cin, PotionName);
 
-            CraftPotion(PotionName);
+            CraftPotion(PotionName, inventory);
         }
         else if (MenuInput == "0")
         {
@@ -442,7 +442,8 @@ void PotionWorkshop::SearchByIngredient(
 
 
 PotionItem PotionWorkshop::CraftPotion(
-    const std::string& Name
+    const std::string& Name,
+    const Inventory& inventory
 ) const
 {
     std::vector<const PotionRecipe*> SearchResults;

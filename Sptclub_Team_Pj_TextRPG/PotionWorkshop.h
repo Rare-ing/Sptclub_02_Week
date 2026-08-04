@@ -28,7 +28,7 @@ public:
 
     // 영약 제작소(약선방) 메뉴 실행
     // 0번을 선택할 때까지 메뉴를 반복한다.
-    void RunMenu(Inventory& inventory) const;
+    void RunMenu(const Inventory& inventory) const;
 
     // 모든 비방 출력
     void ShowAllRecipes() const;
@@ -43,11 +43,12 @@ public:
 
     // 비방 정보를 기반으로 영약 제작(조제)
     PotionItem CraftPotion(
-        const std::string& Name
+        const std::string& Name,
+        const Inventory& inventory
     ) const;
 
 	void craftPotionWithInventory(
 		const std::string& Name,
-		Inventory& inventory
+		const Inventory& inventory
 	) const;
 };
