@@ -185,7 +185,7 @@ void DrawStars(int tick)
 }
 
 // 키 깜빡임
-const int PressRow = 38;
+const int PressRow = 32;
 const int PressCol = 35;
 
 void DrawPressPrompt(int tick)
@@ -244,12 +244,37 @@ void PlayIntroAnimation()
     _getch();
 }
 
-// 이름 입력 전 짧게 보여줄 스토리 한 줄감
-const std::string StoryLine = "조용하던 산골 마을에 낯선 기운이 감돌기 시작했다...";
+// 이름 입력 전에 보여줄 스토리 나레이션
+const std::string StoryLines[] =
+{
+    "1790년대 후반.",
+    "조선에는 오랜 가뭄과 홍수가 반복되었다.",
+    "논밭은 말라붙었고,",
+    "곡식은 자라지 않았다.",
+    "굶주림을 견디지 못한 백성들이 하나둘 쓰러졌으며,",
+    "괴질마저 온 나라를 휩쓸었다.",
+    "그리고...",
+    "사람들이 죽어갈수록",
+    "이상한 것들이 나타나기 시작했다.",
+    "밤거리를 떠도는 요괴.",
+    "산속에서 들려오는 괴이한 울음소리.",
+    "그리고 죽은 자들의 혼령.",
+    "사람들은 수군거렸다.",
+    "\"조선에 큰 변고가 닥쳤다.\"",
+    "\"왕조가 무너질 것이다.\"",
+    "\"새로운 왕이 나타날 것이다.\"",
+    "흉흉한 예언과 주술이 조선 전역에 퍼져나가던 때.",
+    "한양의 어느 밤.",
+    "한 사람이 길거리를 가로막고 있던 취객과 도적들을 상대하고 있었다.",
+    "그리고 그날 밤.",
+    "주인공의 운명을 바꿀 한 사람과 만나게 된다."
+};
+
+const int StoryLineCount = sizeof(StoryLines) / sizeof(StoryLines[0]);
 const std::string StoryPrompt = "아무키나 입력";
 
-const int StoryRow = 19;
-const int StoryPromptRow = StoryRow + 2;
+const int StoryStartRow = 2;
+const int StoryPromptRow = StoryStartRow + StoryLineCount + 1;
 
 void PlayStoryIntro()
 {
@@ -257,8 +282,11 @@ void PlayStoryIntro()
 
     SetColor(15);
 
-    GotoXY(20, StoryRow);
-    cout << StoryLine;
+    for (int i = 0; i < StoryLineCount; i++)
+    {
+        GotoXY(20, StoryStartRow + i);
+        cout << StoryLines[i];
+    }
 
     SetColor(8);
 
