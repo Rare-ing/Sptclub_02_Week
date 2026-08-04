@@ -1,6 +1,4 @@
 ﻿#include "PotionWorkshop.h"
-#include "Inventory.h"
-#include "MaterialItem.h"
 #include <iostream>
 
 void PotionWorkshop::AddRecipe(const PotionRecipe& NewRecipe)
@@ -131,11 +129,10 @@ void PotionWorkshop::AddDefaultRecipes()
 
 }
 
-void PotionWorkshop::RunMenu(Inventory& inventory) const
+void PotionWorkshop::RunMenu() const
 {
     while (true)
     {
-        std::cin.ignore();
         std::cout << "\n";
         std::cout << "========================================\n";
         std::cout << "         [ 약선방 (藥仙房) ]\n";
@@ -145,7 +142,6 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
         std::cout << "2. 영약 이름으로 비방 찾기\n";
         std::cout << "3. 약재 이름으로 비방 찾기\n";
         std::cout << "4. 영약 조제 (제작)\n";
-        std::cout << "5. 특수 제작 (봉인된 여의주)\n";
         std::cout << "0. 약선방 나가기\n";
         std::cout << "========================================\n";
         std::cout << "선택 : ";
@@ -182,12 +178,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
             std::cout << "조제할 영약의 이름을 알려주십시오 : ";
             std::getline(std::cin, PotionName);
 
-            craftPotionWithInventory(PotionName, inventory);
-        }
-        else if (MenuInput == "5")
-        {
-            std::cout << "\n이상한 기운이 약선방 안을 감싸고 눈부신 빛이 약선방을 가득 채운다!!\n";
-            MaterialItem::CraftSealedDragonBall(inventory);
+            CraftPotion(PotionName);
         }
         else if (MenuInput == "0")
         {
@@ -198,7 +189,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory) const
         {
             std::cout
                 << "약선방에서 받을 수 없는 청입니다. "
-                << "0부터 5까지 중 선택해 주십시오.\n";
+                << "0부터 4까지 중 선택해 주십시오.\n";
         }
     }
 }
@@ -449,67 +440,134 @@ void PotionWorkshop::SearchByIngredient(
     }
 }
 
-PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
-{
-    std::cout << "영약 조제를 시작합니다.\n";
 
+PotionItem PotionWorkshop::CraftPotion(
+    const std::string& Name
+) const
+{
+    std::vector<const PotionRecipe*> SearchResults;
+
+    // 빈 검색어는 입력 재요청
+    if (Name.empty())
+    {
+        std::cout
+            << "조제할 영약의 이름을 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 입력한 이름 일부가 포함된 비방 
     for (const PotionRecipe& Recipe : Recipes)
     {
-        if (Recipe.getName() == Name)
+        if (Recipe.getName().find(Name) != std::string::npos)
         {
-            std::cout << "\n"
-                << Recipe.getName()
-                << " 조제가 완료되었습니다!\n";
-
-            return PotionItem(
-                Recipe.getName(),
-                Recipe.getPotionEffect(),
-                Recipe.getValue(),
-                Recipe.getWeight()
-            );
+            SearchResults.push_back(&Recipe);
         }
     }
 
-    std::cout << "약선방에 전해지지 않은 영약 비방입니다.\n";
-    return PotionItem("", PotionType::Heal, 0, 0);
-}
-
-void PotionWorkshop::craftPotionWithInventory(
-    const std::string& Name,
-    Inventory& inventory) const
-{
-    for (const PotionRecipe& recipe : Recipes)
+    // 검색 결과 없음
+    if (SearchResults.empty())
     {
-        // 입력한 이름의 레시피 찾기
-        if (recipe.getName() == Name)
-        {
-            // 재료 확인
-            if (!inventory.canCraft(recipe))
-            {
-                std::cout << "재료가 부족합니다.\n";
-                return;
-            }
+        std::cout
+            << "약선방에 전해지지 않은 영약 비방입니다.\n";
 
-            // 포션 제작
-            PotionItem* newPotion = new PotionItem(
-                recipe.getName(),
-                recipe.getPotionEffect(),
-                recipe.getValue(),
-                recipe.getWeight()
-            );
-
-            // 재료 소비
-            inventory.consumeIngredients(recipe);
-
-            // 포션 추가
-            inventory.addItem(newPotion);
-
-            std::cout << recipe.getName()
-                << " 조제가 완료되었습니다!\n";
-
-            return;
-        }
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
     }
 
-    std::cout << "존재하지 않는 영약 비방입니다.\n";
+    std::cout
+        << "\n============ 조제 가능한 영약 ============\n";
+
+    // 검색된 영약은 번호와 함께 출력
+    for (size_t i = 0; i < SearchResults.size(); i++)
+    {
+        std::cout
+            << i + 1
+            << ". "
+            << SearchResults[i]->getName()
+            << '\n';
+    }
+
+    std::cout
+        << "\n조제할 영약의 번호를 선택해 주십시오 : ";
+
+    std::string NumberInput;
+    std::getline(std::cin, NumberInput);
+
+    int Number = 0;
+    size_t ProcessedLength = 0;
+
+    try
+    {
+        Number = std::stoi(
+            NumberInput,
+            &ProcessedLength
+        );
+    }
+    catch (...)
+    {
+        std::cout
+            << "영약 목록의 번호를 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 숫자 뒤에 다른 문자가 입력되었는지 확인
+    if (ProcessedLength != NumberInput.size())
+    {
+        std::cout
+            << "영약 목록의 번호를 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 검색 결과 범위를 벗어난 번호인지 확인
+    if (Number < 1
+        || Number > static_cast<int>(SearchResults.size()))
+    {
+        std::cout
+            << "약선방에 전해지지 않은 영약 비방입니다.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    const PotionRecipe& SelectedRecipe =
+        *SearchResults[Number - 1];
+
+    std::cout
+        << '\n'
+        << SelectedRecipe.getName()
+        << " 조제가 완료되었습니다!\n";
+
+    return PotionItem(
+        SelectedRecipe.getName(),
+        SelectedRecipe.getPotionEffect(),
+        SelectedRecipe.getValue(),
+        SelectedRecipe.getWeight()
+    );
 }
+
