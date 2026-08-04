@@ -329,7 +329,7 @@ int main()
         else if (startplayer.getRace() == "귀신")
         {
             // 아직 클래스가 준비 안 됐다면 나중에
-            // player = new Jwado(startplayer.getName());
+            player = new Jwado(startplayer.getName());
         }
     }
 
