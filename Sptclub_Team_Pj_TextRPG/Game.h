@@ -3,6 +3,8 @@
 #define GAME_H
 
 #include "Character.h"
+#include <vector>
+#include <string>
 
 class Player;
 
@@ -13,5 +15,8 @@ void DrawGameFrame();
 
 void ClearGameMenu();
 
+void WaitForScript();
+
+void PlayScript(const std::vector<std::string>& lines);
 
 #endif

@@ -1,4 +1,5 @@
 #include "GameUI.h"
+#include "Game.h"
 #include "Title.h"
 
 #include <iostream>
@@ -32,21 +33,16 @@ void PrintStory(int line, const string& text)
 {
     int y = 11 + line;
 
+    // 스토리 영역을 벗어나면 출력하지 않음
+    if (y > 31)
+        return;
 
-    // 기존 내용 삭제
     GotoXY(4, y);
     cout << string(100, ' ');
 
-
-    // 다시 이동
     GotoXY(4, y);
     cout << text;
 }
-// =====================================
-// 로그
-// 일단 함수 유지
-// 화면 출력 X
-// =====================================
 
 void AddLog(const string& text)
 {
@@ -160,9 +156,31 @@ void WaitForEnter()
 {
     DrawInputArea();
     InputCursor();
-    std::cin.get();
-}
 
+    std::string input;
+    std::getline(std::cin, input);
+}
+void WaitForScript()
+{
+    GotoXY(20, 30);
+    cout << "아무키나 입력";
+
+    _getch();
+}
+void PlayScript(const std::vector<std::string>& lines)
+{
+    for (const std::string& line : lines)
+    {
+        system("cls");
+
+        GotoXY(20, 10);
+        cout << line;
+
+        WaitForScript();
+    }
+
+    DrawGameFrame();
+}
 int GetInput()
 {
     string input;

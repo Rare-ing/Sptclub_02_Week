@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <conio.h>
+#include <vector>
 
 
 

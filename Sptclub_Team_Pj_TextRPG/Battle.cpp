@@ -122,9 +122,99 @@ void Battle::StartBattle()
 
 	DrawPlayerHUD(player);
 
-	PrintStory(0, monster->getSpawnMessage());
-	PrintStory(1, "[ 전투 시작 ]");
-	PrintStory(2, monster->getName() + "과의 전투가 시작되었습니다.");
+	if (monster->getName() == "장산범")
+	{
+		PrintStory(0, "장산범:");
+		PrintStory(1, "\"인간이 또 산에 들어왔구나.\"");
+		PrintStory(2, "\"네놈도 이 산에서 길을 잃게 될 것이다.\"");
+
+		WaitForEnter();
+	}
+	else if (monster->getName() == "뒤주의 망령")
+	{
+		PrintStory(0, "정조:");
+		PrintStory(1, "\"...왔는가.\"");
+		PrintStory(2, "주인공: \"전하. 대체 궁에서 무슨 일이 벌어진 것입니까?\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "정조: \"나도 조금 전까지 알지 못했다.\"");
+		PrintStory(1, "정조: \"허나 이제는 알 것 같다.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "정조: \"내 아버지신듯 하구나.\"");
+		PrintStory(1, "주인공: \"사도..세자 말씀이십니까\"");
+		PrintStory(2, "정조: \"그렇다.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "정조: \"뒤주 속에서 죽어간 아버지의 원한이 깨어났다.\"");
+		PrintStory(1, "정조: \"그 원한이 궁궐을 뒤덮었고,\"");
+		PrintStory(2, "죽은 자들의 혼마저 깨워버렸다.");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "주인공: \"그렇다면...\"");
+		PrintStory(1, "정조: \"부탁하겠다.\"");
+		PrintStory(2, "정조: \"아버지의 원혼을 천도해주게.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "정조: \"더 이상 이 원한이 궁궐을 집어삼키게 둘 수 없다.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "[ 전투 시작 ]");
+		PrintStory(1, "뒤주의 망령과의 전투가 시작되었습니다.");
+	}
+	else if (monster->getName() == "흉년의 악신")
+	{
+		PrintStory(0, "흉년의 악신:");
+		PrintStory(1, "\"어리석은 자로다.\"");
+		PrintStory(2, "\"너 따위 필멸자가 나를 막을 수 있을 것 같으냐.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "주인공: \"이 사달을 낸 것이 네놈이냐.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "흉년의 악신:");
+		PrintStory(1, "\"나는 단지 때가 되었기에 나타났을 뿐이다.\"");
+		PrintStory(2, "\"오래된 왕조는 흔들리고, 그 안에 포함된 것은 몰락하니.\"");
+		PrintStory(3, "\"그것이 바로 세상의 순리다.\"");
+
+		WaitForEnter();
+
+		ClearStoryArea();
+
+		PrintStory(0, "[ 전투 시작 ]");
+		PrintStory(1, "흉년의 악신과의 전투가 시작되었습니다.");
+	}
+
+	else
+	{
+		PrintStory(0, monster->getSpawnMessage());
+		PrintStory(1, "[ 전투 시작 ]");
+		PrintStory(2, monster->getName() + "과의 전투가 시작되었습니다.");
+	}
 
 	bool isWin = false;
 
