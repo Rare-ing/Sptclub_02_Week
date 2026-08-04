@@ -9,7 +9,7 @@ void Drunk::Attack(Player* player)
 {
 	std::cout << "취객은 술병을 휘둘렀다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 
 	player->TakeDamage(damage);
 
@@ -29,7 +29,7 @@ void Drunk::Skill(Player* player)
 
 	std::cout << "취객은 술에 취한 힘으로 술병을 강하게 내리쳤다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.2f);
+	int damage = CalculateSkillDamage(1.2f);
 
 	player->TakeDamage(damage);
 

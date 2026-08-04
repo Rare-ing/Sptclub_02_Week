@@ -9,7 +9,7 @@ void Gumiho::Attack(Player* player)
 {
 	std::cout << "구미호는 날카로운 손톱으로 공격했다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Gumiho::Skill(Player* player)
 
 	std::cout << "구미호는 요력을 모아 홀리는 기운을 내뿜었다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 0.8f);
+	int damage = CalculateSkillDamage(0.8f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

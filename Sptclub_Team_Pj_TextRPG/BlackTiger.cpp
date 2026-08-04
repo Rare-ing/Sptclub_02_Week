@@ -9,7 +9,7 @@ void BlackTiger::Attack(Player* player)
 {
 	std::cout << "흑호 요괴는 날카로운 발톱으로 할퀴었다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void BlackTiger::Skill(Player* player)
 
 	std::cout << "흑호 요괴는 검은 기운을 두르고 맹렬하게 돌진했다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 2.0f);
+	int damage = CalculateSkillDamage(2.0f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

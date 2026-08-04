@@ -9,7 +9,7 @@ void Banran::Attack(Player* player)
 {
 	std::cout << "역심품은 신하는 숨겨둔 비수를 꺼내 찔렀다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Banran::Skill(Player* player)
 
 	std::cout << "역심품은 신하는 핏빛 상소문의 저주로 상대를 억눌렀다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.3f);
+	int damage = CalculateSkillDamage(1.3f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

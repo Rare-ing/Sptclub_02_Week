@@ -85,9 +85,9 @@ public:
 
 	void setAlive(bool state);
 
-	int CalculateDamage(int targetDefence);
+	int CalculateDamage();
 
-	int CalculateSkillDamage(int targetDefence, float multiplier);
+	int CalculateSkillDamage(float multiplier);
 
 	void ApplyBossBonus();
 

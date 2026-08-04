@@ -136,34 +136,22 @@ void Monster::TakeTurn(Player* player)
 	}
 }
 
-int Monster::CalculateDamage(int targetDefence)
+int Monster::CalculateDamage()
 {
-	int damage = power - targetDefence;
-
-	if (damage < 1)
-	{
-		damage = 1;
-	}
-	return damage;
+	return power;
 }
 
-int Monster::CalculateSkillDamage(int targetDefence, float multiplier)
+int Monster::CalculateSkillDamage(float multiplier)
 {
-	int damage = (power * multiplier) - targetDefence;
-
-	if (damage < 1)
-	{
-		damage = 1;
-	}
-	return damage;
+	return static_cast<int>(power * multiplier);
 }
 
 void Monster::ApplyBossBonus()
 {
-	hp = static_cast<int>(hp * 1.5);
-	mp = static_cast<int>(mp * 1.2);
-	power = static_cast<int>(power * 1.5);
-	defence = static_cast<int>(defence * 1.2);
+	hp = static_cast<int>(hp * 2);
+	mp = static_cast<int>(mp * 1.5);
+	power = static_cast<int>(power * 2);
+	defence = static_cast<int>(defence * 1.5);
 }
 
 void Monster::ApplyDot()

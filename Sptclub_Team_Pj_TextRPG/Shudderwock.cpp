@@ -9,7 +9,7 @@ void Shudderwock::Attack(Player* player)
 {
 	std::cout << "두억시니는 거대한 힘으로 내려쳤다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Shudderwock::Skill(Player* player)
 
 	std::cout << "두억시니는 머리를 깨뜨리는 강력한 일격을 날렸다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 2.0f);
+	int damage = CalculateSkillDamage(2.0f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

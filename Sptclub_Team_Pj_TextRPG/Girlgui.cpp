@@ -9,7 +9,7 @@ void Girlgui::Attack(Player* player)
 {
 	std::cout << "걸귀가 치마자락을 휘둘렀다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Girlgui::Skill(Player* player)
 
 	std::cout << "걸귀가 치마를 휘감았다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.1f);
+	int damage = CalculateSkillDamage(1.1f);
 
 	player->TakeDamage(damage);
 

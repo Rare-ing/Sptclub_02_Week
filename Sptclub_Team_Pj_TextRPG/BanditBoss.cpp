@@ -13,7 +13,7 @@ void BanditBoss::Attack(Player* player)
 {
 	std::cout << "도적 두목은 거친 칼솜씨로 베어냈다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -32,7 +32,7 @@ void BanditBoss::Skill(Player* player)
 
 	std::cout << "도적 두목 거대한 칼을 힘껏 내리쳤다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
+	int damage = CalculateSkillDamage(1.5f);
 
 	player->TakeDamage(damage);
 

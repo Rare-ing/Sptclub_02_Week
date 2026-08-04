@@ -9,7 +9,7 @@ void Oni::Attack(Player* player)
 {
 	std::cout << "도깨비는 방망이를 휘둘렀다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Oni::Skill(Player* player)
 
 	std::cout << "도깨비는 도깨비 방망이를 내려쳐 강력한 충격을 일으켰다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
+	int damage = CalculateSkillDamage(1.5f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

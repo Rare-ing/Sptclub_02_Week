@@ -9,7 +9,7 @@ void GrimReaper::Attack(Player* player)
 {
 	std::cout << "저승사자는 검은 부채로 베어냈다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void GrimReaper::Skill(Player* player)
 
 	std::cout << "저승사자는 저승의 힘으로 죽음의 기운을 내뿜었다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.2f);
+	int damage = CalculateSkillDamage(1.2f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

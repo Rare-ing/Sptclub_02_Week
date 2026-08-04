@@ -9,7 +9,7 @@ void GhostGuard::Attack(Player* player)
 {
 	std::cout << "원혼 시위군은 억울한듯 차가운 검을 휘둘렀다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void GhostGuard::Skill(Player* player)
 
 	std::cout << "원혼 시위군은 왕을 지키지 못한 원한으로 강력한 검격을 날렸다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
+	int damage = CalculateSkillDamage(1.5f);
 
 	player->TakeDamage(damage);
 

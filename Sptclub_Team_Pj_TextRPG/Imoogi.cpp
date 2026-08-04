@@ -27,7 +27,7 @@ void Imoogi::Attack(Player* player)
 {
 	std::cout << "이무기는 거대한 몸으로 휘감아 공격했다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -61,7 +61,7 @@ void Imoogi::PoisonSkill(Player* player)
 
 	std::cout << "이무기가 독 안개를 내뿜었다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
+	int damage = CalculateSkillDamage(1.5f);
 
 	player->TakeDamage(damage);
 
@@ -93,7 +93,7 @@ void Imoogi::StunSkill(Player* player)
 	std::cout << "이무기가 하늘을 향해 포효했다!" << std::endl;
 
 
-	int damage = CalculateSkillDamage(player->getDefence(), 3.0f);
+	int damage = CalculateSkillDamage(3.0f);
 	player->TakeDamage(damage);
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
 

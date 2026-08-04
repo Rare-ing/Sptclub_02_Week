@@ -13,7 +13,7 @@ void Sadoseja::Attack(Player* player)
 {
 	std::cout << "뒤주의 망령은 뒤주 틈새에서 검은 손을 뻗었다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -32,7 +32,7 @@ void Sadoseja::Skill(Player* player)
 
 	std::cout << "뒤주의 망령은 깊은 원한을 폭발시켜 사방으로 원혼을 내뿜었다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.8f);
+	int damage = CalculateSkillDamage(1.8f);
 
 	player->TakeDamage(damage);
 

@@ -9,7 +9,7 @@ void Changgui::Attack(Player* player)
 {
 	std::cout << "창귀는 짐승 같은 움직임으로 달려들었다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void Changgui::Skill(Player* player)
 
 	std::cout << "창귀는 호랑이의 원한을 담아 맹렬하게 덮쳤다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.5f);
+	int damage = CalculateSkillDamage(1.5f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

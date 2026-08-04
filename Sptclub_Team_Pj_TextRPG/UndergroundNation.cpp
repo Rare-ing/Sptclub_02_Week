@@ -27,7 +27,7 @@ void UndergroundNation::Attack(Player* player)
 {
 	std::cout << "흉년의 악신은 검은 기운으로 플레이어를 내려쳤다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -46,7 +46,7 @@ void UndergroundNation::Skill(Player* player)
 
 	std::cout << "흉년의 악신은 굶주린 백성들의 원한을 모아 재앙의 힘을 발산했다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 2.0f);
+	int damage = CalculateSkillDamage(2.0f);
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;

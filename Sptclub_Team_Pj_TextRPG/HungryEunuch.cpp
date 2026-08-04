@@ -9,7 +9,7 @@ void HungryEunuch::Attack(Player* player)
 {
 	std::cout << "굶주린 내관은 낡은 손톱으로 할퀴었다!" << std::endl;
 
-	int damage = CalculateDamage(player->getDefence());
+	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
 	std::cout << damage << "의 피해를 입었다!" << std::endl;
@@ -28,7 +28,7 @@ void HungryEunuch::Skill(Player* player)
 
 	std::cout << "굶주린 내관은 끝없는 허기를 담아 생기를 빼앗았다!" << std::endl;
 
-	int damage = CalculateSkillDamage(player->getDefence(), 1.2f);
+	int damage = CalculateSkillDamage(1.2f);
 
 	player->TakeDamage(damage);
 
