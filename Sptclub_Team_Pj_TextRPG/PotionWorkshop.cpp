@@ -171,7 +171,7 @@ void PotionWorkshop::RunMenu(Inventory& inventory)
             return;
         }
 
-        if (input == 4)
+        if (input == 98)
         {
             ClearStoryArea();
             MaterialItem::CraftSealedDragonBall(inventory);
