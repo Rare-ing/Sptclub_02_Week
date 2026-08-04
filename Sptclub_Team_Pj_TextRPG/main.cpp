@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Title.h"
 #include "Player.h"
+#include "PlayerHud.h"
 #include "Inventory.h"
 #include "Stage.h"
 #include "Battle.h"
@@ -69,7 +70,7 @@ void mainloop(Player* player, Inventory& inventory)
 
             case 2:
                 system("cls");
-                player->showStatus();
+                DrawPlayerHUD(player);
                 break;
 
             case 3:

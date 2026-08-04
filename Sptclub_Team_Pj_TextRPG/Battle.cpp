@@ -1,6 +1,13 @@
 ﻿#include "Battle.h"
 #include "Player.h"
 #include "Inventory.h"
+#include "PlayerHud.h"
+#include "Jangg.h"
+#include "Gunb.h"
+#include "Amh.h"
+#include "Guks.h"
+#include "Sansin.h"
+#include "Yos.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -9,14 +16,19 @@ Battle::Battle(Player* player, Monster* monster, Inventory* inventory)
 
 void Battle::StartBattle()
 {
+	//로그출력
+	DrawPlayerHUD(player);
+	MoveCursorBelowPlayerHUD();
+
+	std::cout << monster->getSpawnMessage() << std::endl;
 	std::cout << "[ 전투 시작 ]" << std::endl;
+
 	bool isWin = false;
 
 	while (true)
 	{
 		std::cout << "\n=====" << turn << "턴 =====\n";
 
-		//player->ApplyDot();
 		monster->ApplyDot();
 
 		if (CheckBattleEnd())
@@ -25,6 +37,7 @@ void Battle::StartBattle()
 		}
 
 		PlayerTurn();
+		DrawPlayerHUD(player); 
 
 		if (CheckBattleEnd())
 		{
@@ -33,6 +46,7 @@ void Battle::StartBattle()
 		}
 
 		MonsterTurn();
+		DrawPlayerHUD(player); //
 
 		if (CheckBattleEnd())
 		{

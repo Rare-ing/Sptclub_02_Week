@@ -170,6 +170,7 @@
     <ClCompile Include="Oni.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Podo.cpp" />
+    <ClCompile Include="PlayerHud.cpp" />
     <ClCompile Include="Sansin.cpp" />
     <ClCompile Include="Shudderwock.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Oni.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Podo.h" />
+    <ClInclude Include="PlayerHud.h" />
     <ClInclude Include="Sansin.h" />
     <ClInclude Include="Shudderwock.h" />
     <ClInclude Include="Stage.h" />
