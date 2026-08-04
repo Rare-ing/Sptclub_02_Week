@@ -1,6 +1,7 @@
 ﻿#include "Inventory.h"
 #include "PotionItem.h"
 #include "Player.h"
+#include <limits>
 #include <iostream>
 #include "WeaponItem.h"
 
@@ -18,7 +19,7 @@ void Inventory::invenFunc(Player& player)
         cout << "번호선택 : " << endl;
 
         cin >> switchNum;
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (switchNum)
         {
@@ -27,15 +28,23 @@ void Inventory::invenFunc(Player& player)
             showInventory();
             break;
         case 2:
+        {
             cout << "아이템 검색" << endl;
-            cin >> keyword;
-            cin.ignore();
+            getline(cin, keyword);
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-            items = searchItem(keyword);
+            vector<Item*> result = searchItem(keyword);
+            if(result.empty())
+            {
+                cout << "해당 아이템을 찾을 수 없습니다." << endl;
+                break;
+            }
 
             if (!items.empty())
             {
                 cout << "\n===== 검색 결과 =====\n";
+
+                /*
                 for (const auto& item : items)
                 {
                     cout << "이름 : " << item->getName() << endl;
@@ -63,13 +72,15 @@ void Inventory::invenFunc(Player& player)
                     cout << endl;
                     cout << "가치 : " << item->getValue() << endl;
                     cout << "보유 수량 : " << getItemCount(item->getName()) << endl;
+                    */
                 }
             }
             break;
+        }
         case 3:
 			cout << "사용할 아이템의 이름을 입력하세요: ";
-			cin >> keyword;
-			cin.ignore();
+            getline(cin, keyword);
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			useItem(keyword, player);
 			break;
         case 4:
