@@ -1,6 +1,7 @@
 ﻿#include "Monster.h"
 #include "Player.h"
-#include <iostream>
+#include "GameUI.h"
+
 #include <cstdlib>
 
 
@@ -50,31 +51,31 @@ Monster::Monster(std::string monsterName, int level, int expReward, std::string 
 
 void Monster::printMonsterStatus()
 {
-	std::cout << "------------------------------------" << std::endl;
+	PrintStory(0, "------------------------------------");
 
-	std::cout << "등장 문구 : " << spawnMessage << std::endl;
+	PrintStory(1, "등장 문구 : " + spawnMessage);
 
-	std::cout << "몬스터 : " << name << std::endl;
+	PrintStory(2, "몬스터 : " + name);
 
-	std::cout << "레벨 : " << level << std::endl;
+	PrintStory(3, "레벨 : " + std::to_string(level));
 
-	std::cout << "HP : " << hp << std::endl;
+	PrintStory(4, "HP : " + std::to_string(hp));
 
-	std::cout << "MP : " << mp << std::endl;
+	PrintStory(5, "MP : " + std::to_string(mp));
 
-	std::cout << "공격력 : " << power << std::endl;
+	PrintStory(6, "공격력 : " + std::to_string(power));
 
-	std::cout << "방어력 : " << defence << std::endl;
+	PrintStory(7, "방어력 : " + std::to_string(defence));
 
-	std::cout << "EXP : " << expReward << std::endl;
+	PrintStory(8, "EXP : " + std::to_string(expReward));
 
-	std::cout << "드랍 아이템 : " << dropItemName << std::endl;
+	PrintStory(9, "드랍 아이템 : " + dropItemName);
 
-	std::cout << "아이템 가격 : " << dropItemPrice << std::endl;
+	PrintStory(10, "아이템 가격 : " + std::to_string(dropItemPrice));
 
-	std::cout << "아이템 무게 : " << dropItemWeight << std::endl;
+	PrintStory(11, "아이템 무게 : " + std::to_string(dropItemWeight));
 
-	std::cout << "------------------------------------" << std::endl;
+	PrintStory(12, "------------------------------------");
 }
 
 std::string Monster::getName() { return name; }
@@ -165,13 +166,13 @@ void Monster::ApplyDot()
 
 	dotTurn--;
 
-	std::cout << name << "은(는) 지속 피해를 입었다! " << dotDamage << " 피해" << std::endl;
+	PrintStory(0, name + "은(는) 지속 피해를 입었다! " + std::to_string(dotDamage) + " 피해");
 
 	if (dotTurn <= 0)
 	{
 		isDot = false;
 
-		std::cout << name << "의 지속피해가 사라졌다!" << std::endl;
+		PrintStory(0, name + "의 지속피해가 사라졌다!");
 	}
 }
 

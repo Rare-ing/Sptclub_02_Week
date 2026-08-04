@@ -1,5 +1,7 @@
 #include "Amh.h"
 #include "Monster.h"
+#include "GameUI.h"
+
 #include <iostream>
 
 Amh::Amh(std::string playerName)
@@ -20,30 +22,35 @@ void Amh::applyJobStats()
 
 void Amh::skill(Monster& monster)
 {
+    DrawInputArea();
+    InputCursor();
+    ClearStoryArea();
     int skillChoice;
 
-    std::cout << "\n===== 스킬 선택 =====" << std::endl;
-    std::cout << "1. 자객의 암습" << std::endl;
-    std::cout << "2. 암행어사의 난도질" << std::endl;
-    std::cout << "선택 : ";
+    PrintStory(0, "===== 스킬 선택 =====");
+    PrintStory(1, "1. 자객의 암습");
+    PrintStory(2, "2. 암행어사의 난도질");
 
     while (true)
     {
-        std::cin >> skillChoice;
+
+        skillChoice = GetInput();
 
         if (skillChoice == 1 || skillChoice == 2)
         {
             break;
         }
 
-        std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
+        PrintStory(3, "잘못된 입력입니다. 다시 선택해주세요 : ");
     }
 
     int mpCost = getSkillMpCost(skillChoice);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+
+        WaitForEnter();
         return;
     }
 
@@ -66,30 +73,36 @@ void Amh::skill(Monster& monster)
 
         for (int currentHit = 1; currentHit <= 5; currentHit++)
         {
-            // 매 타격마다 치명타 판정
+            ClearStoryArea();
+
             if (isCritical())
             {
-                std::cout << "치명타!" << std::endl;
-
+                PrintStory(0, "치명타!");
                 criticalCount++;
             }
 
             monster.TakeDamage(damage);
 
-            std::cout << "난도질 " << currentHit << "타!" << std::endl;
-            std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+            PrintStory(1, "난도질 " + std::to_string(currentHit) + "타!");
+            PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
+
+            WaitForEnter();
         }
 
         // 최초 5타에서 치명타가 3회 이상이면
         // 추가 타격을 딱 1회 실행
         if (criticalCount >= 3)
         {
-            std::cout << "치명타 3회 이상 발생!" << std::endl;
-            std::cout << "난도질 추가 타격!" << std::endl;
+            ClearStoryArea();
+
+            PrintStory(0, "치명타 3회 이상 발생!");
+            PrintStory(1, "난도질 추가 타격!");
 
             monster.TakeDamage(damage);
 
-            std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+            PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
+
+            WaitForEnter();
         }
 
         break;

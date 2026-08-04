@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "PlayerHud.h"
+#include "Game.h"
+#include "GameUI.h"
 #include "Title.h"
 #include "Jangg.h"
 #include "Gunb.h"
@@ -9,6 +11,7 @@
 #include "Guks.h"
 #include "Sansin.h"
 #include "Yos.h"
+
 #include <iostream>
 #include <cstdlib>
 
@@ -58,7 +61,8 @@ void promotePlayer(Player*& player)
 	// 대응되는 2차 직업이 없다면 종료
 	if (newPlayer == nullptr)
 	{
-		cout << "2차 전직이 불가능한 직업입니다." << endl;
+		PrintStory(0, "2차 전직이 불가능한 직업입니다.");
+		WaitForEnter();
 		return;
 	}
 
@@ -95,11 +99,12 @@ void promotePlayer(Player*& player)
 	delete player;
 	player = newPlayer;
 
-	std::cout << std::endl;
-	std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
-	std::cout << "       2차 전직 완료!" << std::endl;
-	std::cout << "       새로운 직업 : " << player->getJob() << std::endl;
-	std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;//준우-2차전직 추가
+	PrintStory(0, "★★★★★★★★★★★★");
+	PrintStory(1, "2차 전직 완료!");
+	PrintStory(2, "새로운 직업 : " + player->getJob());
+	PrintStory(3, "★★★★★★★★★★★★");
+
+	WaitForEnter();
 }
 
 Battle::Battle(Player*& player, Monster* monster, Inventory* inventory, bool CanUsePotion)
@@ -109,16 +114,23 @@ Battle::Battle(Player*& player, Monster* monster, Inventory* inventory, bool Can
 }
 void Battle::StartBattle()
 {
-	GotoXY(4, 4);
-	std::cout << monster->getSpawnMessage();
+	ClearChoiceArea();
+	ClearStoryArea();
 
-	GotoXY(4, 5);
-	std::cout << "[ 전투 시작 ]";
+	GotoXY(1, 38);
+	cout << string(50, ' ');
+
+	DrawPlayerHUD(player);
+
+	PrintStory(0, monster->getSpawnMessage());
+	PrintStory(1, "[ 전투 시작 ]");
+	PrintStory(2, monster->getName() + "과의 전투가 시작되었습니다.");
+
 	bool isWin = false;
 
 	while (true)
 	{
-		std::cout << "\n=====" << turn << "턴 =====\n";
+		PrintStory(4, "===== " + std::to_string(turn) + "턴 =====");
 
 		monster->ApplyDot();
 
@@ -132,7 +144,14 @@ void Battle::StartBattle()
 
 		if (CheckBattleEnd())
 		{
-			isWin = true;
+			if (!monster->getAlive())
+			{
+				isWin = true;
+
+				PrintStory(5, monster->getName() + "을(를) 처치했다!");
+				WaitForEnter();
+			}
+
 			break;
 		}
 
@@ -148,77 +167,84 @@ void Battle::StartBattle()
 	}
 	if (isWin)
 	{
-		player->setExp(player->getExp() + monster->getExpReward());
-		player->levelUp();	//경험치 지급
+		ClearStoryArea();
+
+		int rewardExp = monster->getExpReward();
+
+		player->setExp(player->getExp() + rewardExp);
+
+		PrintStory(0, "전투 승리!");
+		PrintStory(1, monster->getName() + " 처치!");
+		PrintStory(2, "경험치 " + to_string(rewardExp) + " 획득!");
+
+		WaitForEnter();
+
+
+		player->levelUp();
+
 
 		if (player->getLevel() >= 8 && !player->getIsSecondJob())
 		{
-			promotePlayer(player); //Lv.8 자동전직은 여기서 호출
+			promotePlayer(player);
 		}
 
-		GiveReward();		//아이템 드랍
+		GiveReward();
 	}
 	player->resetBonusAttack();
 	player->resetBonusDefence();
+
+	ClearStoryArea();
+	ClearChoiceArea();
 }
 
 void Battle::PlayerTurn()
 {
-	/*
-	if (player->getStunned())
-	{
-		std::cout << "플레이어는 스턴에 걸려 움직일 수 없다!" << std::endl;
-
-		//player->ClearStun();
-		return;
-	}*/
 	while (true)
 	{
+		PrintStory(3, "[ 플레이어 턴 ]");
 
-		int choice;
+		DrawBattleMenu();
 
-		std::cout << "\n[ 플레이어 턴 ] " << std::endl;
-		std::cout << "1. 공격" << std::endl;
-		std::cout << "2. 스킬" << std::endl;
-		std::cout << "3. 행낭" << std::endl;
-		std::cout << "선택 : ";
+		DrawInputArea();
+		InputCursor();
 
-		std::cin >> choice;
+		int choice = GetInput();
+
+
 		switch (choice)
 		{
 		case 1:
-			//player->Attack(monster);
 			monster->TakeDamage(player->getAttack());
 
-			cout << player->getName() << "이(가) "
-				<< monster->getName() << "을(를) 공격했다!" << endl;
+			ClearStoryArea();
 
-			cout << monster->getName() << "에게 "
-				<< player->getAttack()
-				<< "의 피해를 입혔다!" << endl;
-			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
-			cout << "남은 HP : " << player->getHp() << std::endl;
-			cout << "남은 MP : " << player->getMp() << std::endl;
-			monster->TakeDamage(0);//몬스터가 죽었는지 확인
+			PrintStory(0, player->getName() + "이(가) " + monster->getName() + "을(를) 공격했다!");
+
+			PrintStory(1, monster->getName() + "에게 " + std::to_string(player->getAttack()) + "의 피해를 입혔다!");
+			PrintStory(2, "남은 체력 : " + std::to_string(monster->getHp()));
+
+			WaitForEnter();
+
 			return;
 
 		case 2:
+			ClearStoryArea();
 			player->skill(*monster);
-			cout << player->getName() << "이(가) " << monster->getName() << "에게 스킬을 사용했다!" << std::endl;
-			cout << monster->getName() << "에게 " << player->getAttack() << "의 피해를 입혔다!" << std::endl;
-			cout << monster->getName() << "의 남은 체력 : " << monster->getHp() << std::endl;
-			cout << "남은 HP : " << player->getHp() << std::endl;
-			cout << "남은 MP : " << player->getMp() << std::endl;
-			monster->TakeDamage(0);//몬스터가 죽었는지 확인
+
+			PrintStory(3, monster->getName() + " 남은 체력 : " + std::to_string(monster->getHp()));
+
+			WaitForEnter();
+
 			return;
 
 		case 3:
+
 			OpenInventory();
 			break;
 
-
 		default:
-			std::cout << "잘못된 입력입니다." << std::endl;
+
+			PrintStory(3, "잘못된 입력입니다.");
 			break;
 		}
 	}
@@ -226,9 +252,10 @@ void Battle::PlayerTurn()
 
 void Battle::MonsterTurn()
 {
+	ClearStoryArea();
 	if (monster->getIsStunned())
 	{
-		std::cout << monster->getName() << "은(는) 기절해서 움직일 수 없다!" << std::endl;
+		PrintStory(3, monster->getName() + "은(는) 기절해서 움직일 수 없다!");
 
 		monster->ClearStun();
 		return;
@@ -245,13 +272,14 @@ bool Battle::CheckBattleEnd()
 {
 	if (player->getHp() <= 0)
 	{
-		std::cout << "플레이어가 쓰러졌다." << std::endl;
+		ClearStoryArea();
+		PrintStory(0, "플레이어가 쓰러졌다.");
+		WaitForEnter();
 		return true;
 	}
 
 	if (!monster->getAlive())
 	{
-		std::cout << monster->getName() << "을(를) 처치했다!" << std::endl;
 		return true;
 	}
 
@@ -260,6 +288,26 @@ bool Battle::CheckBattleEnd()
 
 void Battle::GiveReward()
 {
-	Item* droppedItem = new Item(monster->getDropItemName(),ItemType::Material, monster->getDropItemPrice(), monster->getDropItemWeight());
+	ClearStoryArea();
+
+
+	Item* droppedItem = new Item(
+		monster->getDropItemName(),
+		ItemType::Material,
+		monster->getDropItemPrice(),
+		monster->getDropItemWeight()
+	);
+
+
 	inventory->addItem(droppedItem);
+
+
+	PrintStory(0, "전투에서 승리했다!");
+	PrintStory(1, "아이템 획득 : " + monster->getDropItemName());
+
+
+	WaitForEnter();
+
+
+	ClearStoryArea();
 }

@@ -1,7 +1,7 @@
 ﻿#include "Character.h"
+#include "GameUI.h"
 
 #include <iostream>
-#include <limits>
 
 #define NOMINMAX
 #include <windows.h>
@@ -15,27 +15,11 @@ namespace
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
     }
 
-    const std::string Divider = "========================================================";
-    const std::string SubDivider = "--------------------------------------------------------";
+    const std::string Divider =
+        "========================================================";
 
-    int ReadMenuInput()
-    {
-        int input;
-
-        std::cin >> input;
-
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            return -1;
-        }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-        return input;
-    }
+    const std::string SubDivider =
+        "--------------------------------------------------------";
 }
 
 Character::Character()
@@ -53,46 +37,48 @@ void Character::CreateCharacter()
     std::cout << "                       환   요   전\n";
     std::cout << "                     캐 릭 터   생 성\n";
     std::cout << Divider << "\n\n";
-    SetColor(15);
 
+    SetColor(15);
     std::cout << " 이름을 입력하세요 >> ";
     std::getline(std::cin, name);
 
-    std::string racet;
+
 
     while (true)
     {
         std::cout << "\n";
+
         SetColor(11);
         std::cout << SubDivider << "\n";
         std::cout << " 종족을 선택하세요\n";
         std::cout << SubDivider << "\n";
+
         SetColor(15);
         std::cout << "  1. 인간\n";
         std::cout << "  2. 호족\n";
         std::cout << "  3. 귀신\n";
+
         SetColor(11);
         std::cout << SubDivider << "\n";
         SetColor(15);
         std::cout << " >> ";
 
-        int input = ReadMenuInput();
+
+        int input = GetInput();
+
 
         switch (input)
         {
         case 1:
             race = "인간";
-            racet = "인간";
             break;
 
         case 2:
             race = "호족";
-            racet = "호족";
             break;
 
         case 3:
             race = "귀신";
-            racet = "귀신";
             break;
 
         default:
@@ -102,38 +88,37 @@ void Character::CreateCharacter()
             continue;
         }
 
+
         break;
     }
-
-    std::string typet;
 
     while (true)
     {
         std::cout << "\n";
+
         SetColor(11);
         std::cout << SubDivider << "\n";
         std::cout << " 직업을 선택하세요\n";
         std::cout << SubDivider << "\n";
+
         SetColor(15);
         std::cout << "  1. 무인\n";
         std::cout << "  2. 도사\n";
+
         SetColor(11);
         std::cout << SubDivider << "\n";
         SetColor(15);
         std::cout << " >> ";
-
-        int input = ReadMenuInput();
+        int input = GetInput();
 
         switch (input)
         {
         case 1:
             type = "무인";
-            typet = "무인";
             break;
 
         case 2:
             type = "도사";
-            typet = "도사";
             break;
 
         default:
@@ -142,9 +127,9 @@ void Character::CreateCharacter()
             SetColor(15);
             continue;
         }
-
         break;
     }
+    // 직업 결정
 
     if (race == "인간" && type == "무인")
     {
@@ -175,7 +160,7 @@ void Character::CreateCharacter()
     SetColor(14);
     std::cout << Divider << "\n";
     SetColor(10);
-    std::cout << " " << name << "님은 [" << job << "](으)로 전직하였습니다!\n";
+    std::cout << " " << name  << "님은 ["  << job << "](으)로 전직하였습니다!\n";
     SetColor(14);
     std::cout << Divider << "\n";
     SetColor(15);
@@ -184,11 +169,15 @@ void Character::CreateCharacter()
 void Character::PrintStatus() const
 {
     std::cout << "\n";
+
     SetColor(14);
+
     std::cout << Divider << "\n";
     std::cout << "                          캐 릭 터   정 보\n";
     std::cout << Divider << "\n";
+
     SetColor(15);
+
 
     std::cout << " 이름   : " << name << '\n';
     std::cout << " 직업   : " << job << '\n';
@@ -197,14 +186,18 @@ void Character::PrintStatus() const
     std::cout << " 공격력 : " << attack << '\n';
     std::cout << " 경험치 : " << exp << "/100\n";
 
+
     SetColor(14);
+
     std::cout << Divider << "\n";
+
     SetColor(15);
 }
 
 void Character::AddExp(int amount)
 {
     exp += amount;
+
 
     while (exp >= 100)
     {
@@ -250,5 +243,5 @@ std::string Character::getRace() const
 
 std::string Character::getType() const
 {
-	return type;
+    return type;
 }

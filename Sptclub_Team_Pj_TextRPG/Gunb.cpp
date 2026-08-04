@@ -1,5 +1,7 @@
 #include "Gunb.h"
 #include "Monster.h"
+#include "GameUI.h"
+
 #include <iostream>
 
 void Gunb::activateFightingSpirit()
@@ -23,8 +25,10 @@ void Gunb::activateFightingSpirit()
     // 2턴 유지
     fightingSpiritTurn = 2;
 
-    std::cout << "불굴의 투지 발동!" << std::endl;
-    std::cout << "2턴 동안 공격력이 20% 증가합니다." << std::endl;
+    PrintStory(0, "불굴의 투지 발동!");
+    PrintStory(1, "2턴 동안 공격력이 20% 증가합니다.");
+
+    WaitForEnter();
 }
 
 bool Gunb::onDeath()
@@ -42,17 +46,18 @@ bool Gunb::onDeath()
     // Battle에게 살아났다고 알림
     return true;
 }
+
 // Battle.cpp 에 들어갈것.
 // if (player->getHp() <= 0)
 //{
-    // 직업 패시브가 사망을 막았는지 확인
-    //if (player->onDeath())
-    // 패시브 발동으로 생존
-    //    return false;
-    //}
+//    // 직업 패시브가 사망을 막았는지 확인
+//    if (player->onDeath())
+//    // 패시브 발동으로 생존
+//        return false;
+// }
 //
-   // std::cout << "플레이어가 쓰러졌다." << std::endl;
-   // return true;
+// std::cout << "플레이어가 쓰러졌다." << std::endl;
+// return true;
 //}
 
 void Gunb::updateFightingSpirit()
@@ -71,11 +76,13 @@ void Gunb::updateFightingSpirit()
 
             fightingSpiritBonus = 0;
 
-            std::cout << "불굴의 투지가 종료되었습니다."
-                << std::endl;
+            PrintStory(0, "불굴의 투지가 종료되었습니다.");
+
+            WaitForEnter();
         }
     }
 }
+
 bool Gunb::isFightingSpiritActive()
 {
     return fightingSpiritTurn > 0;
@@ -96,28 +103,32 @@ void Gunb::skill(Monster& monster)
 {
     int skillChoice;
 
-    std::cout << "\n===== 스킬 선택 =====" << std::endl;
-    std::cout << "1. 낭인의 파쇄" << std::endl;
-    std::cout << "2. 군벌의 불굴의 일격" << std::endl;
-    std::cout << "선택 : ";
+    PrintStory(0, "===== 스킬 선택 =====");
+    PrintStory(1, "1. 낭인의 파쇄");
+    PrintStory(2, "2. 군벌의 불굴의 일격");
+
+    DrawInputArea();
+    InputCursor();
 
     while (true)
     {
-        std::cin >> skillChoice;
+        skillChoice = GetInput();
 
         if (skillChoice == 1 || skillChoice == 2)
         {
             break;
         }
 
-        std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
+        PrintStory(3, "잘못된 입력입니다. 다시 선택해주세요 : ");
     }
 
     int mpCost = getSkillMpCost(skillChoice);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+
+        WaitForEnter();
         return;
     }
 
@@ -133,6 +144,7 @@ void Gunb::skill(Monster& monster)
 
     case 2:
     {
+        ClearStoryArea();
         // 2차 직업 군벌의 스킬
         int lostHp = getMaxHp() - getHp();
 
@@ -140,13 +152,16 @@ void Gunb::skill(Monster& monster)
 
         monster.TakeDamage(damage);
 
-        std::cout << "불굴의 일격!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "불굴의 일격!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
+
+        WaitForEnter();
 
         break;
     }
     }
 }
+
 Gunb::Gunb(std::string playerName)
     : Nang(playerName)
 {

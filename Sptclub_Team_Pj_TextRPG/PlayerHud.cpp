@@ -9,8 +9,8 @@ using namespace std;
 
 namespace
 {
-    const int HudX = 1;
-    const int HudY = 1;
+    const int HudX = 0;
+    const int HudY = 3;
     const int HudWidth = 44;   // 테두리 포함 전체 폭
     const int HudHeight = 6;   // 테두리 포함 전체 높이
     const int BarWidth = 20;
@@ -135,7 +135,7 @@ void DrawPlayerHUD(Player* player)
 
     HudSetColor(15);
 
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), savedPos);
+    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), savedPos);
 }
 
 void MoveCursorBelowPlayerHUD()

@@ -1,18 +1,23 @@
 ﻿#include "HungryEunuch.h"
 #include "Player.h"
-#include <iostream>
+#include "GameUI.h"
+
 #include <cstdlib>
 
-HungryEunuch::HungryEunuch() : Monster("굶주린 내관", 6, 60, "낡은 내관의 관모", 25, 5, "굶주림에 시달리다 죽은 내관의 원혼이 궁궐 안에서 배회한다!") {}
+HungryEunuch::HungryEunuch()
+	: Monster("굶주린 내관", 6, 60, "낡은 내관의 관모", 25, 5, "굶주림에 시달리다 죽은 내관의 원혼이 궁궐 안에서 배회한다!") {}
 
 void HungryEunuch::Attack(Player* player)
 {
-	std::cout << "굶주린 내관은 낡은 손톱으로 할퀴었다!" << std::endl;
+	PrintStory(0, "굶주린 내관은 낡은 손톱으로 할퀴었다!");
 
 	int damage = CalculateDamage();
 	player->TakeDamage(damage);
 
-	std::cout << damage << "의 피해를 입었다!" << std::endl;
+	PrintStory(1, std::to_string(damage) + "의 피해를 입었다!");
+	PrintStory(2, "남은 HP : " + std::to_string(player->getHp()));
+
+	WaitForEnter();
 }
 
 void HungryEunuch::Skill(Player* player)
@@ -24,13 +29,16 @@ void HungryEunuch::Skill(Player* player)
 		Attack(player);
 		return;
 	}
+
 	setMp(getMp() - skillCost);
 
-	std::cout << "굶주린 내관은 끝없는 허기를 담아 생기를 빼앗았다!" << std::endl;
+	PrintStory(0, "굶주린 내관은 끝없는 허기를 담아 생기를 빼앗았다!");
 
 	int damage = CalculateSkillDamage(1.2f);
 
 	player->TakeDamage(damage);
 
-	std::cout << damage << "의 피해를 입었다!" << std::endl;
+	PrintStory(1, std::to_string(damage) + "의 피해를 입었다!");
+	PrintStory(2, "남은 HP : " + std::to_string(player->getHp()));
+	WaitForEnter();
 }

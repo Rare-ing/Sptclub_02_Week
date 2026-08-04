@@ -142,6 +142,8 @@
     <ClCompile Include="Amh.cpp" />
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditBoss.cpp" />
+    <ClCompile Include="GameUI.cpp" />
+    <ClCompile Include="GameUI.h" />
     <ClCompile Include="HungryEunuch.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BlackTiger.cpp" />

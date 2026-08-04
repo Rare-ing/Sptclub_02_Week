@@ -4,150 +4,194 @@
 #include <limits>
 #include <iostream>
 #include "WeaponItem.h"
+#include "GameUI.h"
+#include "Title.h"
 
 
 using namespace std;
 
 void Inventory::invenFunc(Player& player)
 {
-    int switchNum = 0;
     string keyword;
-    vector<Item*> items;
+
+
     while (true)
     {
-        std::cout << "\n1. 행낭 확인, 2. 이름으로 물건 검색 3. 단약 사용 4. 행낭 확인 종료 \n";
-        cout << "번호선택 : " << endl;
+        ClearStoryArea();
 
-        if (!(cin >> switchNum))
+        DrawInventoryMenu();
+
+        DrawInputArea();
+        InputCursor();
+
+
+        int switchNum = GetInput();
+
+
+        if (switchNum == -1)
         {
-            cout << "숫자를 입력해주세요." << endl;
-
-            cin.clear();
-            cin.ignore((numeric_limits<streamsize>::max)(), '\n');
-
+            PrintStory(0, "숫자를 입력해주세요.");
+            WaitForEnter();
             continue;
         }
 
-        cin.ignore((numeric_limits<streamsize>::max)(), '\n');
+
         switch (switchNum)
         {
+
+            // ============================
+            // 행낭 확인
+            // ============================
         case 1:
-            system("cls");
+        {
             showInventory();
+
+            WaitForEnter();
+
             break;
+        }
+
+
+        // ============================
+        // 아이템 검색
+        // ============================
         case 2:
         {
-            cout << "아이템 검색" << endl;
+            ClearStoryArea();
+
+            PrintStory(0, "검색할 아이템 이름을 입력하십시오.");
+
+
+            DrawInputArea();
+            InputCursor();
+
+
             getline(cin, keyword);
-            cout << "keyword : " << keyword << endl;
+
+
+
             vector<Item*> result = searchItem(keyword);
+
             if (result.empty())
             {
-                cout << "해당 아이템을 찾을 수 없습니다." << endl;
+                PrintStory(0, "해당 아이템을 찾을 수 없습니다.");
+
+                WaitForEnter();
                 break;
             }
-            cout << "\n===== 검색 결과 =====\n";
+
+            ClearStoryArea();
+
+            PrintStory(0, "===== 검색 결과 =====");
+
 
             for (int i = 0; i < result.size(); i++)
             {
-                cout << i + 1 << ". "
-                    << result[i]->getName()
-                    << endl;
+                PrintStory(i + 1, to_string(i + 1) + ". " + result[i]->getName());
             }
 
-            int choice = 0;
+            DrawInputArea();
+            InputCursor();
 
-            cout << "상세 정보를 확인할 아이템 번호를 입력하세요 (0을 입력하면 종료): ";
-            
-            if (!(cin >> choice))
+            int choice = GetInput();
+
+            if (choice < 1 ||
+                choice > result.size())
             {
-                cout << "숫자를 입력해주세요." << endl;
-
-                cin.clear();
-                cin.ignore((numeric_limits<streamsize>::max)(), '\n');
-
-                break;
-            }
-
-            cin.ignore((numeric_limits<streamsize>::max)(), '\n');
-
-            if (choice < 1 || choice > result.size())
-            {
-                cout << "검색을 종료합니다." << endl;
                 break;
             }
 
             Item* selectedItem = result[choice - 1];
-            cout << "이름 : " << selectedItem->getName() << endl;
-            cout << "종류 : ";
+
+
+            ClearStoryArea();
+
+            PrintStory(0, "이름 : " + selectedItem->getName());
+
+
+            string type;
+
 
             switch (selectedItem->getType())
             {
             case ItemType::Potion:
-                cout << "포션";
+                type = "포션";
                 break;
+
             case ItemType::Weapon:
-                cout << "무기";
+                type = "무기";
                 break;
+
             case ItemType::Armor:
-                cout << "방어구";
+                type = "방어구";
                 break;
+
             case ItemType::Material:
-                cout << "재료";
+                type = "재료";
                 break;
+
             case ItemType::Quest:
-                cout << "퀘스트";
+                type = "퀘스트";
                 break;
             }
 
-            cout << endl;
-            cout << "가치 : " << selectedItem->getValue() << endl;
-            cout << "보유 수량 : " << getItemCount(selectedItem->getName()) << endl;
 
-        
-        break;
+            PrintStory(1,"종류 : " + type);
+
+
+            PrintStory(2, "가치 : " + to_string(selectedItem->getValue()));
+
+
+            PrintStory(3, "보유 수량 : " + to_string(getItemCount(selectedItem->getName())));
+
+            WaitForEnter();
+
+            break;
         }
+
+        // ============================
+        // 아이템 사용
+        // ============================
         case 3:
         {
-            cout << "사용할 아이템 검색 : ";
+            ClearStoryArea();
+
+            PrintStory(0,"사용할 아이템 이름을 입력하십시오.");
+
+            DrawInputArea();
+            InputCursor();
+
             getline(cin, keyword);
 
             vector<Item*> result = searchItem(keyword);
 
             if (result.empty())
             {
-                cout << "해당 아이템을 찾을 수 없습니다." << endl;
+                PrintStory(0, "해당 아이템을 찾을 수 없습니다.");
+
+                WaitForEnter();
                 break;
             }
 
-            cout << "\n===== 검색 결과 =====\n";
+            ClearStoryArea();
+            PrintStory(
+                0,
+                "===== 사용 가능한 아이템 ====="
+            );
 
             for (int i = 0; i < result.size(); i++)
             {
-                cout << i + 1 << ". "
-                    << result[i]->getName()
-                    << endl;
+                PrintStory(i + 1, to_string(i + 1) + ". " + result[i]->getName());
             }
 
-            int choice = 0;
+            DrawInputArea();
+            InputCursor();
 
-            cout << "사용할 아이템 번호를 입력하세요 (0을 입력하면 종료): ";
-            
-            if (!(cin >> choice))
+            int choice = GetInput();
+
+            if (choice < 1 ||
+                choice > result.size())
             {
-                cout << "숫자를 입력해주세요." << endl;
-
-                cin.clear();
-                cin.ignore((numeric_limits<streamsize>::max)(), '\n');
-
-                break;
-            }
-
-            cin.ignore((numeric_limits<streamsize>::max)(), '\n');
-
-            if (choice < 1 || choice > result.size())
-            {
-                cout << "아이템 사용을 종료합니다." << endl;
                 break;
             }
 
@@ -155,23 +199,35 @@ void Inventory::invenFunc(Player& player)
 
             useItem(selectedItem->getName(), player);
 
-            break;
-        }
-        case 4:
-            return;
-        default:
-            cout << "잘못된 입력 " << endl;
+            WaitForEnter();
+
             break;
         }
 
+        // ============================
+        // 종료
+        // ============================
+        case 0:
+            return;
+
+        default:
+
+            PrintStory(
+                0,
+                "잘못된 입력입니다."
+            );
+
+            WaitForEnter();
+
+            break;
+        }
     }
 }
 
 void Inventory::addItem(Item* newItem)
 {
     
-    std::cout << newItem->getName()
-        << "을(를) 획득했습니다.\n";
+    PrintStory(0, newItem->getName() + "을(를) 획득했습니다.");
     
     auto item = Items.find(newItem->getName());
     if (item == Items.end())
@@ -187,18 +243,35 @@ void Inventory::addItem(Item* newItem)
 
 void Inventory::showInventory() const
 {
-    std::cout << "\n===== 인벤토리 =====\n";
+    ClearInventoryArea();
+
+
+    GotoXY(4, 11);
+    cout << "===== 행낭 =====";
+
+
+    int y = 13;
     int index = 1;
+
 
     if (Items.empty())
     {
-        std::cout << "인벤토리가 비어 있습니다.\n";
+        GotoXY(4, y);
+        cout << "행낭이 비어 있습니다.";
         return;
     }
 
+
     for (const auto& item : Items)
     {
-        cout << index++ << " . " << item.second.first->getName() << " x " << item.second.second << endl;
+        GotoXY(4, y++);
+
+        cout
+            << index++
+            << ". "
+            << item.second.first->getName()
+            << " x "
+            << item.second.second;
     }
 }
 
@@ -275,14 +348,14 @@ void Inventory::useItem(const string& itemName, Player& player)
 	else if (item->getType() == ItemType::Material)
 	{
 
-        cout << "이 아이템은 사용할 수 없습니다." << endl;
+        PrintStory(0, "이 아이템은 사용할 수 없습니다.");
 		// ArmorItem* armor = static_cast<ArmorItem*>(item);
 		// armor->Equip(player);
 		// removeItem(itemName);
 	}
 	else
 	{
-		cout << "이 아이템은 사용할 수 없습니다." << endl;
+        PrintStory(0, "이 아이템은 사용할 수 없습니다.");
 	}
 }
 

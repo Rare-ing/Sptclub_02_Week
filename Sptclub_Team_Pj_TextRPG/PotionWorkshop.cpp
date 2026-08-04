@@ -1,4 +1,8 @@
 ﻿#include "PotionWorkshop.h"
+#include "GameUI.h"
+#include "Title.h"
+#include "MaterialItem.h"
+
 #include <iostream>
 
 void PotionWorkshop::AddRecipe(const PotionRecipe& NewRecipe)
@@ -129,8 +133,10 @@ void PotionWorkshop::AddDefaultRecipes()
 
 }
 
-void PotionWorkshop::RunMenu(const Inventory& inventory) const
+void PotionWorkshop::RunMenu(Inventory& inventory)
 {
+    int CurrentPage = 0;
+
     while (true)
     {
         std::cout << "\n";
@@ -145,51 +151,49 @@ void PotionWorkshop::RunMenu(const Inventory& inventory) const
         std::cout << "0. 약선방 나가기\n";
         std::cout << "==================================================\n";
         std::cout << "선택 : ";
+        ClearStoryArea();
 
-        std::string MenuInput;
-        std::getline(std::cin >> std::ws, MenuInput);
+        DrawRecipeList(CurrentPage);
 
-        if (MenuInput == "1")
+        DrawPotionWorkshopMenu();
+
+        DrawInputArea();
+        InputCursor();
+
+
+        int input = GetInput();
+
+
+        if (input == 0)
         {
-            ShowAllRecipes();
+            return;
         }
-        else if (MenuInput == "2")
+
+        if (input == 4)
         {
-            std::string PotionName;
-
-            std::cout << "찾으시는 영약의 이름을 알려주십시오 : ";
-            std::getline(std::cin, PotionName);
-
-            SearchByName(PotionName);
+            ClearStoryArea();
+            MaterialItem::CraftSealedDragonBall(inventory);
         }
-        else if (MenuInput == "3")
+
+
+        if (input == 99)
         {
-            std::string Ingredient;
+            CurrentPage++;
 
-            std::cout << "찾으시는 약재의 이름을 알려주십시오 : ";
-            std::getline(std::cin, Ingredient);
+            if (CurrentPage > 1)
+            {
+                CurrentPage = 0;
+            }
 
-            SearchByIngredient(Ingredient);
+            continue;
         }
-        else if (MenuInput == "4")
-        {
-            std::string PotionName;
 
-            std::cout << "조제할 영약의 이름을 알려주십시오 : ";
-            std::getline(std::cin, PotionName);
 
-            CraftPotion(PotionName, inventory);
-        }
-        else if (MenuInput == "0")
+        if (input >= 1 && input <= 12)
         {
-            std::cout << "약선방을 떠납니다.\n";
-            break;
-        }
-        else
-        {
-            std::cout
-                << "약선방에서 받을 수 없는 청입니다. "
-                << "0부터 4까지 중 선택해 주십시오.\n";
+            CraftPotion(input - 1, inventory);
+
+            WaitForEnter();
         }
     }
 }
@@ -440,7 +444,7 @@ void PotionWorkshop::SearchByIngredient(
     }
 }
 
-
+/*
 PotionItem PotionWorkshop::CraftPotion(
     const std::string& Name,
     const Inventory& inventory
@@ -571,4 +575,128 @@ PotionItem PotionWorkshop::CraftPotion(
         SelectedRecipe.getWeight()
     );
 }
+*/
 
+void PotionWorkshop::CraftPotion(int index, Inventory& inventory)
+{
+    if (index < 0 || index >= Recipes.size())
+    {
+        return;
+    }
+
+
+    const PotionRecipe& SelectedRecipe =
+        Recipes[index];
+
+
+    // 메시지 출력 위치
+    GotoXY(4, 35);
+
+    // 기존 글자 삭제
+    std::cout << std::string(80, ' ');
+
+
+    GotoXY(4, 35);
+
+    std::cout
+        << SelectedRecipe.getName()
+        << " 조제가 완료되었습니다!";
+}
+
+void PotionWorkshop::DrawRecipeList(int page) const
+{
+    ClearStoryArea();
+
+
+    int startIndex = page * 6;
+    int endIndex = startIndex + 6;
+
+
+    int x[2] = { 4, 55 };
+
+
+    int count = 1;
+
+
+    for (int i = startIndex; i < endIndex; i++)
+    {
+        if (i >= Recipes.size())
+            break;
+
+
+        int column = (i - startIndex) / 3;
+        int row = (i - startIndex) % 3;
+
+
+        int y = 11 + (row * 7);
+
+
+        GotoXY(x[column], y);
+
+        std::cout
+            << i + 1
+            << ". "
+            << Recipes[i].getName();
+
+
+
+        GotoXY(x[column], y + 1);
+
+        std::cout << "약재 : ";
+
+
+        const auto& ingredients =
+            Recipes[i].getIngredients();
+
+
+        for (int j = 0; j < ingredients.size(); j++)
+        {
+            std::cout << ingredients[j];
+
+            if (j + 1 < ingredients.size())
+                std::cout << " + ";
+        }
+
+
+
+        GotoXY(x[column], y + 2);
+
+        std::cout << "효과 : ";
+
+
+        switch (Recipes[i].getPotionEffect())
+        {
+        case PotionType::Heal:
+            std::cout << "체력 +";
+            break;
+
+        case PotionType::Mana:
+            std::cout << "기력 +";
+            break;
+
+        case PotionType::Attack:
+            std::cout << "공격 +";
+            break;
+
+        case PotionType::Defence:
+            std::cout << "방어 +";
+            break;
+        }
+
+
+        std::cout
+            << Recipes[i].getValue();
+    }
+
+
+    GotoXY(100, 30);
+
+    if (page == 0)
+    {
+        std::cout << "99. 다음 페이지";
+    }
+    else
+    {
+        std::cout << "99. 첫 페이지";
+    }
+}

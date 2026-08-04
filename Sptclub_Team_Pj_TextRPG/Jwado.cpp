@@ -1,12 +1,9 @@
 #include "Jwado.h"
 #include "Monster.h"
-#include <iostream>
+#include "GameUI.h"
+
 #include <cstdlib>
 
-
-#include "Jwado.h"
-#include "Monster.h"
-#include <iostream>
 
 Jwado::Jwado(std::string playerName)
     : Mage(playerName)
@@ -21,11 +18,13 @@ void Jwado::applyJobStats()
 
 void Jwado::skill(Monster& monster)
 {
+    ClearStoryArea();
     int mpCost = getSkillMpCost(1);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+        WaitForEnter();
         return;
     }
 
@@ -34,14 +33,15 @@ void Jwado::skill(Monster& monster)
     // 1 ~ 6 사이의 랜덤한 숫자를 만든다.
     int dice = rand() % 6 + 1;
 
-    std::cout << "혼란의 주사위!" << std::endl;
-    std::cout << "주사위 결과: " << dice << std::endl;
+    PrintStory(0, "혼란의 주사위!");
+    PrintStory(1, "주사위 결과: " + std::to_string(dice));
+    PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
     switch (dice)
     {
     case 1:
         // 데미지 0
-        std::cout << "아무 일도 일어나지 않았습니다." << std::endl;
+        PrintStory(0, "아무 일도 일어나지 않았습니다.");
         break;
 
     case 2:
@@ -56,13 +56,13 @@ void Jwado::skill(Monster& monster)
         {
             damage *= 2;
 
-            std::cout << "치명타!" << std::endl;
+            PrintStory(0, "치명타!");
         }
 
         monster.TakeDamage(damage);
 
-        std::cout << "자객의 암습!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(1, "자객의 암습!");
+        PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
 
         break;
     }
@@ -73,8 +73,8 @@ void Jwado::skill(Monster& monster)
 
         monster.TakeDamage(damage);
 
-        std::cout << "낭인의 파쇄!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "낭인의 파쇄!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
 
         break;
     }
@@ -99,9 +99,9 @@ void Jwado::skill(Monster& monster)
 
         setHp(newHp);
 
-        std::cout << "음양무녀의 신벌!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
-        std::cout << "체력을 50 회복했습니다." << std::endl;
+        PrintStory(0, "음양무녀의 신벌!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
+        PrintStory(2, "체력을 50 회복했습니다.");
 
         break;
     }
@@ -115,8 +115,8 @@ void Jwado::skill(Monster& monster)
 
         monster.setStunned(true);
 
-        std::cout << "포도대장의 방패치기!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "포도대장의 방패치기!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
 
         break;
     }
@@ -129,13 +129,16 @@ void Jwado::skill(Monster& monster)
         // 몬스터에게 피해 적용
         monster.TakeDamage(damage);
 
-        std::cout << "주술사의 뇌격!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "주술사의 뇌격!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
 
         break;
     }
     }
+
+    WaitForEnter();
 }
+
 int Jwado::getSkillMpCost(int skillChoice) const
 {
     return 20;

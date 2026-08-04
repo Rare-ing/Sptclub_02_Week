@@ -1,8 +1,8 @@
 ﻿#include "PotionItem.h"
 #include "Player.h"
+#include "GameUI.h"
 
 #include <algorithm>
-#include <iostream>
 
 PotionItem::PotionItem(
     const std::string& Name,
@@ -36,14 +36,17 @@ void PotionItem::ApplyEffect(Player& player) const
 
         player.setHp(NewHp);
 
-        std::cout
-            << getName()
-            << "을(를) 사용했습니다.\n";
+        PrintStory(
+            0,
+            getName() + "을(를) 사용했습니다."
+        );
 
-        std::cout
-            << "체력이 "
-            << NewHp - BeforeHp
-            << "만큼 회복되었습니다.\n";
+        PrintStory(
+            1,
+            "체력이 "
+            + std::to_string(NewHp - BeforeHp)
+            + "만큼 회복되었습니다."
+        );
 
         break;
     }
@@ -59,14 +62,17 @@ void PotionItem::ApplyEffect(Player& player) const
 
         player.setMp(NewMp);
 
-        std::cout
-            << getName()
-            << "을(를) 사용했습니다.\n";
+        PrintStory(
+            0,
+            getName() + "을(를) 사용했습니다."
+        );
 
-        std::cout
-            << "기력이 "
-            << NewMp - BeforeMp
-            << "만큼 회복되었습니다.\n";
+        PrintStory(
+            1,
+            "기력이 "
+            + std::to_string(NewMp - BeforeMp)
+            + "만큼 회복되었습니다."
+        );
 
         break;
     }
@@ -75,14 +81,17 @@ void PotionItem::ApplyEffect(Player& player) const
     {
         player.addBonusAttack(getValue());
 
-        std::cout
-            << getName()
-            << "을(를) 사용했습니다.\n";
+        PrintStory(
+            0,
+            getName() + "을(를) 사용했습니다."
+        );
 
-        std::cout
-            << "공격력이 "
-            << getValue()
-            << "만큼 증가했습니다.\n";
+        PrintStory(
+            1,
+            "공격력이 "
+            + std::to_string(getValue())
+            + "만큼 증가했습니다."
+        );
 
         break;
     }
@@ -91,14 +100,17 @@ void PotionItem::ApplyEffect(Player& player) const
     {
         player.addBonusDefence(getValue());
 
-        std::cout
-            << getName()
-            << "을(를) 사용했습니다.\n";
+        PrintStory(
+            0,
+            getName() + "을(를) 사용했습니다."
+        );
 
-        std::cout
-            << "방어력이 "
-            << getValue()
-            << "만큼 증가했습니다.\n";
+        PrintStory(
+            1,
+            "방어력이 "
+            + std::to_string(getValue())
+            + "만큼 증가했습니다."
+        );
 
         break;
     }

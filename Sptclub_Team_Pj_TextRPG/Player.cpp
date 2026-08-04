@@ -1,8 +1,7 @@
 ﻿#include "Player.h"
 #include "Monster.h"
-#include "Player.h"
-#include "Monster.h"
 #include "WeaponItem.h"
+#include "GameUI.h"
 
 Player::Player(std::string playerName)
 {
@@ -122,47 +121,56 @@ void Player::setStats(int newHp, int newAttack)
     hp = newHp;
     attack = newAttack;
 }
+
 Player::~Player()
 {
 
 }
+
 void Player::useHpPotion()
 {
     if (hpPotion > 0)
     {
         hp += 20;
         hpPotion--;
-        std::cout << "체력 영단을 사용했습니다." << std::endl;
-        std::cout << "남은 체력 영단 : " << hpPotion << std::endl;
+
+        PrintStory(0, "체력 영단을 사용했습니다.");
+        PrintStory(1, "남은 체력 영단 : " + std::to_string(hpPotion));
     }
     else
     {
-        std::cout << "체력 영단이 부족합니다." << std::endl;
+        PrintStory(0, "체력 영단이 부족합니다.");
     }
 }
+
 void Player::useMpPotion()
 {
     if (mpPotion > 0)
     {
         mp += 20;
         mpPotion--;
-        std::cout << "기력 영단을 사용했습니다." << std::endl;
-        std::cout << "남은 기력 영단 : " << mpPotion << std::endl;
+
+        PrintStory(0, "기력 영단을 사용했습니다.");
+        PrintStory(1, "남은 기력 영단 : " + std::to_string(mpPotion));
     }
     else
     {
-        std::cout << "MP 포션이 부족합니다." << std::endl;
+        PrintStory(0, "MP 포션이 부족합니다.");
     }
 }
+
 void Player::increaseAttack()
 {
     attack *= 2;
-    std::cout << "공격력이 2배 증가했습니다." << std::endl;
+
+    PrintStory(0, "공격력이 2배 증가했습니다.");
 }
+
 void Player::increaseDefence()
 {
     defence *= 2;
-    std::cout << "방어력이 2배 증가했습니다." << std::endl;
+
+    PrintStory(0, "방어력이 2배 증가했습니다.");
 }
 
 void Player::setHp(int newHp)
@@ -245,12 +253,13 @@ void Player::levelUp()
 
         attack += 5;
 
-        std::cout << std::endl;
-        std::cout << "★★★★★ 등급이 상승했습니다! ★★★★★" << std::endl;
-        std::cout << "현재 등급 : " << level << std::endl;
-        std::cout << "체력 +20" << std::endl;
-        std::cout << "공격력 +5" << std::endl;
-        std::cout << "기력 +20" << std::endl;
+        PrintStory(0, "★★★★★ 등급이 상승했습니다! ★★★★★");
+        PrintStory(1, "현재 등급 : " + std::to_string(level));
+        PrintStory(2, "체력 +20");
+        PrintStory(3, "공격력 +5");
+        PrintStory(4, "기력 +20");
+
+        WaitForEnter();
     }
 }
 
@@ -297,11 +306,12 @@ void Player::promoteSecondJob()
 
     isSecondJob = true;
 
-    std::cout << std::endl;
-    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
-    std::cout << "       2차 전직 완료!" << std::endl;
-    std::cout << "       새로운 직업 : " << job << std::endl;
-    std::cout << "★★★★★★★★★★★★★★★★★★" << std::endl;
+    PrintStory(0, "★★★★★★★★★★★★★★★★★★");
+    PrintStory(1, "       2차 전직 완료!");
+    PrintStory(2, "       새로운 직업 : " + job);
+    PrintStory(3, "★★★★★★★★★★★★★★★★★★");
+
+    WaitForEnter();
 }
 
 void Player::applyStats()
@@ -374,6 +384,7 @@ void Player::addMaxMp(int amount)
     maxMp += amount;
     mp = maxMp;
 }
+
 void Player::applyType()
 {
     if (type == "무인")
@@ -401,7 +412,7 @@ int Player::getMaxHp()
 
 int Player::getMaxExp()
 {
-	return maxExp;
+    return maxExp;
 }
 
 void Player::TakeDamage(int damage)
@@ -420,12 +431,13 @@ void Player::TakeDamage(int damage)
     {
         hp = 0;
     }
-
 }
+
 void Player::setStunned(bool state)
 {
     isStunned = state;
 }
+
 void Player::multiplyDefense(float value)
 {
     defence = static_cast<int>(defence * value);
@@ -444,6 +456,7 @@ void Player::setDot(int damage, int turn)
 
     dotTurn = turn;
 }
+
 void Player::addBonusAttack(int amount)
 {
     bonusAttack += amount;
@@ -480,12 +493,12 @@ bool Player::onDeath()
 
 void Player::setExp(int newExp)
 {
-	exp = newExp;
+    exp = newExp;
 }
 
 bool Player::getIsSecondJob()
 {
-	return isSecondJob;
+    return isSecondJob;
 }
 
 void Player::copyPlayerData(const Player& other)
@@ -515,7 +528,7 @@ void Player::copyPlayerData(const Player& other)
 
     isSecondJob = true;
 
-	equippedWeapon = other.equippedWeapon;
+    equippedWeapon = other.equippedWeapon;
 }
 
 void Player::addBonusDefence(int amount)
@@ -550,12 +563,10 @@ void Player::equipWeapon(WeaponItem* weapon)
     equippedWeapon = weapon;
     attack += equippedWeapon->getValue();
 
-    std::cout << weapon->getName()
-        << "을(를) 장착했습니다." << std::endl;
+    PrintStory(0, weapon->getName() + "을(를) 장착했습니다.");
 
-    std::cout << "공격력 +"
-        << weapon->getValue()
-        << std::endl;
+    PrintStory(1, "공격력 +"
+        + std::to_string(weapon->getValue()));
 }
 
 void Player::unequipWeapon()
@@ -567,8 +578,8 @@ void Player::unequipWeapon()
 
     attack -= equippedWeapon->getValue();
 
-    std::cout << equippedWeapon->getName()
-        << "을(를) 해제했습니다." << std::endl;
+    PrintStory(0, equippedWeapon->getName()
+        + "을(를) 해제했습니다.");
 
     equippedWeapon = nullptr;
 }

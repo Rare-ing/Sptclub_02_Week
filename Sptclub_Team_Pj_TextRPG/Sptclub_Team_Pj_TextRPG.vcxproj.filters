@@ -55,11 +55,20 @@
     <Filter Include="소스 파일\Player\Mage">
       <UniqueIdentifier>{bd9c8428-793f-49fc-90b8-6d90187a2ad0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI">
+      <UniqueIdentifier>{b2a3294d-8b32-4c8c-a4b5-57197daeed53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\UI">
+      <UniqueIdentifier>{9f329cf2-740c-45fc-9eac-049624bcf7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Battle">
+      <UniqueIdentifier>{a1d5ec9e-e28c-4592-8e25-f01740d6b5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Battle">
+      <UniqueIdentifier>{1f4188d5-2e11-4557-8135-3c779ae03196}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Battle.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="Drunk.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
@@ -79,9 +88,6 @@
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHud.cpp">
       <Filter>소스 파일\Player</Filter>
     </ClCompile>
     <ClCompile Include="PotionItem.cpp">
@@ -138,9 +144,6 @@
     <ClCompile Include="GhostGuard.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="Banran.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
@@ -154,9 +157,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
@@ -213,6 +213,24 @@
     <ClCompile Include="ItemManager.cpp">
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.h">
+      <Filter>헤더 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>소스 파일\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>소스 파일\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHud.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArmorItem.h">
@@ -226,9 +244,6 @@
     </ClInclude>
     <ClInclude Include="WeaponItem.h">
       <Filter>헤더 파일\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle.h">
-      <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Drunk.h">
       <Filter>헤더 파일\Monster</Filter>
@@ -249,9 +264,6 @@
       <Filter>헤더 파일\Item</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>헤더 파일\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHud.h">
       <Filter>헤더 파일\Player</Filter>
     </ClInclude>
     <ClInclude Include="Shudderwock.h">
@@ -296,9 +308,6 @@
     <ClInclude Include="UndergroundNation.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>헤더 파일\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Banran.h">
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
@@ -306,9 +315,6 @@
       <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>헤더 파일\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
       <Filter>헤더 파일\Main</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
@@ -373,6 +379,18 @@
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>헤더 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>헤더 파일\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>헤더 파일\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHud.h">
+      <Filter>헤더 파일\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>헤더 파일\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

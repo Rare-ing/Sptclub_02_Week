@@ -1,6 +1,6 @@
 #include "Jusul.h"
 #include "Monster.h"
-#include <iostream>
+#include "GameUI.h"
 
 Jusul::Jusul(std::string playerName)
     : Mage(playerName)
@@ -18,11 +18,13 @@ void Jusul::applyJobStats()
 
 void Jusul::skill(Monster& monster)
 {
+    ClearStoryArea();
     int mpCost = getSkillMpCost(1);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+        WaitForEnter();
         return;
     }
 
@@ -34,8 +36,10 @@ void Jusul::skill(Monster& monster)
     // 몬스터에게 피해 적용
     monster.TakeDamage(damage);
 
-    std::cout << "뇌격부!" << std::endl;
-    std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+    PrintStory(0, "뇌격부!");
+    PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
+
+    WaitForEnter();
 }
 
 int Jusul::getSkillMpCost(int skillChoice) const
