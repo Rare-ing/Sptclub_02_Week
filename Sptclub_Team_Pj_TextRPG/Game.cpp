@@ -95,6 +95,7 @@ void DrawGameFrame()
     std::cout << "환 요 전";
 }
 
+/*
 void DrawPlayerHUD(Player* player)
 {
     if (player == nullptr)
@@ -139,7 +140,7 @@ void DrawPlayerHUD(Player* player)
 
     std::cout << "] " << mp << " / " << maxMp;
 }
-
+*/
 void ClearGameMenu()
 {
     for (int y = 23; y < 26; y++)

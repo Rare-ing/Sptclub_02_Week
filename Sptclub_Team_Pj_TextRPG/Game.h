@@ -7,7 +7,7 @@
 class Player;
 
 void StartGame(Character& player);
-void DrawPlayerHUD(Player* player);
+//void DrawPlayerHUD(Player* player);
 void DrawGameFrame();
 void ClearGameMenu();
 #endif
