@@ -1,6 +1,6 @@
 #include "Guks.h"
 #include "Monster.h"
-#include <iostream>
+#include "GameUI.h"
 
 Guks::Guks(std::string playerName)
     : Umyang(playerName)
@@ -39,8 +39,10 @@ void Guks::activateDivinePossession()
 
     setMp(recoverMp);
 
-    std::cout << "신내림이 발동했습니다!" << std::endl;
-    std::cout << "MP가 " << recoverMp << " 회복되었습니다." << std::endl;
+    PrintStory(0, "신내림이 발동했습니다!");
+    PrintStory(1, "MP가 " + std::to_string(recoverMp) + " 회복되었습니다.");
+
+    WaitForEnter();
 }
 
 bool Guks::getIsDivinePossession()
@@ -55,34 +57,39 @@ bool Guks::getHasDivinePossession()
 
 void Guks::skill(Monster& monster)
 {
+    ClearStoryArea();
     int skillChoice;
 
-    std::cout << "\n===== 스킬 선택 =====" << std::endl;
-    std::cout << "1. 음양무녀의 신벌" << std::endl;
-    std::cout << "2. 국선의 천벌" << std::endl;
-    std::cout << "선택 : ";
+    PrintStory(0, "===== 스킬 선택 =====");
+    PrintStory(1, "1. 음양무녀의 신벌");
+    PrintStory(2, "2. 국선의 천벌");
 
     while (true)
     {
-        std::cin >> skillChoice;
+        DrawInputArea();
+        InputCursor();
+
+        skillChoice = GetInput();
 
         if (skillChoice == 1 || skillChoice == 2)
         {
             break;
         }
 
-        std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
+        PrintStory(3, "잘못된 입력입니다. 다시 선택해 주세요");
     }
 
     int mpCost = getSkillMpCost(skillChoice);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+        WaitForEnter();
         return;
     }
 
     setMp(getMp() - mpCost);
+
     switch (skillChoice)
     {
     case 1:
@@ -109,9 +116,11 @@ void Guks::skill(Monster& monster)
         // 몬스터에게 피해 적용
         monster.TakeDamage(damage);
 
-        std::cout << "천벌!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
-        std::cout << "MP를 전부 소모했습니다." << std::endl;
+        PrintStory(0, "천벌!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다!");
+        PrintStory(2,"MP를 모두 소모했습니다!");
+
+        WaitForEnter();
 
         break;
     }
@@ -121,7 +130,7 @@ void Guks::skill(Monster& monster)
 
 int Guks::getSkillMpCost(int skillChoice) const
 {
-    
+
     if (skillChoice == 1)
     {
         return 20; // 음양무녀의 신벌
@@ -130,4 +139,5 @@ int Guks::getSkillMpCost(int skillChoice) const
     {
         return 0; // 국선의 천벌
     }
+    return 0;
 }

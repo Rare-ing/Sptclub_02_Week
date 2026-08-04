@@ -1,8 +1,9 @@
 ﻿#include "Jangg.h"
 #include "Monster.h"
+#include "GameUI.h"
+
 #include <iostream>
 #include <cstdlib>
-
 
 
 Jangg::Jangg(std::string playerName)
@@ -75,32 +76,37 @@ int Jangg::calculateHogukDamage()
 }
 
 
+
 void Jangg::skill(Monster& monster)
 {
     int skillChoice;
 
-    std::cout << "\n===== 스킬 선택 =====" << std::endl;
-    std::cout << "1. 포도대장의 방패치기" << std::endl;
-    std::cout << "2. 장군의 호국검" << std::endl;
-    std::cout << "선택 : ";
+    PrintStory(0, "===== 스킬 선택 =====");
+    PrintStory(1, "1. 포도대장의 방패치기");
+    PrintStory(2, "2. 장군의 호국검");
+
+    DrawInputArea();
+    InputCursor();
 
     while (true)
     {
-        std::cin >> skillChoice;
+        skillChoice = GetInput();
 
         if (skillChoice == 1 || skillChoice == 2)
         {
             break;
         }
 
-        std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
+        PrintStory(3, "잘못된 입력입니다. 다시 선택해주세요 : ");
     }
 
     int mpCost = getSkillMpCost(skillChoice);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+
+        WaitForEnter();
         return;
     }
 
@@ -120,13 +126,16 @@ void Jangg::skill(Monster& monster)
 
         monster.TakeDamage(damage);
 
-        std::cout << "장군의 호국검!" << std::endl;
-        std::cout << damage << " 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "장군의 호국검!");
+        PrintStory(1, std::to_string(damage) + " 피해를 입혔습니다.");
+
+        WaitForEnter();
 
         break;
     }
     }
 }
+
 
 void Jangg::TakeDamage(int damage)
 {
@@ -138,9 +147,8 @@ void Jangg::TakeDamage(int damage)
 
         activateIronWall();
 
-        std::cout
-            << "철벽 발동! 피해가 감소했습니다."
-            << std::endl;
+        ClearStoryArea();
+        PrintStory(0, "철벽 발동! 피해가 감소했습니다.");
 
         int increaseDefense =
             static_cast<int>(baseDefence * (1 + ironWallStack * 0.2));
@@ -150,6 +158,7 @@ void Jangg::TakeDamage(int damage)
 
     Player::TakeDamage(damage);
 }//피격 시 실행 ✅, 50 % 확률 계산 ✅, 피해 - 20 적용 ✅, 철벽 스택 증가 요청 ✅
+
 
 int Jangg::getSkillMpCost(int skillChoice) const
 {

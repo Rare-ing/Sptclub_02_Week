@@ -1,5 +1,9 @@
 ﻿#include "Jag.h"
 #include "Monster.h"
+#include "GameUI.h"
+
+#include <cstdlib>
+#include <iostream>
 
 Jag::Jag(std::string playerName)
     : Warrior(playerName)
@@ -32,11 +36,14 @@ bool Jag::isCritical()
 
 void Jag::skill(Monster& monster)
 {
+    ClearStoryArea();
     int mpCost = getSkillMpCost(1);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+
+        WaitForEnter();
         return;
     }
 
@@ -50,14 +57,17 @@ void Jag::skill(Monster& monster)
     {
         damage *= 2;
 
-        std::cout << "치명타!" << std::endl;
+        PrintStory(0, "치명타!");
     }
 
     // Monster가 스스로 피해 처리
     monster.TakeDamage(damage);
 
-    std::cout << "암습!" << std::endl;
-    std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+    PrintStory(1, "암습!");
+    PrintStory(2, std::to_string(damage) + "의 피해를 입혔습니다.");
+    PrintStory(3, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
+
+    WaitForEnter();
 }
 
 int Jag::getSkillMpCost(int skillChoice) const

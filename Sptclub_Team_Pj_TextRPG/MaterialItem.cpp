@@ -1,7 +1,6 @@
 ﻿#include "MaterialItem.h"
 #include "Inventory.h"
-
-#include <iostream>
+#include "GameUI.h"
 
 MaterialItem::MaterialItem(
     const std::string& Name,
@@ -46,9 +45,10 @@ bool MaterialItem::CraftSealedDragonBall(
         || !TargetInventory.hasItem(CrownPrinceJade)
         || !TargetInventory.hasItem(BurnedHarvestPlaque))
     {
-        std::cout
-            << "봉인된 여의주를 만들기 위한 "
-            << "전리품이 부족합니다.\n";
+        PrintStory(0, "봉인된 여의주를 만들기 위한");
+        PrintStory(1, "전리품이 부족합니다.");
+
+        WaitForEnter();
 
         return false;
     }
@@ -65,9 +65,10 @@ bool MaterialItem::CraftSealedDragonBall(
     // 완성품을 인벤토리에 추가
     TargetInventory.addItem(SealedDragonBall);
 
-    std::cout
-        << "\n네 개의 전리품이 하나로 합쳐집니다.\n"
-        << "봉인된 여의주 습득에 성공했습니다!\n";
+    PrintStory(0, "네 개의 전리품이 하나로 합쳐집니다.");
+    PrintStory(1, "봉인된 여의주 습득에 성공했습니다!");
+
+    WaitForEnter();
 
     return true;
 }

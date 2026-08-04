@@ -1,6 +1,6 @@
 #include "Sansin.h"
 #include "Monster.h"
-#include <iostream>
+#include "GameUI.h"
 
 Sansin::Sansin(std::string playerName)
     : Jusul(playerName)
@@ -26,7 +26,7 @@ void Sansin::addCurseStack()
         curseStack++;
     }
 
-    std::cout << "주술 중첩: " << curseStack << std::endl;
+    PrintStory(0, "주술 중첩: " + std::to_string(curseStack));
 }
 
 void Sansin::resetCurseStack()
@@ -34,7 +34,7 @@ void Sansin::resetCurseStack()
     // 강화된 스킬을 사용하면 주술 중첩을 모두 소모한다.
     curseStack = 0;
 
-    std::cout << "주술 중첩이 초기화되었습니다." << std::endl;
+    PrintStory(0, "주술 중첩이 초기화되었습니다.");
 }
 
 int Sansin::getCurseStack()
@@ -47,28 +47,31 @@ void Sansin::skill(Monster& monster)
 {
     int skillChoice;
 
-    std::cout << "\n===== 스킬 선택 =====" << std::endl;
-    std::cout << "1. 주술사의 뇌격" << std::endl;
-    std::cout << "2. 산신의 뇌격" << std::endl;
-    std::cout << "선택 : ";
+    PrintStory(0, "===== 스킬 선택 =====");
+    PrintStory(1, "1. 주술사의 뇌격");
+    PrintStory(2, "2. 산신의 뇌격");
+
+    DrawInputArea();
+    InputCursor();
 
     while (true)
     {
-        std::cin >> skillChoice;
+        skillChoice = GetInput();
 
         if (skillChoice == 1 || skillChoice == 2)
         {
             break;
         }
 
-        std::cout << "잘못된 입력입니다. 다시 선택해주세요 : ";
+        PrintStory(3, "잘못된 입력입니다. 다시 선택해주세요 : ");
     }
 
     int mpCost = getSkillMpCost(skillChoice);
 
     if (getMp() < mpCost)
     {
-        std::cout << "기력이 부족합니다!" << std::endl;
+        PrintStory(0, "기력이 부족합니다!");
+        WaitForEnter();
         return;
     }
 
@@ -98,8 +101,8 @@ void Sansin::skill(Monster& monster)
         {
             damage *= 2;
 
-            std::cout << "주술 5중첩!" << std::endl;
-            std::cout << "축적된 자연지기가 폭발합니다!" << std::endl;
+            PrintStory(0, "주술 5중첩!");
+            PrintStory(1, "축적된 자연지기가 폭발합니다!");
 
             // 중첩 전부 소모
             resetCurseStack();
@@ -114,19 +117,21 @@ void Sansin::skill(Monster& monster)
 
             setMp(newMp);
 
-            std::cout << "MP를 50 회복했습니다." << std::endl;
+            PrintStory(2, "MP를 50 회복했습니다.");
         }
 
         // 몬스터에게 피해 적용
         monster.TakeDamage(damage);
 
-        std::cout << "산신의 산신강림!" << std::endl;
-        std::cout << damage << "의 피해를 입혔습니다." << std::endl;
+        PrintStory(0, "산신의 산신강림!");
+        PrintStory(1, std::to_string(damage) + "의 피해를 입혔습니다.");
+        PrintStory(2, monster.getName() + " 남은 체력 : " + std::to_string(monster.getHp()));
 
         break;
     }
     }
 
+    WaitForEnter();
 }
 
 int Sansin::getSkillMpCost(int skillChoice) const

@@ -1,13 +1,17 @@
 ﻿#include "Jangsanbeom.h"
 #include "Player.h"
-#include <iostream>
+#include "GameUI.h"
+
 #include <cstdlib>
 
-Jangsanbeom::Jangsanbeom() : Monster("장산범", 5, 0, "장산범의 가면", 200, 20, "사람의 목소리를 흉내내는 괴수, 장산범이 나타났다!")
+
+Jangsanbeom::Jangsanbeom()
+	: Monster("장산범", 5, 0, "장산범의 가면", 200, 20, "사람의 목소리를 흉내내는 괴수, 장산범이 나타났다!")
 {
 	setBoss(true);
 	ApplyBossBonus();
 }
+
 
 void Jangsanbeom::TakeTurn(Player* player)
 {
@@ -23,15 +27,21 @@ void Jangsanbeom::TakeTurn(Player* player)
 	}
 }
 
+
 void Jangsanbeom::Attack(Player* player)
 {
-	std::cout << "장산범은 날카로운 발톱으로 찢어냈다!" << std::endl;
+	PrintStory(0, "장산범은 날카로운 발톱으로 찢어냈다!");
 
 	int damage = CalculateDamage();
+
 	player->TakeDamage(damage);
 
-	std::cout << damage << "의 피해를 입었다!" << std::endl;
+	PrintStory(1, std::to_string(damage) + "의 피해를 입었다!");
+	PrintStory(2, "남은 HP : " + std::to_string(player->getHp()));
+
+	WaitForEnter();
 }
+
 
 void Jangsanbeom::Skill(Player* player)
 {
@@ -42,14 +52,17 @@ void Jangsanbeom::Skill(Player* player)
 		Attack(player);
 		return;
 	}
+
 	setMp(getMp() - skillCost);
 
-	std::cout << "장산범은 사람의 목소리를 적을 혼란시켰다!" << std::endl;
+	PrintStory(0, "장산범은 사람의 목소리로 적을 혼란시켰다!");
 
 	int damage = CalculateSkillDamage(1.5f);
+
 	player->TakeDamage(damage);
 
-	std::cout << damage << "의 피해를 입었다!" << std::endl;
+	PrintStory(1, std::to_string(damage) + "의 피해를 입었다!");
+	PrintStory(2, "남은 HP : " + std::to_string(player->getHp()));
 
 	int stunChance = rand() % 100;
 
@@ -57,6 +70,7 @@ void Jangsanbeom::Skill(Player* player)
 	{
 		player->setStunned(true);
 
-		std::cout << "플레이어는 사람의 소리를 듣고 혼란에 빠졌다!" << std::endl;
+		PrintStory(3, "플레이어는 사람의 소리를 듣고 혼란에 빠졌다!");
 	}
+	WaitForEnter();
 }

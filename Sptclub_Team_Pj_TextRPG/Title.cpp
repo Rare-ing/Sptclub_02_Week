@@ -20,6 +20,8 @@ void GotoXY(int x, int y)
     pos.Y = y;
 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+
+    std::cout.flush();
 }
 
 //커서 숨기기
@@ -241,7 +243,7 @@ void PlayIntroAnimation()
         tick++;
     }
 
-    _getch();
+    (void)_getch();
 }
 
 // 이름 입력 전에 보여줄 스토리 나레이션
@@ -272,6 +274,7 @@ const std::string StoryLines[] =
 
 const int StoryLineCount = sizeof(StoryLines) / sizeof(StoryLines[0]);
 const std::string StoryPrompt = "아무키나 입력";
+const std::string StartPrompt = "아무키나 입력하여 게임 시작하기";
 
 const int StoryStartRow = 2;
 const int StoryPromptRow = StoryStartRow + StoryLineCount + 1;
@@ -285,13 +288,38 @@ void PlayStoryIntro()
     for (int i = 0; i < StoryLineCount; i++)
     {
         GotoXY(20, StoryStartRow + i);
-        cout << StoryLines[i];
-    }
 
-    SetColor(8);
+        cout << StoryLines[i];
+
+        // 입력 안내 표시
+        SetColor(8);
+
+        GotoXY(20, StoryPromptRow);
+
+        cout << StoryPrompt;
+
+        SetColor(15);
+
+        while (!_kbhit())
+        {
+            Sleep(50);
+        }
+
+        _getch();
+
+        // 입력 안내 지우기
+        GotoXY(20, StoryPromptRow);
+        cout << string(StoryPrompt.length(), ' ');
+
+        // 다음 줄로 내려가기
+        GotoXY(20, StoryStartRow + i + 1);
+    }
+    // 마지막 게임 시작 문구
+    SetColor(10);
 
     GotoXY(20, StoryPromptRow);
-    cout << StoryPrompt;
+
+    cout << StartPrompt;
 
     SetColor(15);
 

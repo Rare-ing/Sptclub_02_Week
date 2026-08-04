@@ -1,6 +1,6 @@
 #include "Mage.h"
 #include "Monster.h"
-#include <iostream>
+#include "GameUI.h"
 
 Mage::Mage(std::string playerName)
     : Player(playerName)
@@ -14,5 +14,8 @@ Mage::Mage(std::string playerName)
 
 void Mage::skill(Monster& monster)
 {
-    std::cout << "도사의 기본 스킬!" << std::endl;
+    ClearStoryArea();
+    PrintStory(0, "도사의 기본 스킬!");
+
+    WaitForEnter();
 }
