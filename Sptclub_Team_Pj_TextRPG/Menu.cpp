@@ -45,7 +45,6 @@ void StatusMenu(Character& player)
             break;
 
         case 2:
-            StartGame(player);
             return;
 
         case 3:

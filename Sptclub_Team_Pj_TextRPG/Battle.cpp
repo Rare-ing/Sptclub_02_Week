@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "PlayerHud.h"
+#include "Title.h"
 #include "Jangg.h"
 #include "Gunb.h"
 #include "Amh.h"
@@ -10,6 +11,7 @@
 #include "Yos.h"
 #include <iostream>
 #include <cstdlib>
+
 
 void promotePlayer(Player*& player)
 {
@@ -107,13 +109,11 @@ Battle::Battle(Player*& player, Monster* monster, Inventory* inventory, bool Can
 }
 void Battle::StartBattle()
 {
-	//로그출력
-	DrawPlayerHUD(player);
-	MoveCursorBelowPlayerHUD();
+	GotoXY(4, 4);
+	std::cout << monster->getSpawnMessage();
 
-	std::cout << monster->getSpawnMessage() << std::endl;
-	std::cout << "[ 전투 시작 ]" << std::endl;
-
+	GotoXY(4, 5);
+	std::cout << "[ 전투 시작 ]";
 	bool isWin = false;
 
 	while (true)
