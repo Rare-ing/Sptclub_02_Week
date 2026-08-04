@@ -134,16 +134,16 @@ void PotionWorkshop::RunMenu(const Inventory& inventory) const
     while (true)
     {
         std::cout << "\n";
-        std::cout << "========================================\n";
+        std::cout << "==================================================\n";
         std::cout << "         [ 약선방 (藥仙房) ]\n";
         std::cout << "  \"조선의 명산에서 얻은 영약 비방을 다룹니다.\"\n";
-        std::cout << "========================================\n";
+        std::cout << "==================================================\n";
         std::cout << "1. 전체 비방 목록 조회\n";
         std::cout << "2. 영약 이름으로 비방 찾기\n";
         std::cout << "3. 약재 이름으로 비방 찾기\n";
         std::cout << "4. 영약 조제 (제작)\n";
         std::cout << "0. 약선방 나가기\n";
-        std::cout << "========================================\n";
+        std::cout << "==================================================\n";
         std::cout << "선택 : ";
 
         std::string MenuInput;
@@ -343,7 +343,7 @@ void PotionWorkshop::SearchByName(const std::string& Name) const
     // 빈 검색어는 모든 영약과 일치하므로 입력을 재요청
     if (Name.empty())
     {
-        std::cout << "찾으실 영약의 이름을 입력해 주십시오.\n";
+        std::cout << "찾으실 영약의 이름을 알려주십시오.\n";
         return;
     }
 
@@ -390,14 +390,14 @@ void PotionWorkshop::SearchByName(const std::string& Name) const
     }
     catch (...)
     {
-        std::cout << "비방 목록의 번호를 입력해 주십시오.\n";
+        std::cout << "비방 목록의 번호를 선택해 주십시오.\n";
         return;
     }
 
     // 입력한 문자열 전체가 숫자로 변환되었는지 확인 (혹시 모르니까..)
     if (ProcessedLength != NumberInput.size())
     {
-        std::cout << "비방 목록의 번호를 입력해 주십시오.\n";
+        std::cout << "비방 목록의 번호를 선택해 주십시오.\n";
         return;
     }
     if (Number < 1
@@ -452,7 +452,7 @@ PotionItem PotionWorkshop::CraftPotion(
     if (Name.empty())
     {
         std::cout
-            << "조제할 영약의 이름을 입력해 주십시오.\n";
+            << "조제할 영약의 이름을 알려주십시오.\n";
 
         return PotionItem(
             "",
@@ -517,7 +517,7 @@ PotionItem PotionWorkshop::CraftPotion(
     catch (...)
     {
         std::cout
-            << "영약 목록의 번호를 입력해 주십시오.\n";
+            << "영약 목록의 번호를 선택해 주십시오.\n";
 
         return PotionItem(
             "",
@@ -531,7 +531,7 @@ PotionItem PotionWorkshop::CraftPotion(
     if (ProcessedLength != NumberInput.size())
     {
         std::cout
-            << "영약 목록의 번호를 입력해 주십시오.\n";
+            << "영약 목록의 번호를 선택해 주십시오.\n";
 
         return PotionItem(
             "",
