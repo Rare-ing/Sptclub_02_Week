@@ -440,27 +440,134 @@ void PotionWorkshop::SearchByIngredient(
     }
 }
 
-PotionItem PotionWorkshop::CraftPotion(const std::string& Name) const
-{
-    std::cout << "영약 조제를 시작합니다.\n";
 
+PotionItem PotionWorkshop::CraftPotion(
+    const std::string& Name
+) const
+{
+    std::vector<const PotionRecipe*> SearchResults;
+
+    // 빈 검색어는 입력 재요청
+    if (Name.empty())
+    {
+        std::cout
+            << "조제할 영약의 이름을 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 입력한 이름 일부가 포함된 비방 
     for (const PotionRecipe& Recipe : Recipes)
     {
-        if (Recipe.getName() == Name)
+        if (Recipe.getName().find(Name) != std::string::npos)
         {
-            std::cout << "\n"
-                << Recipe.getName()
-                << " 조제가 완료되었습니다!\n";
-
-            return PotionItem(
-                Recipe.getName(),
-                Recipe.getPotionEffect(),
-                Recipe.getValue(),
-                Recipe.getWeight()
-            );
+            SearchResults.push_back(&Recipe);
         }
     }
 
-    std::cout << "약선방에 전해지지 않은 영약 비방입니다.\n";
-    return PotionItem("", PotionType::Heal, 0, 0);
+    // 검색 결과 없음
+    if (SearchResults.empty())
+    {
+        std::cout
+            << "약선방에 전해지지 않은 영약 비방입니다.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    std::cout
+        << "\n============ 조제 가능한 영약 ============\n";
+
+    // 검색된 영약은 번호와 함께 출력
+    for (size_t i = 0; i < SearchResults.size(); i++)
+    {
+        std::cout
+            << i + 1
+            << ". "
+            << SearchResults[i]->getName()
+            << '\n';
+    }
+
+    std::cout
+        << "\n조제할 영약의 번호를 선택해 주십시오 : ";
+
+    std::string NumberInput;
+    std::getline(std::cin, NumberInput);
+
+    int Number = 0;
+    size_t ProcessedLength = 0;
+
+    try
+    {
+        Number = std::stoi(
+            NumberInput,
+            &ProcessedLength
+        );
+    }
+    catch (...)
+    {
+        std::cout
+            << "영약 목록의 번호를 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 숫자 뒤에 다른 문자가 입력되었는지 확인
+    if (ProcessedLength != NumberInput.size())
+    {
+        std::cout
+            << "영약 목록의 번호를 입력해 주십시오.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    // 검색 결과 범위를 벗어난 번호인지 확인
+    if (Number < 1
+        || Number > static_cast<int>(SearchResults.size()))
+    {
+        std::cout
+            << "약선방에 전해지지 않은 영약 비방입니다.\n";
+
+        return PotionItem(
+            "",
+            PotionType::Heal,
+            0,
+            0
+        );
+    }
+
+    const PotionRecipe& SelectedRecipe =
+        *SearchResults[Number - 1];
+
+    std::cout
+        << '\n'
+        << SelectedRecipe.getName()
+        << " 조제가 완료되었습니다!\n";
+
+    return PotionItem(
+        SelectedRecipe.getName(),
+        SelectedRecipe.getPotionEffect(),
+        SelectedRecipe.getValue(),
+        SelectedRecipe.getWeight()
+    );
 }
+
