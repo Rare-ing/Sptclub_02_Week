@@ -83,10 +83,10 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
 
         ClearStoryArea();
 
-        PrintStory(0, "정조 : 맞다.");
-        PrintStory(1, "?? : 지금 조선은 굶주리고 있다.");
-        PrintStory(2, "정조 : 흉년이 들었고, 괴질이 퍼졌다.");
-        PrintStory(3, "?? : 그런데 그것만이 문제가 아니다.");
+        PrintStory(0, "맞다.");
+        PrintStory(1, "지금 조선은 굶주리고 있다.");
+        PrintStory(2, " 흉년이 들었고, 괴질이 퍼졌다.");
+        PrintStory(3, "그런데 그것만이 문제가 아니다.");
 
         WaitForEnter();
 
@@ -96,8 +96,8 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
 
         ClearStoryArea();
 
-        PrintStory(0, "?? : 최근 들어 산과 들에서 요괴들이 나타나기 시작했다.");
-        PrintStory(1, "?? : 백성들은 이미 공포에 질려 있다.");
+        PrintStory(0, "최근 들어 산과 들에서 요괴들이 나타나기 시작했다.");
+        PrintStory(1, "백성들은 이미 공포에 질려 있다.");
 
         WaitForEnter();
 
