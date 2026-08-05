@@ -35,7 +35,7 @@
 void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, WeaponManager& weaponManager)
 {
     ClearStoryArea();
-    //WeaponItem* weapon = new WeaponItem(weaponManager.CreateWeaponForJob(player->getJob())); 우선 메모리 누수 이슈로 주석처리합니다.-준우
+    WeaponItem* weapon = new WeaponItem(weaponManager.CreateWeaponForJob(player->getJob())); //우선 메모리 누수 이슈로 주석처리합니다.-준우
     switch (stageLevel)
     {
     case 1:
@@ -177,7 +177,7 @@ void stageStartFunc(int stageLevel, Player* player, Inventory& inventory, Weapon
 
         PrintStory(0, "주인공 : 알겠소.");
         PrintStory(1, "정조 : 이것은 그대에게 주는 지원품이다.");
-
+		inventory.addItem(weapon);
         WaitForEnter();
 
         // ==============================
