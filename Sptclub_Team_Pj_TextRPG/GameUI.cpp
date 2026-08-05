@@ -142,6 +142,9 @@ void DrawInputArea()
 {
     GotoXY(4, 38);
 
+    cout << string(114, ' ');
+
+    GotoXY(4, 38);
     cout << "ют╥б : ";
 }
 void InputCursor()
