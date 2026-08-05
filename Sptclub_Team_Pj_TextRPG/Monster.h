@@ -54,6 +54,7 @@ public:
 	int getLevel();
 
 	int getHp();
+	int getMaxHp();
 	int getMp();
 
 	int getPower();

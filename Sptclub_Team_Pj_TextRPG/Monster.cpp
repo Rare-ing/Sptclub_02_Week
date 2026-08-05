@@ -83,6 +83,7 @@ std::string Monster::getName() { return name; }
 int Monster::getLevel() { return level; }
 
 int Monster::getHp() { return hp; }
+int Monster::getMaxHp() { return maxHpCheck; }
 int Monster::getMp() { return mp; }
 
 int Monster::getPower() { return power; }
@@ -150,6 +151,8 @@ int Monster::CalculateSkillDamage(float multiplier)
 void Monster::ApplyBossBonus()
 {
 	hp = static_cast<int>(hp * 2);
+	maxHpCheck = hp;
+
 	mp = static_cast<int>(mp * 1.5);
 	power = static_cast<int>(power * 2);
 	defence = static_cast<int>(defence * 1.5);

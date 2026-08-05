@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "PlayerHud.h"
+#include "MonsterHud.h"
 #include "Game.h"
 #include "GameUI.h"
 #include "Title.h"
@@ -121,6 +122,7 @@ void Battle::StartBattle()
 	cout << string(50, ' ');
 
 	DrawPlayerHUD(player);
+	DrawMonsterHUD(monster);
 
 	if (monster->getName() == "장산범")
 	{
@@ -230,7 +232,6 @@ void Battle::StartBattle()
 		}
 
 		PlayerTurn();
-		DrawPlayerHUD(player); 
 
 		if (CheckBattleEnd())
 		{
@@ -240,13 +241,16 @@ void Battle::StartBattle()
 
 				PrintStory(5, monster->getName() + "을(를) 처치했다!");
 				WaitForEnter();
+				break;
 			}
 
-			break;
+		DrawPlayerHUD(player); 
+		DrawMonsterHUD(monster);
 		}
 
 		MonsterTurn();
-		DrawPlayerHUD(player); //
+		DrawPlayerHUD(player);
+		DrawMonsterHUD(monster);
 
 		if (CheckBattleEnd())
 		{
@@ -283,8 +287,8 @@ void Battle::StartBattle()
 	player->resetBonusAttack();
 	player->resetBonusDefence();
 
-	ClearStoryArea();
-	ClearChoiceArea();
+	DrawGameFrame();
+	DrawPlayerHUD(player);
 }
 
 void Battle::PlayerTurn()

@@ -168,6 +168,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Banran.cpp" />
+    <ClCompile Include="MonsterHud.cpp" />
     <ClCompile Include="Nang.cpp" />
     <ClCompile Include="Oni.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Banran.h" />
+    <ClInclude Include="MonsterHud.h" />
     <ClInclude Include="MountainBeast.h" />
     <ClInclude Include="Nang.h" />
     <ClInclude Include="Oni.h" />
